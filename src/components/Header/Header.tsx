@@ -2,9 +2,10 @@ import { HeaderContainer } from './Header.styles';
 import logo from '../../assets/images/logo.png';
 import search from '../../assets/icons/search.png';
 import Button from '../Button/Button';
+import NavigationButton from '../NavigationButton';
 
 function Header() {
-  const isLogin = false;
+  const isLogin = true;
 
   return (
     <HeaderContainer>
@@ -25,11 +26,7 @@ function Header() {
       <div className = "menu">
       {!isLogin
         ? <Button>Log In/ Sing Up</Button>
-        : (<div>
-        <button> </button>
-        <button> </button>
-        <button> </button>
-           </div>)
+        : <NavigationButton />
       }
       </div>
     </HeaderContainer>

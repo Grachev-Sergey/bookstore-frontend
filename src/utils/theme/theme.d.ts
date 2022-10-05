@@ -24,6 +24,7 @@ declare module 'styled-components' {
     fontSize: {
       title: string;
       bigPrice: string;
+      titleTablet: string;
       autor: string;
       regular: string;
       filter: string;
@@ -35,15 +36,19 @@ declare module 'styled-components' {
     lineHight: {
       title: string;
       bigPrice: string;
+      titleTablet: string;
       author: string;
       regularBig: string;
       regular: string;
       regularSmall: string;
+      small: string;
       commentDescription: string;
     };
 
     media: {
       tablet: string;
+      medium: string;
+      small: string;
       mobile: string;
     };
   }

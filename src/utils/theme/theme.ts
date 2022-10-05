@@ -23,6 +23,7 @@ export const baseTheme: DefaultTheme = {
   fontSize: {
     title: '40px',
     bigPrice: '36px',
+    titleTablet: '32px',
     autor: '24px',
     regular: '20px',
     filter: '18px',
@@ -34,15 +35,19 @@ export const baseTheme: DefaultTheme = {
   lineHight: {
     title: '60px',
     bigPrice: '54px',
+    titleTablet: '48px',
     author: '36px',
     regularBig: '30px',
     regular: '28px',
     regularSmall: '24px',
+    small: '21px',
     commentDescription: '18px',
   },
 
   media: {
-    tablet: '(max-width: 834px)',
-    mobile: '(max-width: 320px)',
+    tablet: '(max-width: 1279px)',
+    medium: '(max-width: 834px)',
+    small: '(max-width: 650px)',
+    mobile: '(max-width: 450px)',
   },
 };
