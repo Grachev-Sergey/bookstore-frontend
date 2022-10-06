@@ -13,6 +13,7 @@ export const NavigationButtonContainer = styled.section`
     border: none;
     background-size: 26px;
     background-repeat: no-repeat;
+    cursor: pointer;
   }
 
   .cart {
@@ -24,12 +25,31 @@ export const NavigationButtonContainer = styled.section`
   .favorites {
     margin-right: 27px;
     background-image: url(${favoritesIcon});
-    background-position: 11px 14px;
+    background-position: 10px 14px;
   }
   .profile {
     background-image: url(${profileIcon});
     background-position: 11px;
   }
   
+  @media only screen and (${({ theme }) => theme.media.mobile}) {
+    button {
+      width: 33px;
+      height: 32px;
+      background-size: 18px;
+    }
+    .cart {
+      margin-right: 18px;
+      background-position: 7px;
+    }
+    .favorites {
+      margin-right: 18px;
+      background-position: 8px 8px;
+    }
+    .profile {
+      background-image: url(${profileIcon});
+      background-position: 7px;
+    }
+  }
 
 `;

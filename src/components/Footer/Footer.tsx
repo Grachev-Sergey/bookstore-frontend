@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FooterContainer, StyledFooter } from './Footer.styles';
 import logo from '../../assets/images/logoBlackBg.png';
 import map from '../../assets/images/map.png';
@@ -12,10 +13,10 @@ function Footer() {
           <p className = "phone">(480) 555-0103</p>
         </div>
         <div className = "links">
-          <a href="#">Home Page</a>
-          <a href="#">Catalog</a>
-          <a href="#">My Account</a>
-          <a href="#">Cart</a>
+          <Link to="/" className="link">Home Page</Link>
+          <Link to="/" className="link">Catalog</Link>
+          <Link to="/profile" className="link">My Account</Link>
+          <Link to="/cart" className="link">Cart</Link>
         </div>
         <div className="address">
           <p>6391 Elgin St. Celina, Delaware 10299</p>

@@ -34,9 +34,12 @@ export const AuthorizeBannerContainer = styled.section`
     line-height: ${({ theme }) => theme.lineHight.regularBig};
     color: ${({ theme }) => theme.colors.dark};
   }
+
   .banner__button {
+    display: block;
     margin: 50px 0 96px 0;
     max-width: 231px;
+    padding: 10px 56px;
   }
 
   img {
@@ -89,7 +92,7 @@ export const AuthorizeBannerContainer = styled.section`
 
     p {
       margin: 20px 0 0 0;
-      max-width: 260px;
+      max-width: 280px;
     }
 
     .banner__button {
@@ -101,6 +104,11 @@ export const AuthorizeBannerContainer = styled.section`
     max-width: 430px;
     background-size: 265px;
 
+  }
+
+  @media only screen and (${({ theme }) => theme.media.mobile}) {
+    max-width: 290px;
+    background-size: 200px;
 
     h2 {
       font-size: ${({ theme }) => theme.fontSize.filter};
@@ -112,15 +120,12 @@ export const AuthorizeBannerContainer = styled.section`
       font-size: ${({ theme }) => theme.fontSize.imputTitle};
       line-height: ${({ theme }) => theme.lineHight.small};
     }
-  }
-
-  @media only screen and (${({ theme }) => theme.media.mobile}) {
-    max-width: 290px;
-    background-size: 200px;
 
     .banner__button {
       margin: 20px 0 328px 0;
       max-width: 231px;
+      font-size: ${({ theme }) => theme.fontSize.small};
+      line-height: ${({ theme }) => theme.lineHight.regularSmall};
     }
 
     img {

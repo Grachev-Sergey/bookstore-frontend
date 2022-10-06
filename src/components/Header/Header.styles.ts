@@ -10,11 +10,13 @@ export const HeaderContainer = styled.section`
     height: 46px;
   }
 
-  p {
+  .link {
     margin: 42px 0 0 128px;
     font-weight: ${({ theme }) => theme.fontWeight.medium};;
     font-size: ${({ theme }) => theme.fontSize.small};
     line-height: ${({ theme }) => theme.lineHight.regularSmall};
+    color: ${({ theme }) => theme.colors.dark};
+    text-decoration: none;
   }
   
   input {
@@ -43,7 +45,7 @@ export const HeaderContainer = styled.section`
   }
 
   .menu {
-    margin: 32px 0 0 97.5px;
+    margin: 32px 0 0 93px;
   }
 
   @media only screen and (${({ theme }) => theme.media.tablet}) {
@@ -53,7 +55,7 @@ export const HeaderContainer = styled.section`
       margin-top: 28px;
     }
 
-    p {
+    .link {
       margin: 38px 0 0 51px;
     }
 
@@ -80,7 +82,7 @@ export const HeaderContainer = styled.section`
       margin: 28px 0 0 33px;
     }
 
-    p {
+    .link {
       margin: 38px 0 0 100px;
     }
 
@@ -108,7 +110,7 @@ export const HeaderContainer = styled.section`
       margin: 28px 0 0 0;
     }
 
-    p {
+    .link {
       margin: 38px 0 0 25px;
     }
 
@@ -137,7 +139,7 @@ export const HeaderContainer = styled.section`
       height: 31px
     }
 
-    p {
+    .link {
       margin: 42px 0 0 18px;
       font-size: ${({ theme }) => theme.fontSize.imputTitle};
       line-height: ${({ theme }) => theme.lineHight.small};

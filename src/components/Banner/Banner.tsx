@@ -7,9 +7,7 @@ function Banner() {
       <div className="banner__info">
         <h2>Build your library with us</h2>
         <p>Buy two books and get one for free</p>
-        <div className = "banner__button">
-          <Button>Choose a book</Button>
-        </div>
+        <Button className = "banner__button">Choose a book</Button>
       </div>
       <div className="img" />
     </BannerContainer>

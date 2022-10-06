@@ -7,7 +7,12 @@ type PropsType = {
 
 const Button: React.FunctionComponent<PropsType> = (props) => {
   return (
-    <StyledButton>{props.children}</StyledButton>
+    <StyledButton
+     className={props.className}
+     onClick={props.onClick}
+    >
+      {props.children}
+    </StyledButton>
   );
 };
 

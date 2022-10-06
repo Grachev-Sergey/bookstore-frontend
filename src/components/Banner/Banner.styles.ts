@@ -32,8 +32,11 @@ export const BannerContainer = styled.section`
     color: ${({ theme }) => theme.colors.darkBlue};
   }
   .banner__button {
+    padding: 10px 55px;
     margin: 50px 0 0 108px;
-    max-width: 230px;
+    display: block;
+    text-align: start;
+    max-width: 231px;
   }
   .img {
     margin-left: 146px;
@@ -120,6 +123,7 @@ export const BannerContainer = styled.section`
     }
 
     .banner__button {
+      padding: 10px 54px;
       margin: 20px 0 338px 20px;
       max-width: 200px;
     }
