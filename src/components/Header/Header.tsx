@@ -11,7 +11,7 @@ function Header() {
   const navigate = useNavigate();
 
   const goToAuth = () => {
-    navigate('/auth');
+    navigate('/signup');
   };
 
   return (

@@ -7,7 +7,7 @@ type PrivateRouteType = {
 
 const PrivateRoute: React.FunctionComponent<PrivateRouteType> = (props) => {
   if (!props.isLogin) {
-    return <Navigate to="/auth" />;
+    return <Navigate to="/signup" />;
   }
   return props.children;
 };
