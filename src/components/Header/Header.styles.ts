@@ -12,7 +12,7 @@ export const HeaderContainer = styled.section`
 
   .link {
     margin: 42px 0 0 128px;
-    font-weight: ${({ theme }) => theme.fontWeight.medium};;
+    font-weight: ${({ theme }) => theme.fontWeight.medium};
     font-size: ${({ theme }) => theme.fontSize.small};
     line-height: ${({ theme }) => theme.lineHight.regularSmall};
     color: ${({ theme }) => theme.colors.dark};
@@ -88,7 +88,7 @@ export const HeaderContainer = styled.section`
 
     input {
       margin: 20px 0 0 33px;
-      padding: 20px 250px 20px 64px;
+      padding: 15px 250px 15px 64px;
       max-width: 1000px;
     }
 
@@ -98,12 +98,11 @@ export const HeaderContainer = styled.section`
     }
 
     .magnifier {
-      margin: 37px 0 0 55px;
+      margin: 32px 0 0 55px;
     }
   }
 
   @media only screen and (${({ theme }) => theme.media.small}) {
-    flex-wrap: wrap;
     max-width: 430px;
 
     .logo {
@@ -116,22 +115,20 @@ export const HeaderContainer = styled.section`
 
     input {
       margin: 20px 0 0 0;
-      padding: 20px 110px 20px 64px;
+      padding: 15px 110px 15px 64px;
       max-width: 1000px;
     }
 
     .magnifier {
-      margin: 37px 0 0 20px;
+      margin: 32px 0 0 20px;
     }
 
     .menu {
       margin: 25px 0 0 210px;
     }
-
   }
 
   @media only screen and (${({ theme }) => theme.media.mobile}) {
-    flex-wrap: wrap;
     max-width: 290px;
 
     .logo {
@@ -147,9 +144,15 @@ export const HeaderContainer = styled.section`
 
     input {
       margin: 20px 0 0 0;
-      padding: 20px 0px 20px 63px;
+      padding: 15px 30px 15px 63px;
       max-width: 290px;
+
+      ::placeholder {
+        font-size: ${({ theme }) => theme.fontSize.commentDescription};
+        line-height: ${({ theme }) => theme.lineHight.regularSmall};
+      }
     }
+
     .menu {
       max-width: 135px;
       margin: 32px 0 0 170px;

@@ -11,6 +11,7 @@ declare module 'styled-components' {
       darkGray: string;
       white: string;
       darkGreen: string;
+      error: string;
     };
 
     borderRadius: string;

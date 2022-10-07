@@ -10,6 +10,7 @@ export const baseTheme: DefaultTheme = {
     darkGray: '#B9BAC4',
     white: '#FFFFFF',
     darkGreen: '#8D9F4F',
+    error: '#ff0000',
   },
 
   borderRadius: '16px',

@@ -1,6 +1,10 @@
 node_modules/*
 .eslintrc.js
 src/utils/theme/theme.d.ts
+
+src/pages/SignUpPage/SignUpPage.tsx
+src/pages/LogInPage/LogInPage.tsx
+
 build
 lock_node_version.js
 craco.config.js

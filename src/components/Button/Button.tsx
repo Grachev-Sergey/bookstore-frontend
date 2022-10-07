@@ -2,14 +2,16 @@ import { StyledButton } from './Button.styles';
 
 type PropsType = {
   onClick?: () => void;
+  type?: 'button' | 'submit' | 'reset' | undefined;
   className?: string;
 } & React.PropsWithChildren;
 
 const Button: React.FunctionComponent<PropsType> = (props) => {
   return (
     <StyledButton
-     className={props.className}
-     onClick={props.onClick}
+      type={props.type}
+      className={props.className}
+      onClick={props.onClick}
     >
       {props.children}
     </StyledButton>
