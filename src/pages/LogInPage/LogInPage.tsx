@@ -7,6 +7,8 @@ import Button from '../../components/Button';
 import mail from '../../assets/icons/mail.png';
 import hide from '../../assets/icons/hide.png';
 import man from '../../assets/images/man.png';
+import { useAppDispatch } from '../../store/hooks';
+import { logInUser } from '../../store/userSlice/thunks/logInUser';
 
 const signUpValidationSchema = Yup.object({
   email: Yup.string()
@@ -24,11 +26,13 @@ const initialElem = {
 
 function LogInPage() {
   const navigate = useNavigate();
+  const disputch = useAppDispatch();
 
   const formik = useFormik({
     initialValues: initialElem,
     validationSchema: signUpValidationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+      await disputch(logInUser(values))
       console.log(values);
       if (values) {
         navigate('/');
@@ -56,6 +60,7 @@ function LogInPage() {
           icon={hide}
           id="password"
           type="password"
+          toggleType="text"
           placeholder="Password"
           inputTitle="Enter your password"
           value={formik.values.password}

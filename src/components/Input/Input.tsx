@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { InputContainer } from './Input.styles';
 
 type InutPropsType = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  type?:string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  type?: string;
+  toggleType?: string;
   id?:string;
   value?: string;
   placeholder?: string;
@@ -16,12 +19,17 @@ type InutPropsType = {
 };
 
 const Input: React.FunctionComponent<InutPropsType> = (props) => {
+  const [togglerPass, setTogglerPass] = useState(false);
+  const handlerImgClick = () => {
+    setTogglerPass(!togglerPass);
+  };
+
   return (
     <InputContainer>
-      <img src={props.icon} alt={props.iconText} />
+      <button type="button" className="img" onClick={handlerImgClick}><img src={props.icon} alt={props.iconText} /></button>
       <input
         id={props.id}
-        type={props.type}
+        type={!togglerPass ? props.type : props.toggleType}
         value={props.value}
         placeholder={props.placeholder}
         onChange={props.onChange}

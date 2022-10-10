@@ -1,12 +1,13 @@
 import { Navigate } from 'react-router-dom';
+import { useAppSelector } from '../store/hooks';
 
 type PrivateRouteType = {
-  isLogin: boolean;
   children: JSX.Element;
 } & React.PropsWithChildren;
 
 const PrivateRoute: React.FunctionComponent<PrivateRouteType> = (props) => {
-  if (!props.isLogin) {
+  const userInfo = useAppSelector((state) => state.user.email);
+  if (!userInfo) {
     return <Navigate to="/signup" />;
   }
   return props.children;

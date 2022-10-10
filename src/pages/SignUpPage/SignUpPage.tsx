@@ -7,6 +7,8 @@ import hide from '../../assets/icons/hide.png';
 import { SignUpPageContainer } from './SignUp.styles';
 import man from '../../assets/images/man.png';
 import Button from '../../components/Button/Button';
+import { useAppDispatch } from '../../store/hooks';
+import { signUpUser } from '../../store/userSlice/thunks/signUpUser';
 
 const signUpValidationSchema = Yup.object({
   email: Yup.string()
@@ -29,11 +31,13 @@ const initialElem = {
 
 function SignUpPage() {
   const navigate = useNavigate();
+  const disputch = useAppDispatch();
 
   const formik = useFormik({
     initialValues: initialElem,
     validationSchema: signUpValidationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
+      await disputch(signUpUser(values))
       console.log(values);
       if (values) {
         navigate('/');
@@ -43,7 +47,7 @@ function SignUpPage() {
 
 
   const goToLogin = () => {
-    navigate('/login');
+    navigate('/api/login');
   };
 
   return (
@@ -66,6 +70,7 @@ function SignUpPage() {
           icon={hide}
           id="password"
           type="password"
+          toggleType="text"
           placeholder="Password"
           inputTitle="Enter your password"
           value={formik.values.password}
@@ -78,6 +83,7 @@ function SignUpPage() {
           icon={hide}
           id="repeatedPassword"
           type="password"
+          toggleType="text"
           placeholder="Password replay"
           inputTitle="Repeat your password without errors"
           value={formik.values.repeatedPassword}

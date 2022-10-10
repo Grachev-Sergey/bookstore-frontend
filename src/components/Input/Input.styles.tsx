@@ -6,11 +6,12 @@ export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  img {
+  .img {
     width: 24px;
     position: absolute;
     margin-top: 15px;
     margin-left: 24px;
+    border: none;
   }
 
   input {
