@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { UserType } from '../../utils/types/userTypes';
-import { checkUsers } from './thunks/checkUsers';
-import { logInUser } from './thunks/logInUser';
-import { signUpUser } from './thunks/signUpUser';
+import userThunks from './userThunks';
 
 const initialState: UserType = {
   id: '',
@@ -14,13 +12,19 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(signUpUser.fulfilled, (state, action) => {
+    builder.addCase(userThunks.signUpUser.fulfilled, (state, action) => {
       return action.payload;
     });
-    builder.addCase(logInUser.fulfilled, (state, action) => {
+    builder.addCase(userThunks.logInUser.fulfilled, (state, action) => {
       return action.payload;
     });
-    builder.addCase(checkUsers.fulfilled, (state, action) => {
+    builder.addCase(userThunks.checkUser.fulfilled, (state, action) => {
+      return action.payload;
+    });
+    builder.addCase(userThunks.changeUserInfo.fulfilled, (state, action) => {
+      return action.payload;
+    });
+    builder.addCase(userThunks.changeUserPass.fulfilled, (state, action) => {
       return action.payload;
     });
   },

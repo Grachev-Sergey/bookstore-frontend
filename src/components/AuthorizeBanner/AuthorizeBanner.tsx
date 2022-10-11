@@ -7,7 +7,7 @@ function AuthorizeBanner() {
   const navigate = useNavigate();
 
   const goToAuth = () => {
-    navigate('/api/signup');
+    navigate('/signup');
   };
 
   return (

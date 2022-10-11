@@ -4,14 +4,15 @@ import logo from '../../assets/images/logo.png';
 import search from '../../assets/icons/search.png';
 import Button from '../Button/Button';
 import NavigationButton from '../NavigationButton';
+import { useAppSelector } from '../../store/hooks';
 
 function Header() {
-  const isLogin = false;
+  const userInfo = useAppSelector((state) => state.user.email);
 
   const navigate = useNavigate();
 
   const goToAuth = () => {
-    navigate('/api/signup');
+    navigate('/signup');
   };
 
   return (
@@ -33,7 +34,7 @@ function Header() {
         <input placeholder="Search" />
       </div>
       <div className="menu">
-        {!isLogin
+        {!userInfo
           ? <Button className="navigation__button" onClick={goToAuth}>Log In/ Sing Up</Button>
           : <NavigationButton />
         }

@@ -15,8 +15,8 @@ function Footer() {
         <div className = "links">
           <Link to="/" className="link">Home Page</Link>
           <Link to="/" className="link">Catalog</Link>
-          <Link to="/profile" className="link">My Account</Link>
-          <Link to="/cart" className="link">Cart</Link>
+          <Link to="/user/profile" className="link">My Account</Link>
+          <Link to="/user/cart" className="link">Cart</Link>
         </div>
         <div className="address">
           <p>6391 Elgin St. Celina, Delaware 10299</p>

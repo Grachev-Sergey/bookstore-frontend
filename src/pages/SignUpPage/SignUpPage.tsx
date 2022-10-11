@@ -8,7 +8,7 @@ import { SignUpPageContainer } from './SignUp.styles';
 import man from '../../assets/images/man.png';
 import Button from '../../components/Button/Button';
 import { useAppDispatch } from '../../store/hooks';
-import { signUpUser } from '../../store/userSlice/thunks/signUpUser';
+import userThunks from '../../store/userSlice/userThunks';
 
 const signUpValidationSchema = Yup.object({
   email: Yup.string()
@@ -31,23 +31,26 @@ const initialElem = {
 
 function SignUpPage() {
   const navigate = useNavigate();
-  const disputch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const formik = useFormik({
     initialValues: initialElem,
     validationSchema: signUpValidationSchema,
     onSubmit: async (values) => {
-      await disputch(signUpUser(values))
-      console.log(values);
-      if (values) {
-        navigate('/');
+      try {
+        await dispatch(userThunks.signUpUser(values));
+        if (values) {
+          navigate('/');
+        }
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.log(err);
       }
     },
   });
 
-
   const goToLogin = () => {
-    navigate('/api/login');
+    navigate('/login');
   };
 
   return (

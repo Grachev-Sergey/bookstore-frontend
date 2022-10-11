@@ -1,14 +1,15 @@
 import Banner from '../../components/Banner';
 import Catalog from '../../components/Catalog';
 import AuthorizeBanner from '../../components/AuthorizeBanner';
+import { useAppSelector } from '../../store/hooks';
 
 function MainPage() {
-  const isLogin = false;
+  const userInfo = useAppSelector((state) => state.user.email);
   return (
     <>
       <Banner />
       <Catalog />
-      {!isLogin && <AuthorizeBanner />}
+      {!userInfo && <AuthorizeBanner />}
     </>
   );
 }

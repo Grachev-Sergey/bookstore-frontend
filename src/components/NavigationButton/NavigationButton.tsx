@@ -5,15 +5,15 @@ function NavigationButton() {
   const navigate = useNavigate();
 
   const goToCart = () => {
-    navigate('/cart');
+    navigate('/user/cart');
   };
 
   const goToFavorites = () => {
-    navigate('/favorites');
+    navigate('/user/favorites');
   };
 
   const goToProfile = () => {
-    navigate('/profile');
+    navigate('/user/profile');
   };
 
   return (

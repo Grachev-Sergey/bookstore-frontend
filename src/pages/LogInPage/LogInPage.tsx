@@ -8,7 +8,7 @@ import mail from '../../assets/icons/mail.png';
 import hide from '../../assets/icons/hide.png';
 import man from '../../assets/images/man.png';
 import { useAppDispatch } from '../../store/hooks';
-import { logInUser } from '../../store/userSlice/thunks/logInUser';
+import userThunks from '../../store/userSlice/userThunks';
 
 const signUpValidationSchema = Yup.object({
   email: Yup.string()
@@ -26,16 +26,20 @@ const initialElem = {
 
 function LogInPage() {
   const navigate = useNavigate();
-  const disputch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const formik = useFormik({
     initialValues: initialElem,
     validationSchema: signUpValidationSchema,
     onSubmit: async (values) => {
-      await disputch(logInUser(values))
-      console.log(values);
-      if (values) {
-        navigate('/');
+      try {
+        await dispatch(userThunks.logInUser(values));
+        if (values) {
+          navigate('/');
+        }
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.log(err);
       }
     },
   });
