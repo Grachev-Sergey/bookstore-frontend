@@ -26,7 +26,13 @@ const Input: React.FunctionComponent<InutPropsType> = (props) => {
 
   return (
     <InputContainer>
-      <button type="button" className="img" onClick={handlerImgClick}><img src={props.icon} alt={props.iconText} /></button>
+      <button
+        type="button"
+        className="img"
+        onClick={handlerImgClick}
+      >
+        <img src={props.icon} alt={props.iconText} />
+      </button>
       <input
         id={props.id}
         type={!togglerPass ? props.type : props.toggleType}
@@ -35,7 +41,8 @@ const Input: React.FunctionComponent<InutPropsType> = (props) => {
         onChange={props.onChange}
         onBlur={props.onBlur}
       />
-      <div className="inputTitle">{props.inputTitle}</div>
+      {props.inputTitle &&
+      <div className="inputTitle">{props.inputTitle}</div>}
 
       {props.touched
         ? <div className="errorTitle">{props.error}</div>

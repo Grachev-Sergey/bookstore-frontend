@@ -1,44 +1,55 @@
 import styled from 'styled-components';
-import profile from '../../images/icons/User_profile.svg';
+import userProfile from '../../assets/icons/userProfile.png';
+import profileIcon from '../../assets/icons/profileIcon.png';
 
-export const ProfilePageContainer = styled.div`
+export const ProfilePageContainer = styled.section`
+  max-width: 1280px;
+  margin: 60px auto 0 auto;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   width: 100%;
-  justify-content: space-between;
   padding-right: 305px;
-  margin: auto 0;
 
   .avatarContainer {
     position: relative;
     width: 305px;
     height: 305px;
-    background: ${(p) => p.theme.mainTheme.color.light};
-    border-radius: 16px;
+    background: ${({ theme }) => theme.colors.light};
+    border-radius: ${({ theme }) => theme.borderRadius};
     background-repeat: no-repeat;
     margin-bottom: 10px;
     background-size: 151px;
-    background-image:url(${profile});
+    background-image:url(${userProfile});
     background-position: center center;
-    .avatar { 
-      object-fit: cover;
-      border-radius:16px;
-      width: 100%;
-      height: 100%;
-    }
+  }
+  
+  .avatar { 
+    border-radius: ${({ theme }) => theme.borderRadius};
+    width: 100%;
+    height: 100%;
   }
 
   .addPhotoButton {
-    background: ${(p) => p.theme.mainTheme.color.darkBlue};
+    position: absolute;
+    background: ${({ theme }) => theme.colors.darkBlue};
     border-radius: 50%;
     width: 48px;
     height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    right: 0;
+    bottom: 0;
+    margin: 0 20px 20px 0;
+    background-image:url(${profileIcon});
+    background-repeat: no-repeat;
+    background-position: center center;
     cursor: pointer;
-    // еще должен быть медиазапрос
+  }
+  
+  .formContainer {
+    margin-bottom: 100px;
+    margin-left: 128px;
+    width: 100%;
+    max-width: 522px;
   }
 
   .titleAndChangeButton {
@@ -48,37 +59,68 @@ export const ProfilePageContainer = styled.div`
     align-items: flex-end;
     margin-bottom: 30px;
     flex-wrap: wrap;
-    .changeButton {
-      font-size: 14px;
-      line-height: 21px;
-      text-decoration-line: underline;
-      color: ${(p) => p.theme.mainTheme.color.darkGreen};
-      cursor: pointer;
-    }
   }
-  .formContainer {
-    margin-bottom: 100px;
-    margin-left: 15px;
-    width: 100%;
-    max-width: 522px;
+
+  .profileTitle {
+    font-weight: ${({ theme }) => theme.fontWeight.regular};
+    font-size: ${({ theme }) => theme.fontSize.regular};
+    line-height: ${({ theme }) => theme.lineHight.regularBig};
+    color: ${({ theme }) => theme.colors.dark};
   }
-  @media (max-width: 1320px) {
+
+  .changeButton {
+    font-size: ${({ theme }) => theme.fontSize.inputTitle};
+    line-height: ${({ theme }) => theme.lineHight.small};
+    color: ${({ theme }) => theme.colors.darkGreen};
+    text-decoration-line: underline;
+    cursor: pointer;
+  }
+
+  @media only screen and (${({ theme }) => theme.media.tablet}) {
+    max-width: 804px;
     padding-right: 0;
-    .avatarContainero {
-      width: 255px;
-      height: 255px;
+
+    .avatarContainer {
+      width: 305px;
+      height: 305px;
+      margin-bottom: 10px;
+      background-size: 135px; 
+    }
+
+    .addPhotoButton {
+      width: 40px;
+      height: 40px;
+      margin: 0 15px 15px 0;
+    }
+
+    .formContainer {
+      margin-bottom: 100px;
+      margin-left: 20px;
+      width: 100%;
+      max-width: 529px;
+    }
+
+    .titleAndChangeButton {
+      margin-bottom: 20px;
+    }
+
+    .profileTitle {
+      font-size: ${({ theme }) => theme.fontSize.small};
+      line-height: ${({ theme }) => theme.lineHight.regularSmall};
+    }
+
+    .changeButton {
+      font-size: ${({ theme }) => theme.fontSize.commentDescription};
+      line-height: ${({ theme }) => theme.lineHight.commentDescription};
     }
   }
-  @media (max-width: 670px) {
+  @media only screen and (${({ theme }) => theme.media.medium}) {
+    max-width: 590px;
     flex-direction: column;
     align-items: center;
-    .formContainer {
-      margin-left: 0;
-      max-width: 670px;
-    }
+
     .avatarContainer {
-      width: 100%;
-      max-width: 685px;
+      margin-bottom: 30px;
     }
   }
 `;

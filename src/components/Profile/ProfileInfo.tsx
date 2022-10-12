@@ -1,7 +1,7 @@
 import React from 'react';
-import type { FormikErrors } from 'formik';
-// картинка профиля
-// картинка письма
+import type { FormikErrors, FormikTouched } from 'formik';
+import grayProfileIcon from '../../assets/icons/grayProfileIcon.png';
+import mail from '../../assets/icons/mail.png';
 import Input from '../Input/Input';
 import ProfileInfoContainer from './ProfileInfo.styles';
 
@@ -11,57 +11,58 @@ type PropsType = {
   email?: string;
   selectFieldToChange?: string;
   errors?: FormikErrors<{
-    email: string;
     fullName: string;
+    email: string;
+  }>;
+  touched?: FormikTouched<{
+    fullName: boolean;
+    email: boolean;
   }>;
 } & React.PropsWithChildren;
 
 export const ProfileInfo: React.FC<PropsType> = (props) => {
   return (
     <ProfileInfoContainer>
-      {
-        props.selectFieldToChange !== 'info'
-          ? (<div className="groupContainer">
+      {props.selectFieldToChange !== 'info'
+        ? (<div className="infoContainer">
             <div className="textContainer">
-              {/* картинка профиля */}
-              <div className="textBlock"
-                id="fullName"
-              >
+              <img className="infoIcon" src={grayProfileIcon} alt="Profile icon" />
+              <div className="textBlock">
                 <p>{props.fullName}</p>
               </div>
-              <label className="title" htmlFor="fullName">Name</label>
+              <p className="title">Your name</p>
             </div>
             <div className="textContainer">
-              {/* картинка письма */}
-              <div className="textBlock"
-                id="email"
-              >
+              <img className="infoIcon" src={mail} alt="Mail icon" />
+              <div className="textBlock">
                 <p>{props.email}</p>
               </div>
-              <label className="title" htmlFor="email" id="email_label">Email</label>
+              <p className="title">Your email</p>
             </div>
-             </div>)
-          : (<div className="groupContainer">
+           </div>)
+        : (<div className="infoContainer">
             <Input
               onChange={props.onChange}
               value={props.fullName}
-              placeHolder="Name"
-              nameInput="fullName"
-              // Icon1={ProfileIcon}
-              type1="text"
+              placeholder="Your name"
+              id="fullName"
+              icon={grayProfileIcon}
+              type="text"
               error={props.errors?.fullName}
+              touched={props.touched?.fullName}
             />
             <Input
               onChange={props.onChange}
               className="styled-user-page__styled-text-input"
               value={props.email}
-              placeHolder="Email"
-              nameInput="email"
-              // Icon1={MailIcon}
-              type1="text"
+              placeholder="Email"
+              id="email"
+              icon={mail}
+              type="text"
               error={props.errors?.email}
+              touched={props.touched?.email}
             />
-             </div>)
+           </div>)
       }
     </ProfileInfoContainer>
   );

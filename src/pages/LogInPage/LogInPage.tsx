@@ -34,7 +34,8 @@ function LogInPage() {
     onSubmit: async (values) => {
       try {
         await dispatch(userThunks.logInUser(values));
-        if (values) {
+        const token = localStorage.getItem('token');
+        if (token) {
           navigate('/');
         }
       } catch (err) {

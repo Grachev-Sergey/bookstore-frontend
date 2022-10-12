@@ -19,7 +19,7 @@ export const NavigationButtonContainer = styled.section`
   .cart {
     margin-right: 27px;
     background-image: url(${cartIcon});
-    background-position: 10px;
+    background-position: center center;
   }
 
   .favorites {
@@ -29,7 +29,7 @@ export const NavigationButtonContainer = styled.section`
   }
   .profile {
     background-image: url(${profileIcon});
-    background-position: 11px;
+    background-position: center center;
   }
   
   @media only screen and (${({ theme }) => theme.media.mobile}) {
@@ -40,7 +40,7 @@ export const NavigationButtonContainer = styled.section`
     }
     .cart {
       margin-right: 18px;
-      background-position: 7px;
+      background-position: center center;
     }
     .favorites {
       margin-right: 18px;
@@ -48,7 +48,7 @@ export const NavigationButtonContainer = styled.section`
     }
     .profile {
       background-image: url(${profileIcon});
-      background-position: 7px;
+      background-position: center center;
     }
   }
 

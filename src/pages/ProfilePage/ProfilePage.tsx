@@ -1,65 +1,83 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import * as yup from 'yup';
+import * as Yup from 'yup';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { ProfilePageContainer } from './ProfilePage.styles';
 import Button from '../../components/Button';
 import { ProfileInfo } from '../../components/Profile/ProfileInfo';
 import { ProfilePassword } from '../../components/Profile/ProfilePassword';
-import userThunks from '../../store/slices/user/thunks/index';
+import userThunks from '../../store/userSlice/userThunks';
 
-const updateUserInfoSchema = yup.object().shape({
-  fullName: yup.string().required('Enter your name'),
-  email: yup.string().email('Invalid email').required('Enter your email'),
+const updateUserInfoSchema = Yup.object().shape({
+  fullName: Yup.string().required('Enter your name'),
+  email: Yup.string().email('Invalid email').required('Enter your email'),
 });
 
-const updateUserPassSchema = yup.object().shape({
-  password: yup.string()
+const updateUserPassSchema = Yup.object().shape({
+  oldPassword: Yup.string()
     .min(6)
     .required('Enter your password'),
-  newPassword: yup.string()
-    .min(6)
-  // yup.string().notOneOf(
-    .required('Enter your password'),
-  repeatNewPassword: yup.string()
-  // повтор
-    .required('Repeat your new password without errors'),
+  newPassword: Yup.string()
+    .min(6, 'must be more than 6 characters')
+    .notOneOf([Yup.ref('oldPassword')], 'The new password must not match the old one.')
+    .required('Enter new password'),
+  repeatedNewPassword: Yup.string()
+    .min(6, 'must be more than 6 characters')
+    .oneOf([Yup.ref('newPassword')], 'Passwords do not match')
+    .required('Repeated new password'),
 });
 
-const UserPage = () => {
+const ProfilePage = () => {
   const dispatch = useAppDispatch();
   const userInfo = useAppSelector((state) => state.user);
   const [selectFieldToChange, setSelectFieldToChange] = useState(' ');
 
-  const formikInfo = useFormik({
-    initialValues: { fullName: userInfo?.fullName || '', email: userInfo?.email || '' },
+  const initialInfoValues = {
+    fullName: userInfo?.fullName || '',
+    email: userInfo?.email || '',
+  };
+
+  const formikUserInfo = useFormik({
+    initialValues: initialInfoValues,
     validationSchema: updateUserInfoSchema,
     onSubmit: async (values) => {
+      // eslint-disable-next-line no-console
+      console.log('запрос info');
       try {
-        await dispatch(userThunks.patchUserInfo(values));
+        await dispatch(userThunks.changeUserInfo(values));
         setSelectFieldToChange(' ');
       } catch (err) {
-      // console.log(err)
+        // eslint-disable-next-line no-console
+        console.log(err);
       }
     },
   });
 
+  const initialPassValues = {
+    oldPassword: '',
+    newPassword: '',
+    repeatedNewPassword: '',
+  };
+
   const formikPassword = useFormik({
-    initialValues: { oldPassword: '', newPassword: '', repeatNewPassword: '' },
+    initialValues: initialPassValues,
     validationSchema: updateUserPassSchema,
     onSubmit: async (values) => {
+      // eslint-disable-next-line no-console
+      console.log('запрос pass');
       try {
-        await dispatch(userThunks.patchUserPassword(values)).unwrap();
+        await dispatch(userThunks.changeUserPass(values));
         setSelectFieldToChange(' ');
       } catch (err) {
-        // console.log(err)
+        // eslint-disable-next-line no-console
+        console.log(err);
       }
     },
   });
 
   const onSubmitCange = (e: React.FormEvent<HTMLFormElement>) => {
     if (selectFieldToChange === 'info') {
-      formikInfo.handleSubmit(e);
+      formikUserInfo.handleSubmit(e);
     } if (selectFieldToChange === 'password') {
       formikPassword.handleSubmit(e);
     }
@@ -75,14 +93,14 @@ const UserPage = () => {
               src={userInfo?.avatar}
               alt={userInfo.avatar}
             />)}
-          <button onClick={() => {}} className={addPhotoButton} />
+          <button className="addPhotoButton" />
         </div>
       </div>
-      <div className="formСontainer">
+      <div className="formContainer">
         <form onSubmit={onSubmitCange}>
           <div>
             <div className="titleAndChangeButton">
-              <p>Personal information</p>
+              <p className="profileTitle">Personal information</p>
               <p
                 className="changeButton"
                 onClick={() => setSelectFieldToChange('info')}
@@ -91,13 +109,14 @@ const UserPage = () => {
             </div>
             <ProfileInfo
               selectFieldToChange={selectFieldToChange}
-              onChange={formikInfo.handleChange}
-              fullName={formikInfo.values.fullName}
-              email={formikInfo.values.email}
-              errors={formikInfo.errors}
+              onChange={formikUserInfo.handleChange}
+              fullName={formikUserInfo.values.fullName}
+              email={formikUserInfo.values.email}
+              errors={formikUserInfo.errors}
+              touched={formikUserInfo.touched}
             />
             <div className="titleAndChangeButton">
-              <p>Password</p>
+              <p className="profileTitle">Password</p>
               <p
                 className="changeButton"
                 onClick={() => setSelectFieldToChange('password')}
@@ -109,8 +128,9 @@ const UserPage = () => {
               onChange={formikPassword.handleChange}
               oldPassword={formikPassword.values.oldPassword}
               newPassword={formikPassword.values.newPassword}
-              repeatNewPassword={formikPassword.values.repeatNewPassword}
+              repeatedNewPassword={formikPassword.values.repeatedNewPassword}
               errors={formikPassword.errors}
+              touched={formikPassword.touched}
             />
             {selectFieldToChange !== ' ' &&
               <Button type="submit">Confirm</Button>
@@ -122,4 +142,4 @@ const UserPage = () => {
   );
 };
 
-export default UserPage;
+export default ProfilePage;

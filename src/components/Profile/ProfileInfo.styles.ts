@@ -1,39 +1,38 @@
 import styled from 'styled-components';
 
 export default styled.div`
-width: 100%;
+  width: 100%;
+  .infoIcon {
+    width: 24px;
+    position: absolute;
+    margin-left: 24px;
+    border: none;
+  }
+
   .textBlock {
-    background: ${(p) => p.theme.mainTheme.color.light};
-    border-radius: ${(p) => p.theme.borderRadius};
+    background: ${({ theme }) => theme.colors.light};
+    border-radius: ${({ theme }) => theme.borderRadius};
     width: 100%;
     max-width: 522px;
     height: 64px;
     padding:30px 0 0 64px;
     box-sizing: border-box;
     text-align: start;
-    p {
-      font-size: 16px;
-      line-height: 28px;
-      letter-spacing: 0.75px;
-      color: ${(p) => p.theme.mainTheme.color.dark};
-      font-weight: 400;
-    }
-    input {
-      box-sizing: border-box;
-      background: ${(p) => p.theme.mainTheme.color.light};
-      outline: none;
-      border: none;
-      font-family: ${(p) => p.theme.font.family};
-      font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 28px;
-      letter-spacing: 0.75px;
-      color: ${(p) => p.theme.mainTheme.color.dark};
-      width: 50%;
-    }
   }
-  .groupContainer{
+
+  p {
+    font-weight: ${({ theme }) => theme.fontWeight.regular};
+    font-size: ${({ theme }) => theme.fontSize.small}; 
+    line-height: ${({ theme }) => theme.lineHight.regular};
+    letter-spacing: 0.75px;
+    color: ${({ theme }) => theme.colors.dark};
+  }
+
+  .infoContainer {
+    margin-bottom: 40px;
+  }
+
+  .passwordContainer {
     margin-bottom: 40px;
   }
 
@@ -42,22 +41,17 @@ width: 100%;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    display: flex;
     box-sizing: border-box;
-    .title {
-      position: absolute;
-      left: 64px;
-      font-size: 14px;
-      line-height: 24px;
-      display: flex;
-      letter-spacing: 0.75px;
-      color: ${(p) => p.theme.mainTheme.color.darkBlue};
-      transform: translate(0, -12px);
-    }
   }
-  @media (max-width: 670px) {
-    .textBlock {
-      max-width: 670px;
-    }
+
+  .title {
+    position: absolute;
+    left: 64px;
+    font-size: ${({ theme }) => theme.fontSize.inputTitle}; 
+    line-height: ${({ theme }) => theme.fontSize.regularSmall}; 
+    letter-spacing: 0.75px;
+    color: ${({ theme }) => theme.colors.darkBlue};
+    transform: translate(0, -12px);
   }
+
 `;

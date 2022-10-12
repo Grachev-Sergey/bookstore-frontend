@@ -22,7 +22,7 @@ export type ChangeInfoType = {
 };
 
 export type ChangePassType = {
-  oldPass: string;
-  newPass: string;
-  repeatedPass: string;
+  oldPassword: string;
+  newPassword: string;
+  repeatedNewPassword: string;
 };

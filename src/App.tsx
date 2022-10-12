@@ -18,54 +18,56 @@ function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      return setIsLoaded(true);
+    }
+
     (async () => {
-      const token = localStorage.getItem('token');
-      if (token) {
-        try {
-          await dispatch(userThunks.checkUser());
-          setIsLoaded(true);
-        } catch (error) {
-          // eslint-disable-next-line no-console
-          console.log(error);
-        }
+      try {
+        await dispatch(userThunks.checkUser());
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log(error);
+      } finally {
+        setIsLoaded(true);
       }
-      setIsLoaded(true);
     })();
   }, [dispatch]);
 
-  if (isLoaded) {
+  if (!isLoaded) {
     return (
-      <AppContainer>
-      <Header />
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/login" element={<LogInPage />} />
-            <Route path="/user/cart" element={
-              (<PrivateRoute>
-                <CartPage />
-               </PrivateRoute>
-              )}
-            />
-            <Route path="/user/favorites" element={
-              (<PrivateRoute>
-                <FavoritesPage />
-               </PrivateRoute>
-              )}
-            />
-            <Route path="/user/profile" element={
-              (<PrivateRoute>
-                <ProfilePage />
-               </PrivateRoute>
-              )}
-              />
-          </Routes>
-        <Footer />
-      </AppContainer>
+      <>loading</>
     );
   }
   return (
-    <>loading</>
+    <AppContainer>
+      <Header />
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/login" element={<LogInPage />} />
+        <Route path="/user/cart" element={
+          (<PrivateRoute>
+            <CartPage />
+           </PrivateRoute>
+          )}
+        />
+        <Route path="/user/favorites" element={
+          (<PrivateRoute>
+            <FavoritesPage />
+           </PrivateRoute>
+          )}
+        />
+        <Route path="/user/profile" element={
+          (<PrivateRoute>
+            <ProfilePage />
+           </PrivateRoute>
+          )}
+        />
+      </Routes>
+      <Footer />
+    </AppContainer>
   );
 }
 

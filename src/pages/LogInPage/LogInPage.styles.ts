@@ -4,6 +4,10 @@ export const LogInPageContainer = styled.section`
   max-width: 1280px;
   margin: 90px auto 0 auto;
   position: relative;
+
+  form {
+    max-width: 413px;
+  }
   
   h2 {
     margin-bottom: 60px;
@@ -32,6 +36,10 @@ export const LogInPageContainer = styled.section`
     max-width: 804px;
     margin: 100px auto 0 auto;
 
+    form {
+      max-width: 392px;
+    }
+
     h2 {
       font-size: ${({ theme }) => theme.fontSize.titleTablet};
       line-height: ${({ theme }) => theme.lineHight.titleTablet};
@@ -50,6 +58,10 @@ export const LogInPageContainer = styled.section`
   @media only screen and (${({ theme }) => theme.media.medium}) {
     max-width: 590px;
     margin: 60px auto 0 auto;
+
+    form {
+      max-width: 600px;
+    }
 
     h2 {
       margin-bottom: 40px;

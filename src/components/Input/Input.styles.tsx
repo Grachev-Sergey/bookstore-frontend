@@ -2,23 +2,24 @@ import styled from 'styled-components';
 
 export const InputContainer = styled.div`
   position: relative;
-  margin: 30px 0 0 0;
+  margin: 20px 0 0 0;
   display: flex;
   flex-direction: column;
 
   .img {
-    width: 24px;
     position: absolute;
-    margin-top: 15px;
-    margin-left: 24px;
+    width: 24px;
+    margin: 18px 0 0 24px;
     border: none;
   }
-
+  
   input {
-    max-width: 413px;
+    /* max-width: 413px; */
     text-align: start;
     background: ${({ theme }) => theme.colors.light};
     border-radius: ${({ theme }) => theme.borderRadius};
+    font-size: ${({ theme }) => theme.fontSize.small};
+    line-height: ${({ theme }) => theme.lineHight.regular};
     padding: 18px 0 18px 64px;
     border: none;
     outline: none;
@@ -35,7 +36,7 @@ export const InputContainer = styled.div`
   }
 
   .inputTitle {
-    margin-top: 9px;
+    margin: 9px 0 10px 0;
     text-align: start;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
     font-size: ${({ theme }) => theme.fontSize.imputTitle};
@@ -50,18 +51,6 @@ export const InputContainer = styled.div`
     bottom: -20px;
     left: 0;
     color: ${({ theme }) => theme.colors.error};
-  }
-
-  @media only screen and (${({ theme }) => theme.media.tablet}) {
-    input {
-      max-width: 392px;
-    }
-  }
-
-  @media only screen and (${({ theme }) => theme.media.medium}) {
-    input {
-      max-width: 600px;
-    }
   }
 
   @media only screen and (${({ theme }) => theme.media.mobile}) {
