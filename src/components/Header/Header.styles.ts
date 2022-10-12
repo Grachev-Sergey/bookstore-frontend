@@ -20,6 +20,7 @@ export const HeaderContainer = styled.section`
   }
   
   input {
+    width: 100%;
     margin: 24px 0 0 43px;
     padding: 20px 309px 20px 64px;
     background: ${({ theme }) => theme.colors.light};
@@ -88,7 +89,7 @@ export const HeaderContainer = styled.section`
 
     input {
       margin: 20px 0 0 33px;
-      padding: 15px 250px 15px 64px;
+      padding: 15px 300px 15px 64px;
       max-width: 1000px;
     }
 

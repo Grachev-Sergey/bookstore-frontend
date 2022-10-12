@@ -48,10 +48,24 @@ export default styled.div`
     position: absolute;
     left: 64px;
     font-size: ${({ theme }) => theme.fontSize.inputTitle}; 
-    line-height: ${({ theme }) => theme.fontSize.regularSmall}; 
+    line-height: ${({ theme }) => theme.lineHight.regularSmall}; 
     letter-spacing: 0.75px;
     color: ${({ theme }) => theme.colors.darkBlue};
     transform: translate(0, -12px);
   }
 
+  @media only screen and (${({ theme }) => theme.media.tablet}) {
+    .title {
+      font-size: 14px; 
+    }
+  }
+
+  @media only screen and (${({ theme }) => theme.media.mobile}) {
+    .title {
+      font-size: 12px; 
+    }
+    .infoContainer {
+      margin-bottom: 30px;
+    }
+  }
 `;

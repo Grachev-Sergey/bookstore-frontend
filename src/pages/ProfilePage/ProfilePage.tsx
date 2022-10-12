@@ -116,7 +116,7 @@ const ProfilePage = () => {
               touched={formikUserInfo.touched}
             />
             <div className="titleAndChangeButton">
-              <p className="profileTitle">Password</p>
+              <p className="passwordTitle">Password</p>
               <p
                 className="changeButton"
                 onClick={() => setSelectFieldToChange('password')}
@@ -133,7 +133,7 @@ const ProfilePage = () => {
               touched={formikPassword.touched}
             />
             {selectFieldToChange !== ' ' &&
-              <Button type="submit">Confirm</Button>
+              <Button className="confirmButton" type="submit">Confirm</Button>
             }
           </div>
         </form>

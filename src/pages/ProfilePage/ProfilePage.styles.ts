@@ -43,6 +43,7 @@ export const ProfilePageContainer = styled.section`
     background-repeat: no-repeat;
     background-position: center center;
     cursor: pointer;
+    border: none;
   }
   
   .formContainer {
@@ -61,7 +62,7 @@ export const ProfilePageContainer = styled.section`
     flex-wrap: wrap;
   }
 
-  .profileTitle {
+  .profileTitle, .passwordTitle {
     font-weight: ${({ theme }) => theme.fontWeight.regular};
     font-size: ${({ theme }) => theme.fontSize.regular};
     line-height: ${({ theme }) => theme.lineHight.regularBig};
@@ -76,13 +77,16 @@ export const ProfilePageContainer = styled.section`
     cursor: pointer;
   }
 
+  .confirmButton {
+    display: block;
+    text-align: start;
+  }
+
   @media only screen and (${({ theme }) => theme.media.tablet}) {
     max-width: 804px;
     padding-right: 0;
 
     .avatarContainer {
-      width: 305px;
-      height: 305px;
       margin-bottom: 10px;
       background-size: 135px; 
     }
@@ -104,7 +108,7 @@ export const ProfilePageContainer = styled.section`
       margin-bottom: 20px;
     }
 
-    .profileTitle {
+    .profileTitle, .passwordTitle {
       font-size: ${({ theme }) => theme.fontSize.small};
       line-height: ${({ theme }) => theme.lineHight.regularSmall};
     }
@@ -113,7 +117,14 @@ export const ProfilePageContainer = styled.section`
       font-size: ${({ theme }) => theme.fontSize.commentDescription};
       line-height: ${({ theme }) => theme.lineHight.commentDescription};
     }
+
+    .confirmButton {
+      padding: 10px 50px;
+      font-size: ${({ theme }) => theme.fontSize.small};
+      line-height: ${({ theme }) => theme.lineHight.regularSmall};
+    }
   }
+  
   @media only screen and (${({ theme }) => theme.media.medium}) {
     max-width: 590px;
     flex-direction: column;
@@ -121,6 +132,41 @@ export const ProfilePageContainer = styled.section`
 
     .avatarContainer {
       margin-bottom: 30px;
+    }
+  }
+
+  @media only screen and (${({ theme }) => theme.media.small}) {
+    max-width: 430px;
+    .formContainer {
+      margin-left: 0;
+    }
+  }
+
+  @media only screen and (${({ theme }) => theme.media.mobile}) {
+    max-width: 290px;
+
+    .avatarContainer {
+      width: 290px;
+      height: 290px;
+      background-repeat: no-repeat;
+      margin-bottom: 30px;
+    }
+
+    .titleAndChangeButton {
+      margin-bottom: 10px;
+    }
+
+    .profileTitle {
+      margin: 0 20px 10px 0;
+    }
+
+    .profileTitle, passwordTitle {
+      font-size: ${({ theme }) => theme.fontSize.small};
+      line-height: ${({ theme }) => theme.lineHight.regularSmall};
+    }
+
+    .changeButton {
+      margin-bottom: 3px;
     }
   }
 `;

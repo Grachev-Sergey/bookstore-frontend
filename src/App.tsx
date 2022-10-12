@@ -59,12 +59,12 @@ function App() {
            </PrivateRoute>
           )}
         />
-        <Route path="/user/profile" element={
-          (<PrivateRoute>
+        <Route path="/user/profile" element={<ProfilePage />} />
+          {/* (<PrivateRoute>
             <ProfilePage />
            </PrivateRoute>
           )}
-        />
+        /> */}
       </Routes>
       <Footer />
     </AppContainer>
