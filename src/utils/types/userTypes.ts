@@ -26,3 +26,7 @@ export type ChangePassType = {
   newPassword: string;
   repeatedNewPassword: string;
 };
+
+export type UploadPhotoType = {
+  avatar: string | ArrayBuffer | null;
+};

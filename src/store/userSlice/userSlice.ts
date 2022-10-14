@@ -48,6 +48,9 @@ const userSlice = createSlice({
     builder.addCase(userThunks.changeUserPass.fulfilled, (state, action) => {
       return action.payload;
     });
+    builder.addCase(userThunks.uploadPhoto.fulfilled, (state, action) => {
+      return action.payload;
+    });
   },
 });
 

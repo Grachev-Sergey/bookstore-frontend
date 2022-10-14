@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import userApi from '../../api/userApi';
 import authApi from '../../api/authApi';
-import type { UserLoginType, ChangeInfoType, ChangePassType } from '../../utils/types/userTypes';
+import type { UserLoginType, ChangeInfoType, ChangePassType, UploadPhotoType } from '../../utils/types/userTypes';
 
 const checkUser = createAsyncThunk(
   'user/checkUser',
@@ -70,10 +70,24 @@ const changeUserPass = createAsyncThunk(
   },
 );
 
+const uploadPhoto = createAsyncThunk(
+  'user/uploadPhoto',
+  async (values:UploadPhotoType) => {
+    try {
+      const data = await userApi.uploadPhotoApi(values);
+      return data.data.user;
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    }
+  },
+);
+
 export default {
   checkUser,
   logInUser,
   signUpUser,
   changeUserInfo,
   changeUserPass,
+  uploadPhoto,
 };

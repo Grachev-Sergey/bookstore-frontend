@@ -1,5 +1,5 @@
 import customAxios from '.';
-import type { ChangeInfoType, ChangePassType, UserDataType } from '../utils/types/userTypes';
+import type { ChangeInfoType, ChangePassType, UploadPhotoType, UserDataType } from '../utils/types/userTypes';
 
 const checkUserApi = () => {
   return customAxios.get<UserDataType>('/user');
@@ -13,8 +13,13 @@ const changeUserPassApi = (changedPass: ChangePassType) => {
   return customAxios.put<UserDataType>('/user/changepass', changedPass);
 };
 
+const uploadPhotoApi = (avatar: UploadPhotoType) => {
+  return customAxios.put<UserDataType>('/user/uploadphoto', avatar);
+};
+
 export default {
   checkUserApi,
   changeUserInfoApi,
   changeUserPassApi,
+  uploadPhotoApi,
 };

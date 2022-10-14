@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import userProfile from '../../assets/icons/userProfile.png';
-import profileIcon from '../../assets/icons/profileIcon.png';
+import camera from '../../assets/icons/camera.png';
 
 export const ProfilePageContainer = styled.section`
   max-width: 1280px;
@@ -30,7 +30,11 @@ export const ProfilePageContainer = styled.section`
     height: 100%;
   }
 
-  .addPhotoButton {
+  .addPhoto__input {
+    display: none;
+  }
+
+  .addPhoto__button {
     position: absolute;
     background: ${({ theme }) => theme.colors.darkBlue};
     border-radius: 50%;
@@ -39,7 +43,7 @@ export const ProfilePageContainer = styled.section`
     right: 0;
     bottom: 0;
     margin: 0 20px 20px 0;
-    background-image:url(${profileIcon});
+    background-image:url(${camera});
     background-repeat: no-repeat;
     background-position: center center;
     cursor: pointer;
@@ -91,7 +95,7 @@ export const ProfilePageContainer = styled.section`
       background-size: 135px; 
     }
 
-    .addPhotoButton {
+    .addPhoto__button {
       width: 40px;
       height: 40px;
       margin: 0 15px 15px 0;

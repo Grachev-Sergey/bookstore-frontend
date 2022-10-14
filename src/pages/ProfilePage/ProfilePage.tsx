@@ -7,6 +7,7 @@ import Button from '../../components/Button';
 import { ProfileInfo } from '../../components/Profile/ProfileInfo';
 import { ProfilePassword } from '../../components/Profile/ProfilePassword';
 import userThunks from '../../store/userSlice/userThunks';
+import { baseUrl } from '../../utils/config';
 
 const updateUserInfoSchema = Yup.object().shape({
   fullName: Yup.string().required('Enter your name'),
@@ -41,8 +42,6 @@ const ProfilePage = () => {
     initialValues: initialInfoValues,
     validationSchema: updateUserInfoSchema,
     onSubmit: async (values) => {
-      // eslint-disable-next-line no-console
-      console.log('запрос info');
       try {
         await dispatch(userThunks.changeUserInfo(values));
         setSelectFieldToChange(' ');
@@ -63,8 +62,6 @@ const ProfilePage = () => {
     initialValues: initialPassValues,
     validationSchema: updateUserPassSchema,
     onSubmit: async (values) => {
-      // eslint-disable-next-line no-console
-      console.log('запрос pass');
       try {
         await dispatch(userThunks.changeUserPass(values));
         setSelectFieldToChange(' ');
@@ -83,6 +80,22 @@ const ProfilePage = () => {
     }
   };
 
+  const uploadPhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files;
+    if (selectedFile) {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(selectedFile[0]);
+      fileReader.onload = async () => {
+        try {
+          await dispatch(userThunks.uploadPhoto({ avatar: fileReader.result }));
+        } catch (err) {
+          // eslint-disable-next-line no-console
+          console.log(err);
+        }
+      };
+    }
+  };
+
   return (
     <ProfilePageContainer>
       <div>
@@ -90,10 +103,19 @@ const ProfilePage = () => {
           {userInfo.avatar &&
             (<img
               className="avatar"
-              src={userInfo?.avatar}
-              alt={userInfo.avatar}
+              src={`${baseUrl}/${userInfo?.avatar}`}
+              alt="User avatar"
             />)}
-          <button className="addPhotoButton" />
+            <div className="addPhoto">
+              <input
+                className="addPhoto__input"
+                type="file" accept="image/png, image/jpeg"
+                id="photo"
+                name="photo"
+                onChange={uploadPhoto}
+              />
+              <label htmlFor="photo" className="addPhoto__button" />
+            </div>
         </div>
       </div>
       <div className="formContainer">
