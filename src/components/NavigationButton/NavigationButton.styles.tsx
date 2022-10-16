@@ -3,7 +3,7 @@ import cartIcon from '../../assets/icons/cartIcon.png';
 import favoritesIcon from '../../assets/icons/favoritesIcon.png';
 import profileIcon from '../../assets/icons/profileIcon.png';
 
-export const NavigationButtonContainer = styled.section`
+export const NavigationButtonContainer = styled.div`
   display: flex;
   button {
     width: 48px;
