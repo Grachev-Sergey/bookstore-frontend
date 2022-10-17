@@ -32,6 +32,7 @@ declare module 'styled-components' {
       small: string;
       imputTitle: string;
       commentDescription: string;
+      bookStatusMobile: string;
     };
 
     lineHight: {
@@ -44,6 +45,7 @@ declare module 'styled-components' {
       regularSmall: string;
       small: string;
       commentDescription: string;
+      bookStatus: string;
     };
 
     media: {

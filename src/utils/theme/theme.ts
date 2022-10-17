@@ -31,6 +31,7 @@ export const baseTheme: DefaultTheme = {
     small: '16px',
     imputTitle: '14px',
     commentDescription: '12px',
+    bookStatusMobile: '10px',
   },
 
   lineHight: {
@@ -43,6 +44,7 @@ export const baseTheme: DefaultTheme = {
     regularSmall: '24px',
     small: '21px',
     commentDescription: '18px',
+    bookStatus: '10px',
   },
 
   media: {
