@@ -18,7 +18,7 @@ type InutPropsType = {
   touched?: boolean;
 };
 
-const Input: React.FunctionComponent<InutPropsType> = (props) => {
+const Input: React.FC<InutPropsType> = (props) => {
   const [togglerPass, setTogglerPass] = useState(false);
   const handlerImgClick = () => {
     setTogglerPass(!togglerPass);

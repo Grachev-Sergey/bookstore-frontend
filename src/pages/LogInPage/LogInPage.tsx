@@ -1,6 +1,7 @@
-import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+// import { AxiosError } from 'axios';
 import { LogInPageContainer } from './LogInPage.styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -9,38 +10,31 @@ import hide from '../../assets/icons/hide.png';
 import man from '../../assets/images/man.png';
 import { useAppDispatch } from '../../store/hooks';
 import userThunks from '../../store/userSlice/userThunks';
-
-const signUpValidationSchema = Yup.object({
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('Enter email'),
-  password: Yup.string()
-    .min(6, 'must be more than 6 characters')
-    .required('Enter password'),
-});
+import schemas from '../../utils/schemas';
 
 const initialElem = {
   email: '',
   password: '',
 };
 
-function LogInPage() {
+const LogInPage: React.FC = () => {
   const navigate = useNavigate();
+  // const location = useLocation();
   const dispatch = useAppDispatch();
 
   const formik = useFormik({
     initialValues: initialElem,
-    validationSchema: signUpValidationSchema,
+    validationSchema: schemas.logInSchema,
     onSubmit: async (values) => {
       try {
-        await dispatch(userThunks.logInUser(values));
+        await dispatch(userThunks.logInUser(values)).unwrap();
         const token = localStorage.getItem('token');
         if (token) {
           navigate('/');
         }
       } catch (err) {
-        // eslint-disable-next-line no-console
-        console.log(err);
+        const error = err as Error;
+        return toast.error(error.message);
       }
     },
   });
@@ -84,6 +78,6 @@ function LogInPage() {
       <img className="readingMan" src={man} alt="picture of a reading man" />
     </LogInPageContainer>
   );
-}
+};
 
 export default LogInPage;

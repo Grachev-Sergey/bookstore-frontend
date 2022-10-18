@@ -6,7 +6,7 @@ type PropsType = {
   className?: string;
 } & React.PropsWithChildren;
 
-const Button: React.FunctionComponent<PropsType> = (props) => {
+const Button: React.FC<PropsType> = (props) => {
   return (
     <StyledButton
       type={props.type}

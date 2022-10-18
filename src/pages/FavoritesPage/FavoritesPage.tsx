@@ -1,11 +1,11 @@
 import { FavoritesPageContainer } from './FavoritesPage.styles';
 
-function FavoritesPage() {
+const FavoritesPage: React.FC = () => {
   return (
     <FavoritesPageContainer>
       <p>favorites page</p>
     </FavoritesPageContainer>
   );
-}
+};
 
 export default FavoritesPage;

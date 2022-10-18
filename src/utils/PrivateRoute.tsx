@@ -1,4 +1,4 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAppSelector } from '../store/hooks';
 
 type PrivateRouteType = {
@@ -6,9 +6,10 @@ type PrivateRouteType = {
 } & React.PropsWithChildren;
 
 const PrivateRoute: React.FunctionComponent<PrivateRouteType> = (props) => {
-  const userInfo = useAppSelector((state) => state.user.email);
+  const userInfo = useAppSelector((state) => state.user.user?.email);
+  const location = useLocation();
   if (!userInfo) {
-    return <Navigate to="/signup" />;
+    return <Navigate to="/signup" state={{ from: location.pathname }} />;
   }
   return props.children;
 };

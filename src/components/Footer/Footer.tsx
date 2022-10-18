@@ -3,7 +3,7 @@ import { FooterContainer, StyledFooter } from './Footer.styles';
 import logo from '../../assets/images/logoBlackBg.png';
 import map from '../../assets/images/map.png';
 
-function Footer() {
+const Footer: React.FC = () => {
   return (
     <StyledFooter>
       <FooterContainer>
@@ -25,6 +25,6 @@ function Footer() {
       </FooterContainer>
     </StyledFooter>
   );
-}
+};
 
 export default Footer;

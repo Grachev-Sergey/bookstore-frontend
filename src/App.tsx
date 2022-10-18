@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { AppContainer } from './AppContainer.styles';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import MainPage from './pages/MainPage';
+import BookPage from './pages/BookPage/BookPage';
 import ProfilePage from './pages/ProfilePage';
 import SignUpPage from './pages/SignUpPage';
 import CartPage from './pages/CartPage';
@@ -13,7 +16,7 @@ import PrivateRoute from './utils/PrivateRoute';
 import { useAppDispatch } from './store/hooks';
 import userThunks from './store/userSlice/userThunks';
 
-function App() {
+const App: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -25,10 +28,10 @@ function App() {
 
     (async () => {
       try {
-        await dispatch(userThunks.checkUser());
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+        await dispatch(userThunks.checkUser()).unwrap();
+      } catch (err) {
+        const error = err as Error;
+        return toast.error(error.message);
       } finally {
         setIsLoaded(true);
       }
@@ -42,9 +45,15 @@ function App() {
   }
   return (
     <AppContainer>
+      <ToastContainer
+        position="top-left"
+        autoClose={3000}
+        theme="colored"
+      />
       <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
+        <Route path="/book/:id" element={<BookPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/user/cart" element={
@@ -69,6 +78,6 @@ function App() {
       <Footer />
     </AppContainer>
   );
-}
+};
 
 export default App;

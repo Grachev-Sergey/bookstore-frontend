@@ -1,11 +1,11 @@
 import { CartPageContainer } from './CartPage.styles';
 
-function CartPage() {
+const CartPage: React.FC = () => {
   return (
     <CartPageContainer>
       <p>cart page</p>
     </CartPageContainer>
   );
-}
+};
 
 export default CartPage;

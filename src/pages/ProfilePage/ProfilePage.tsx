@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { ProfilePageContainer } from './ProfilePage.styles';
 import Button from '../../components/Button';
@@ -8,30 +8,12 @@ import { ProfileInfo } from '../../components/Profile/ProfileInfo';
 import { ProfilePassword } from '../../components/Profile/ProfilePassword';
 import userThunks from '../../store/userSlice/userThunks';
 import { baseUrl } from '../../utils/config';
+import schemas from '../../utils/schemas';
 
-const updateUserInfoSchema = Yup.object().shape({
-  fullName: Yup.string().required('Enter your name'),
-  email: Yup.string().email('Invalid email').required('Enter your email'),
-});
-
-const updateUserPassSchema = Yup.object().shape({
-  oldPassword: Yup.string()
-    .min(6)
-    .required('Enter your password'),
-  newPassword: Yup.string()
-    .min(6, 'must be more than 6 characters')
-    .notOneOf([Yup.ref('oldPassword')], 'The new password must not match the old one.')
-    .required('Enter new password'),
-  repeatedNewPassword: Yup.string()
-    .min(6, 'must be more than 6 characters')
-    .oneOf([Yup.ref('newPassword')], 'Passwords do not match')
-    .required('Repeated new password'),
-});
-
-const ProfilePage = () => {
+const ProfilePage: React.FC = () => {
   const dispatch = useAppDispatch();
-  const userInfo = useAppSelector((state) => state.user);
-  const [selectFieldToChange, setSelectFieldToChange] = useState(' ');
+  const userInfo = useAppSelector((state) => state.user.user);
+  const [selectFieldToChange, setSelectFieldToChange] = useState('');
 
   const initialInfoValues = {
     fullName: userInfo?.fullName || '',
@@ -40,14 +22,14 @@ const ProfilePage = () => {
 
   const formikUserInfo = useFormik({
     initialValues: initialInfoValues,
-    validationSchema: updateUserInfoSchema,
+    validationSchema: schemas.updateUserInfoSchema,
     onSubmit: async (values) => {
       try {
-        await dispatch(userThunks.changeUserInfo(values));
-        setSelectFieldToChange(' ');
+        await dispatch(userThunks.changeUserInfo(values)).unwrap();
+        setSelectFieldToChange('');
       } catch (err) {
-        // eslint-disable-next-line no-console
-        console.log(err);
+        const error = err as Error;
+        return toast.error(error.message);
       }
     },
   });
@@ -60,14 +42,14 @@ const ProfilePage = () => {
 
   const formikPassword = useFormik({
     initialValues: initialPassValues,
-    validationSchema: updateUserPassSchema,
+    validationSchema: schemas.updateUserPassSchema,
     onSubmit: async (values) => {
       try {
-        await dispatch(userThunks.changeUserPass(values));
-        setSelectFieldToChange(' ');
+        await dispatch(userThunks.changeUserPass(values)).unwrap();
+        setSelectFieldToChange('');
       } catch (err) {
-        // eslint-disable-next-line no-console
-        console.log(err);
+        const error = err as Error;
+        return toast.error(error.message);
       }
     },
   });
@@ -100,7 +82,7 @@ const ProfilePage = () => {
     <ProfilePageContainer>
       <div>
         <div className="avatarContainer">
-          {userInfo.avatar &&
+          {userInfo?.avatar &&
             (<img
               className="avatar"
               src={`${baseUrl}/${userInfo?.avatar}`}
@@ -154,7 +136,7 @@ const ProfilePage = () => {
               errors={formikPassword.errors}
               touched={formikPassword.touched}
             />
-            {selectFieldToChange !== ' ' &&
+            {selectFieldToChange &&
               <Button className="confirmButton" type="submit">Confirm</Button>
             }
           </div>

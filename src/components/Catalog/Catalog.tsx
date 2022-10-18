@@ -4,7 +4,7 @@ import { CatalogContainer } from './Catalog.styles';
 import bookThunks from '../../store/bookSlice/bookThunks';
 import BookElem from '../BookElem';
 
-function Catalog() {
+const Catalog: React.FC = () => {
   const books = useAppSelector((state) => state.books);
   const [isLoaded, setIsLoaded] = useState(false);
   const dispatch = useAppDispatch();
@@ -44,6 +44,6 @@ function Catalog() {
       <div className="pagination">pagination</div>
     </CatalogContainer>
   );
-}
+};
 
 export default Catalog;

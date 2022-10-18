@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { HeaderContainer } from './Header.styles';
 import logo from '../../assets/images/logo.png';
 import search from '../../assets/icons/search.png';
@@ -6,14 +6,8 @@ import Button from '../Button/Button';
 import NavigationButton from '../NavigationButton';
 import { useAppSelector } from '../../store/hooks';
 
-function Header() {
-  const userInfo = useAppSelector((state) => state.user.email);
-
-  const navigate = useNavigate();
-
-  const goToAuth = () => {
-    navigate('/signup');
-  };
+const Header: React.FC = () => {
+  const userInfo = useAppSelector((state) => state.user.user?.email);
 
   return (
     <HeaderContainer>
@@ -35,12 +29,16 @@ function Header() {
       </div>
       <div className="menu">
         {!userInfo
-          ? <Button className="navigation__button" onClick={goToAuth}>Log In/ Sing Up</Button>
+          ? (
+            <Link to="/signup">
+              <Button className="navigation__button">Log In/ Sing Up</Button>
+            </Link>
+          )
           : <NavigationButton />
         }
       </div>
     </HeaderContainer>
   );
-}
+};
 
 export default Header;

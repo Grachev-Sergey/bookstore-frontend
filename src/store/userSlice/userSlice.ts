@@ -1,59 +1,42 @@
-// import { createSlice, type PayloadAction, type Draft } from '@reduxjs/toolkit';
-// import type { UserType,
-//   UserLoginType,
-//   ChangeInfoType,
-//   ChangePassType } from '../../utils/types/userTypes';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { UserType } from '../../utils/types/userTypes';
+import type { UserObjectType, UserType,
+  UserLoginType,
+  ChangeInfoType,
+  ChangePassType,
+  UploadPhotoType } from '../../utils/types/userTypes';
 import userThunks from './userThunks';
 
-const initialState: UserType = {
-  id: '',
-  email: '',
-  fullName: '',
-  avatar: '',
+const initialState: UserObjectType = {
+  user: {
+    id: '',
+    email: '',
+    fullName: '',
+    avatar: '',
+  },
 };
 
-// const foo = (state: Draft<UserType>, action: PayloadAction<UserType | undefined, string, {
-//   arg: UserLoginType | void | ChangeInfoType | ChangePassType;
-//   requestId: string;
-//   requestStatus: 'fulfilled';
-// }, never>) => {
-//   // eslint-disable-next-line no-param-reassign
-//   state = action.payload;
-// };
+const foo = (state: UserObjectType, action: PayloadAction<UserType | undefined, string, {
+  arg: UserLoginType | void | ChangeInfoType | ChangePassType | UploadPhotoType;
+  requestId: string;
+  requestStatus: 'fulfilled';
+}, never>) => {
+  if (!action.payload) return;
+  // eslint-disable-next-line no-param-reassign
+  state.user = action.payload;
+};
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    setUser(state, action: PayloadAction<UserType>) {
-      // eslint-disable-next-line no-param-reassign
-      state = action.payload;
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(userThunks.signUpUser.fulfilled, (state, action) => {
-      return action.payload;
-    });
-    builder.addCase(userThunks.logInUser.fulfilled, (state, action) => {
-      return action.payload;
-    });
-    builder.addCase(userThunks.checkUser.fulfilled, (state, action) => {
-      return action.payload;
-    });
-    builder.addCase(userThunks.changeUserInfo.fulfilled, (state, action) => {
-      return action.payload;
-    });
-    builder.addCase(userThunks.changeUserPass.fulfilled, (state, action) => {
-      return action.payload;
-    });
-    builder.addCase(userThunks.uploadPhoto.fulfilled, (state, action) => {
-      return action.payload;
-    });
+    builder.addCase(userThunks.signUpUser.fulfilled, foo);
+    builder.addCase(userThunks.logInUser.fulfilled, foo);
+    builder.addCase(userThunks.checkUser.fulfilled, foo);
+    builder.addCase(userThunks.changeUserInfo.fulfilled, foo);
+    builder.addCase(userThunks.changeUserPass.fulfilled, foo);
+    builder.addCase(userThunks.uploadPhoto.fulfilled, foo);
   },
 });
-
-export const { setUser } = userSlice.actions;
 
 export default userSlice.reducer;

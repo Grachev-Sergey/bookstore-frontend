@@ -1,6 +1,6 @@
-import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Input from '../../components/Input/Input';
 import mail from '../../assets/icons/mail.png';
 import hide from '../../assets/icons/hide.png';
@@ -9,19 +9,7 @@ import man from '../../assets/images/man.png';
 import Button from '../../components/Button/Button';
 import { useAppDispatch } from '../../store/hooks';
 import userThunks from '../../store/userSlice/userThunks';
-
-const signUpValidationSchema = Yup.object({
-  email: Yup.string()
-    .email('Invalid email address')
-    .required('Enter email'),
-  password: Yup.string()
-    .min(6, 'must be more than 6 characters')
-    .required('Enter password'),
-  repeatedPassword: Yup.string()
-    .min(6, 'must be more than 6 characters')
-    .oneOf([Yup.ref('password')], 'Passwords do not match')
-    .required('Repeated password'),
-});
+import schemas from '../../utils/schemas';
 
 const initialElem = {
   email: '',
@@ -29,29 +17,29 @@ const initialElem = {
   repeatedPassword: '',
 };
 
-function SignUpPage() {
-  const navigate = useNavigate();
+const SignUpPage: React.FC = () => {
+  // const navigate = useNavigate();
+  // const location = useLocation();
   const dispatch = useAppDispatch();
 
   const formik = useFormik({
     initialValues: initialElem,
-    validationSchema: signUpValidationSchema,
+    validationSchema: schemas.signUpSchema,
     onSubmit: async (values) => {
       try {
-        await dispatch(userThunks.signUpUser(values));
-        if (values) {
-          navigate('/');
-        }
+        await dispatch(userThunks.signUpUser(values)).unwrap();
+        // if (values) {
+        //   if (location.state) {
+        //     navigate(location.state);
+        //   }
+        //   navigate('/');
+        // }
       } catch (err) {
-        // eslint-disable-next-line no-console
-        console.log(err);
+        const error = err as Error;
+        return toast.error(error.message);
       }
     },
   });
-
-  const goToLogin = () => {
-    navigate('/login');
-  };
 
   return (
     <SignUpPageContainer>
@@ -106,10 +94,12 @@ function SignUpPage() {
 
       <div className="logIn">
         <p className="logIn__title">If you already have an account, then log in</p>
-        <Button className="logIn__button" onClick={goToLogin}>Log In</Button>
+        <Link to="/login">
+          <Button className="logIn__button">Log In</Button>
+        </Link>
       </div>
     </SignUpPageContainer>
   );
-}
+};
 
 export default SignUpPage;

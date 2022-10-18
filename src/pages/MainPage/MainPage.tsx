@@ -3,8 +3,8 @@ import Catalog from '../../components/Catalog';
 import AuthorizeBanner from '../../components/AuthorizeBanner';
 import { useAppSelector } from '../../store/hooks';
 
-function MainPage() {
-  const userInfo = useAppSelector((state) => state.user.email);
+const MainPage: React.FC = () => {
+  const userInfo = useAppSelector((state) => state.user.user?.email);
   return (
     <>
       <Banner />
@@ -12,6 +12,6 @@ function MainPage() {
       {!userInfo && <AuthorizeBanner />}
     </>
   );
-}
+};
 
 export default MainPage;

@@ -1,28 +1,20 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { NavigationButtonContainer } from './NavigationButton.styles';
 
-function NavigationButton() {
-  const navigate = useNavigate();
-
-  const goToCart = () => {
-    navigate('/user/cart');
-  };
-
-  const goToFavorites = () => {
-    navigate('/user/favorites');
-  };
-
-  const goToProfile = () => {
-    navigate('/user/profile');
-  };
-
+const NavigationButton: React.FC = () => {
   return (
     <NavigationButtonContainer>
-      <button onClick={goToCart} className = "cart" />
-      <button onClick={goToFavorites} className = "favorites" />
-      <button onClick={goToProfile} className = "profile" />
+      <Link to="/user/cart">
+        <button className="cart" />
+      </Link>
+      <Link to="/user/favorites">
+        <button className="favorites" />
+      </Link>
+      <Link to="/user/profile">
+        <button className="profile" />
+      </Link>
     </NavigationButtonContainer>
   );
-}
+};
 
 export default NavigationButton;

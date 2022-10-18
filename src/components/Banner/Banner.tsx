@@ -1,7 +1,7 @@
 import Button from '../Button/Button';
 import { BannerContainer } from './Banner.styles';
 
-function Banner() {
+const Banner: React.FC = () => {
   return (
     <BannerContainer>
       <div className="banner__info">
@@ -12,6 +12,6 @@ function Banner() {
       <div className="img" />
     </BannerContainer>
   );
-}
+};
 
 export default Banner;

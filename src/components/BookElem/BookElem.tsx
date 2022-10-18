@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { BookContainer } from './BookElem.styles';
 import addFavoritesActive from '../../assets/icons/addFavoritesActive.png';
 import addFavorites from '../../assets/icons/addFavorites.png';
@@ -32,7 +33,9 @@ const BookElem: React.FunctionComponent<PropsType> = (props) => {
             onClick={toggleFavoritButton}
           />)
         }
-        <img src={`${booksCoverUrl}/${props.book.cover}`} alt="book cover" />
+        <Link to={`/book/${props.book.id}`}>
+          <img src={`${booksCoverUrl}/${props.book.cover}`} alt="book cover" />
+        </Link>
         {props.book.status &&
           <div className={`book__status book__status--${props.book.status}`}>{props.book.status}</div>
         }

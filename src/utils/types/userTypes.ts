@@ -5,6 +5,10 @@ export type UserType = {
   avatar?: string;
 };
 
+export type UserObjectType = {
+  user: UserType | null;
+};
+
 export type UserLoginType = {
   email: string;
   password: string;
