@@ -14,6 +14,10 @@ export const AuthorizeBannerContainer = styled.section`
   background-repeat: no-repeat;
   background-position: bottom right;
 
+  a {
+    text-decoration: none;
+  }
+
   .banner__info {
     margin: 80px 0 0 757px;
   }

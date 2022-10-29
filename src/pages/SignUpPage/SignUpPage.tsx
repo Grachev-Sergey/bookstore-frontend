@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Input from '../../components/Input/Input';
 import mail from '../../assets/icons/mail.png';
@@ -18,8 +18,8 @@ const initialElem = {
 };
 
 const SignUpPage: React.FC = () => {
-  // const navigate = useNavigate();
-  // const location = useLocation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const dispatch = useAppDispatch();
 
   const formik = useFormik({
@@ -28,12 +28,10 @@ const SignUpPage: React.FC = () => {
     onSubmit: async (values) => {
       try {
         await dispatch(userThunks.signUpUser(values)).unwrap();
-        // if (values) {
-        //   if (location.state) {
-        //     navigate(location.state);
-        //   }
-        //   navigate('/');
-        // }
+        const token = localStorage.getItem('token');
+        if (location.state || token) {
+          navigate(location.state.from.pathname);
+        }
       } catch (err) {
         const error = err as Error;
         return toast.error(error.message);

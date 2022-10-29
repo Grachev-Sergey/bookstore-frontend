@@ -5,6 +5,7 @@ import search from '../../assets/icons/search.png';
 import Button from '../Button/Button';
 import NavigationButton from '../NavigationButton';
 import { useAppSelector } from '../../store/hooks';
+import Input from '../Input/Input';
 
 const Header: React.FC = () => {
   const userInfo = useAppSelector((state) => state.user.user?.email);
@@ -20,12 +21,11 @@ const Header: React.FC = () => {
       </Link>
       <Link to="/" className="link">Catalog</Link>
       <div className="search">
-        <img
-          className="magnifier"
-          src={search}
-          alt="search icon"
-        />
-        <input placeholder="Search" />
+        <Input
+          className="search__elem"
+          placeholder="Search"
+          icon={search}
+          />
       </div>
       <div className="menu">
         {!userInfo

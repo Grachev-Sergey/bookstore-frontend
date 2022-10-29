@@ -1,5 +1,5 @@
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 // import { AxiosError } from 'axios';
 import { LogInPageContainer } from './LogInPage.styles';
@@ -19,7 +19,7 @@ const initialElem = {
 
 const LogInPage: React.FC = () => {
   const navigate = useNavigate();
-  // const location = useLocation();
+  const location = useLocation();
   const dispatch = useAppDispatch();
 
   const formik = useFormik({
@@ -30,7 +30,7 @@ const LogInPage: React.FC = () => {
         await dispatch(userThunks.logInUser(values)).unwrap();
         const token = localStorage.getItem('token');
         if (token) {
-          navigate('/');
+          navigate(location.state.from.pathname);
         }
       } catch (err) {
         const error = err as Error;

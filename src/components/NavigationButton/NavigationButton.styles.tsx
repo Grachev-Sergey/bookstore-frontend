@@ -5,6 +5,8 @@ import profileIcon from '../../assets/icons/profileIcon.png';
 
 export const NavigationButtonContainer = styled.div`
   display: flex;
+  margin-left: 30px;
+
   button {
     width: 48px;
     height: 48px;
@@ -33,6 +35,8 @@ export const NavigationButtonContainer = styled.div`
   }
   
   @media only screen and (${({ theme }) => theme.media.mobile}) {
+    margin: 5px 0 0 -15px;
+
     button {
       width: 33px;
       height: 32px;

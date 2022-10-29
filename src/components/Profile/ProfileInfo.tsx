@@ -1,4 +1,3 @@
-import React from 'react';
 import type { FormikErrors, FormikTouched } from 'formik';
 import grayProfileIcon from '../../assets/icons/grayProfileIcon.png';
 import mail from '../../assets/icons/mail.png';

@@ -11,7 +11,7 @@ type PropsType = {
   book: BookType;
 };
 
-const BookElem: React.FunctionComponent<PropsType> = (props) => {
+const BookElem: React.FC<PropsType> = (props) => {
   const [isActiveButton, setIsActiveButton] = useState(false);
   const toggleFavoritButton = () => {
     setIsActiveButton(!isActiveButton);

@@ -18,25 +18,10 @@ export const HeaderContainer = styled.header`
     color: ${({ theme }) => theme.colors.dark};
     text-decoration: none;
   }
-  
-  input {
-    width: 100%;
-    margin: 24px 0 0 43px;
-    padding: 20px 309px 20px 64px;
-    background: ${({ theme }) => theme.colors.light};
-    border: none;
-    border-radius: 16px;
-    outline: 0;
 
-    ::placeholder {
-      font-weight: ${({ theme }) => theme.fontWeight.regular};
-      font-size: ${({ theme }) => theme.fontSize.small};
-      line-height: ${({ theme }) => theme.lineHight.regularSmall};
-      display: flex;
-      align-items: center;
-      letter-spacing: 0.75px;
-      color: ${({ theme }) => theme.colors.dark_grey};
-    }
+  .search {
+    margin: 0 0 0 43px;
+    width: 49%;
   }
 
   .magnifier {
@@ -60,10 +45,9 @@ export const HeaderContainer = styled.header`
       margin: 38px 0 0 51px;
     }
 
-    input {
-      margin: 20px 0 0 73px;
-      padding: 20px 0 20px 64px;
-      max-width: 247px;
+    .search {
+      margin: 0 0 0 73px;
+      width: 30.8%;
     }
 
     .magnifier {
@@ -87,14 +71,13 @@ export const HeaderContainer = styled.header`
       margin: 38px 0 0 100px;
     }
 
-    input {
-      margin: 20px 0 0 33px;
-      padding: 15px 300px 15px 64px;
-      max-width: 1000px;
+    .search {
+      margin: 0 0 0 33px;
+      width: 89.5%;
     }
 
     .menu {
-      margin: 25px 0 0 380px;
+      margin: 25px 0 0 394px;
       position: absolute;
     }
 
@@ -114,10 +97,9 @@ export const HeaderContainer = styled.header`
       margin: 38px 0 0 25px;
     }
 
-    input {
-      margin: 20px 0 0 0;
-      padding: 15px 110px 15px 64px;
-      max-width: 1000px;
+    .search {
+      margin: 0;
+      width: 100%;
     }
 
     .magnifier {
@@ -141,17 +123,6 @@ export const HeaderContainer = styled.header`
       margin: 42px 0 0 18px;
       font-size: ${({ theme }) => theme.fontSize.imputTitle};
       line-height: ${({ theme }) => theme.lineHight.small};
-    }
-
-    input {
-      margin: 20px 0 0 0;
-      padding: 15px 30px 15px 63px;
-      max-width: 290px;
-
-      ::placeholder {
-        font-size: ${({ theme }) => theme.fontSize.commentDescription};
-        line-height: ${({ theme }) => theme.lineHight.regularSmall};
-      }
     }
 
     .menu {

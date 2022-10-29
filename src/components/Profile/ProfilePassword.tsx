@@ -1,4 +1,3 @@
-import React from 'react';
 import type { FormikErrors, FormikTouched } from 'formik';
 import Input from '../Input';
 import ProfilePasswordContainer from './ProfileInfo.styles';
