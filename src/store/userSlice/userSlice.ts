@@ -15,7 +15,7 @@ const initialState: UserObjectType = {
   },
 };
 
-const foo = (state: UserObjectType, action: PayloadAction<UserType | undefined, string, {
+const fillingState = (state: UserObjectType, action: PayloadAction<UserType | undefined, string, {
   arg: UserLoginType | void | ChangeInfoType | ChangePassType | UploadPhotoType;
   requestId: string;
   requestStatus: 'fulfilled';
@@ -29,12 +29,12 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(userThunks.signUpUser.fulfilled, foo);
-    builder.addCase(userThunks.logInUser.fulfilled, foo);
-    builder.addCase(userThunks.checkUser.fulfilled, foo);
-    builder.addCase(userThunks.changeUserInfo.fulfilled, foo);
-    builder.addCase(userThunks.changeUserPass.fulfilled, foo);
-    builder.addCase(userThunks.uploadPhoto.fulfilled, foo);
+    builder.addCase(userThunks.signUpUser.fulfilled, fillingState);
+    builder.addCase(userThunks.logInUser.fulfilled, fillingState);
+    builder.addCase(userThunks.checkUser.fulfilled, fillingState);
+    builder.addCase(userThunks.changeUserInfo.fulfilled, fillingState);
+    builder.addCase(userThunks.changeUserPass.fulfilled, fillingState);
+    builder.addCase(userThunks.uploadPhoto.fulfilled, fillingState);
   },
 });
 
