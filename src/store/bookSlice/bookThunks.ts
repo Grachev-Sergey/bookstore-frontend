@@ -1,15 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { AxiosError } from 'axios';
 import bookApi from '../../api/bookApi';
 
 const getAllBooks = createAsyncThunk(
   'books/getBooks',
-  async () => {
+  async (_, { rejectWithValue }) => {
     try {
       const data = await bookApi.getBooks();
       return data.data;
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log(err);
+      if (err instanceof AxiosError) {
+        return rejectWithValue(err.response?.data);
+      }
+      throw err;
     }
   },
 );

@@ -10,7 +10,7 @@ export const StyledButton = styled.button`
   border-radius: ${({ theme }) => theme.borderRadius};
   cursor: pointer;
   border: none;
-  
+
   @media only screen and (${({ theme }) => theme.media.mobile}) {
     padding: 10px 17px;
     font-size: ${({ theme }) => theme.fontSize.commentDescription};

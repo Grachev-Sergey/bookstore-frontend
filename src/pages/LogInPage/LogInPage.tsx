@@ -29,9 +29,10 @@ const LogInPage: React.FC = () => {
       try {
         await dispatch(userThunks.logInUser(values)).unwrap();
         const token = localStorage.getItem('token');
-        if (token) {
+        if (location.state && token) {
           navigate(location.state.from.pathname);
         }
+        navigate('/');
       } catch (err) {
         const error = err as Error;
         return toast.error(error.message);

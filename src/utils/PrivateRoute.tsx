@@ -6,7 +6,7 @@ type PrivateRouteType = {
 } & React.PropsWithChildren;
 
 const PrivateRoute: React.FC<PrivateRouteType> = (props) => {
-  const userInfo = useAppSelector((state) => state.user.user);
+  const userInfo = useAppSelector((state) => state.user.user?.email);
   const location = useLocation();
   if (!userInfo) {
     return <Navigate to="/signup" state={{ from: location.pathname }} />;

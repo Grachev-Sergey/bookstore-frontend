@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { CatalogContainer } from './Catalog.styles';
 import bookThunks from '../../store/bookSlice/bookThunks';
-import BookElem from '../BookElem';
+import BookItem from '../BookItem';
 
 const Catalog: React.FC = () => {
   const books = useAppSelector((state) => state.books);
@@ -13,9 +14,9 @@ const Catalog: React.FC = () => {
     (async () => {
       try {
         await dispatch(bookThunks.getAllBooks());
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+      } catch (err) {
+        const error = err as Error;
+        return toast.error(error.message);
       } finally {
         setIsLoaded(true);
       }
@@ -37,7 +38,7 @@ const Catalog: React.FC = () => {
       <div className="booksContainer">
         {
           books.books.map((item) => (
-            <BookElem key={item.id} book={item} />
+            <BookItem key={item.id} book={item} />
           ))
         }
       </div>

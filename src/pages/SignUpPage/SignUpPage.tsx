@@ -28,10 +28,12 @@ const SignUpPage: React.FC = () => {
     onSubmit: async (values) => {
       try {
         await dispatch(userThunks.signUpUser(values)).unwrap();
-        const token = localStorage.getItem('token');
-        if (location.state || token) {
-          navigate(location.state.from.pathname);
+        // eslint-disable-next-line no-console
+        console.log(location.state);
+        if (location.state) {
+          navigate(location.state.from);
         }
+        navigate('/');
       } catch (err) {
         const error = err as Error;
         return toast.error(error.message);

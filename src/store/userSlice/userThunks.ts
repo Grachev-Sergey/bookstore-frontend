@@ -83,13 +83,15 @@ const changeUserPass = createAsyncThunk(
 
 const uploadPhoto = createAsyncThunk(
   'user/uploadPhoto',
-  async (values:UploadPhotoType) => {
+  async (values:UploadPhotoType, { rejectWithValue }) => {
     try {
       const data = await userApi.uploadPhotoApi(values);
       return data.data.user;
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.log(err);
+      if (err instanceof AxiosError) {
+        return rejectWithValue(err.response?.data);
+      }
+      throw err;
     }
   },
 );

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { BookContainer } from './BookElem.styles';
+import { BookContainer } from './BookItem.styles';
 import addFavoritesActive from '../../assets/icons/addFavoritesActive.png';
 import addFavorites from '../../assets/icons/addFavorites.png';
 import type { BookType } from '../../utils/types/bookTypes';
@@ -11,7 +11,7 @@ type PropsType = {
   book: BookType;
 };
 
-const BookElem: React.FC<PropsType> = (props) => {
+const BookItem: React.FC<PropsType> = (props) => {
   const [isActiveButton, setIsActiveButton] = useState(false);
   const toggleFavoritButton = () => {
     setIsActiveButton(!isActiveButton);
@@ -19,20 +19,12 @@ const BookElem: React.FC<PropsType> = (props) => {
   return (
     <BookContainer>
       <div className="book__cover">
-        {isActiveButton
-          ? (<img
-            className="favoriteButton"
-            src={addFavoritesActive}
-            alt="remove"
-            onClick={toggleFavoritButton}
-          />)
-          : (<img
-            className="favoriteButton"
-            src={addFavorites}
-            alt="add favorites button"
-            onClick={toggleFavoritButton}
-          />)
-        }
+        <img
+          className="favoriteButton"
+          alt="remove"
+          onClick={toggleFavoritButton}
+          src={isActiveButton ? addFavoritesActive : addFavorites}
+        />
         <Link to={`/book/${props.book.id}`}>
           <img src={`${booksCoverUrl}/${props.book.cover}`} alt="book cover" />
         </Link>
@@ -48,4 +40,4 @@ const BookElem: React.FC<PropsType> = (props) => {
   );
 };
 
-export default BookElem;
+export default BookItem;

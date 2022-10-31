@@ -6,9 +6,10 @@ export type BookType = {
   description: string;
   dateOfIssue: string;
   genre: string[];
+  hardCover: boolean;
   hardCoverPrice?: string;
-  paperback: string;
-  aperbackPrice?: string;
+  paperback: boolean;
+  paperbackPrice?: string;
   status?: string;
   rating?: string;
   comments?: string;

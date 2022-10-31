@@ -21,7 +21,6 @@ const foo = (state: UserObjectType, action: PayloadAction<UserType | undefined, 
   requestStatus: 'fulfilled';
 }, never>) => {
   if (!action.payload) return;
-  // eslint-disable-next-line no-param-reassign
   state.user = action.payload;
 };
 

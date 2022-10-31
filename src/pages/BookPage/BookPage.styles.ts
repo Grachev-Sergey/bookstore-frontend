@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
 export const BookPageContainer = styled.section`
-  margin: 0;
+  margin-top: 60px;
+  .addToCartButton--gray {
+    background: ${({ theme }) => theme.colors.darkGray};
+  }
 `;
