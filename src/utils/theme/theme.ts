@@ -16,9 +16,9 @@ export const baseTheme: DefaultTheme = {
   borderRadius: '16px',
 
   fontWeight: {
-    regular: '400',
-    medium: '500',
     bold: '700',
+    medium: '500',
+    regular: '400',
   },
 
   fontSize: {

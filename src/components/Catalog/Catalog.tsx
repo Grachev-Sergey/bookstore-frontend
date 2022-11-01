@@ -4,6 +4,7 @@ import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { CatalogContainer } from './Catalog.styles';
 import bookThunks from '../../store/bookSlice/bookThunks';
 import BookItem from '../BookItem';
+import FilterBlock from '../FilterBlock';
 
 const Catalog: React.FC = () => {
   const books = useAppSelector((state) => state.books);
@@ -33,7 +34,7 @@ const Catalog: React.FC = () => {
     <CatalogContainer>
       <div className="header">
         <h2>Catalog</h2>
-        <div>filters</div>
+        <FilterBlock />
       </div>
       <div className="booksContainer">
         {

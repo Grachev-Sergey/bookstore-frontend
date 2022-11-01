@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import bookApi from '../../api/bookApi';
 import Button from '../../components/Button/Button';
-import { booksCoverUrl } from '../../utils/config';
 import { useAppSelector } from '../../store/hooks';
 import AuthorizeBanner from '../../components/AuthorizeBanner/AuthorizeBanner';
 import type { BookType } from '../../utils/types/bookTypes';
@@ -36,7 +35,7 @@ const BookPage: React.FC = () => {
     <BookPageContainer>
       <div className="book-info">
         <div className="book-info__cover">
-          <img src={`${booksCoverUrl}/${book?.cover}`} />
+          <img src={`${book?.cover}`} />
         </div>
         <p className="book-info__title">{book?.title}</p>
         <p className="book-info__author">{book?.author}</p>

@@ -31,15 +31,20 @@ export const CatalogContainer = styled.section`
     max-width: 804px;
     margin: 60px auto 100px auto;
 
+    .header {
+      flex-wrap: wrap;
+    }
+
     h2{
       font-size: ${({ theme }) => theme.fontSize.titleTablet};
       line-height: ${({ theme }) => theme.lineHight.titleTablet};
+      margin-bottom: 20px;
     }
   }
 
   @media only screen and (${({ theme }) => theme.media.medium}) {
     max-width: 580px;
-
+    margin: 20px auto 100px auto;
     .header {
       display: flex;
       flex-direction: column;
