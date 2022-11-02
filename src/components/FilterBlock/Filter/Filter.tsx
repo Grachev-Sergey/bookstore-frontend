@@ -13,6 +13,11 @@ type PropsType = {
 
 const Filter: React.FC<PropsType> = (props) => {
   const [modalVisibility, setModalVisibility] = useState(false);
+  const [selectSorting, setSelectSorting] = useState('Price');
+  const sortClickHandler = (value: string) => {
+    setSelectSorting(value);
+  };
+
   const toggleVisibility = () => {
     setModalVisibility(!modalVisibility);
   };
@@ -20,12 +25,18 @@ const Filter: React.FC<PropsType> = (props) => {
   return (
     <FilterContainer>
       <div className="filterButton" onClick={toggleVisibility}>
-        <p>{props.title}</p>
+        <p className="title">
+          {
+            props.title === 'Sort by'
+              ? `${props.title} ${selectSorting.toLowerCase()}`
+              : props.title
+          }
+        </p>
         <img className="forward" src={modalVisibility ? forwardDown : forwardRight} alt="modal window activity indicator" />
       </div>
       {props.title === 'Genere' && modalVisibility ? <GenreFilter /> : null}
       {props.title === 'Price' && modalVisibility ? <PriceFilter /> : null}
-      {props.title === 'Sort by ' && modalVisibility ? <Sort /> : null}
+      {props.title === 'Sort by' && modalVisibility ? <Sort sortClickHandler={sortClickHandler} /> : null}
     </FilterContainer>
   );
 };

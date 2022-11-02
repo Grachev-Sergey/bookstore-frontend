@@ -1,3 +1,6 @@
 {
-  "main": "PriceFilter.tsx"
+  "main": "PriceFilter.tsx",
+  "devDependencies": {
+    "@types/react-slider": "^1.3.1"
+  }
 }

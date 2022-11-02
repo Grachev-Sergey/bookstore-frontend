@@ -1,9 +1,21 @@
 import { SortContainer } from './Sort.styles';
+import polygon from '../../../assets/icons/Polygon.png';
 
-const Sort: React.FC = () => {
+const sortBy = ['Price', 'Name', 'Author name', 'Rating', 'Date of issue'];
+
+type PropsType = {
+  sortClickHandler: (value: string) => void;
+} & React.PropsWithChildren;
+
+const Sort: React.FC<PropsType> = (props) => {
   return (
     <SortContainer>
-      <p>Sort</p>
+        <img className="polygon" src={polygon} />
+      {
+        sortBy.map((item) => (
+          <div className="sort-item" key={item} onClick={() => props.sortClickHandler(item)}>{item}</div>
+        ))
+      }
     </SortContainer>
   );
 };

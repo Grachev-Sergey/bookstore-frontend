@@ -15,6 +15,10 @@ export const FilterContainer = styled.div`
     margin-left: 20px;
   }
 
+  .title {
+    padding-right: 5px;
+  }
+
   .filterButton {
     width: 100%;
     align-items: center;
@@ -22,6 +26,7 @@ export const FilterContainer = styled.div`
     justify-content: space-between;
     padding: 10px 15px;
   }
+
   .forward {
     width: 24px;
     height: 24px;

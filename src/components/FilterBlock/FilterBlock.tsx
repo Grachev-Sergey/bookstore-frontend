@@ -6,7 +6,7 @@ const FilterBlock: React.FC = () => {
     <FilerBlockContainer>
       <Filter title="Genere" />
       <Filter title="Price" />
-      <Filter title="Sort by " />
+      <Filter title="Sort by" />
     </FilerBlockContainer>
   );
 };

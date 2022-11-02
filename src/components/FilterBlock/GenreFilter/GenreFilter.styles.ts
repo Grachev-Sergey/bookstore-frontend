@@ -11,15 +11,28 @@ export const GenreFilterContainer = styled.div`
   text-align: start;
   z-index: 1;
 
-  img {
+  .polygon {
     position: absolute;
     top: -13px;
     left: 15px;
   }
 
+  @media only screen and (${({ theme }) => theme.media.tablet}) {
+    min-width: 290px;
+  }
+
   @media only screen and (${({ theme }) => theme.media.medium}) {
-    img {
+    min-width: 580px;
+    .polygon {
       top: -18px;
     }
+  }
+
+  @media only screen and (${({ theme }) => theme.media.small}) {
+    min-width: 430px;
+  }
+
+  @media only screen and (${({ theme }) => theme.media.mobile}) {
+    min-width: 290px;
   }
 `;
