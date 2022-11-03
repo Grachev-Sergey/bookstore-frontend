@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { FilterContainer } from './Filter.styles';
 import forwardDown from '../../../assets/icons/ForwardDown.png';
 import forwardRight from '../../../assets/icons/ForwardRight.png';
@@ -8,12 +8,13 @@ import Sort from '../Sort';
 
 type PropsType = {
   title: string;
-  onClick?: () => void;
-} & React.PropsWithChildren;
+};
 
 const Filter: React.FC<PropsType> = (props) => {
   const [modalVisibility, setModalVisibility] = useState(false);
   const [selectSorting, setSelectSorting] = useState('Price');
+  const modalWindowRef = useRef<HTMLDivElement>(null);
+
   const sortClickHandler = (value: string) => {
     setSelectSorting(value);
   };
@@ -22,8 +23,19 @@ const Filter: React.FC<PropsType> = (props) => {
     setModalVisibility(!modalVisibility);
   };
 
+  const handleClick = (e: MouseEvent): void => {
+    if (modalWindowRef.current && !modalWindowRef.current?.contains(e.target as Node)) {
+      setModalVisibility(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, []);
+
   return (
-    <FilterContainer>
+    <FilterContainer ref={modalWindowRef}>
       <div className="filterButton" onClick={toggleVisibility}>
         <p className="title">
           {
@@ -34,9 +46,9 @@ const Filter: React.FC<PropsType> = (props) => {
         </p>
         <img className="forward" src={modalVisibility ? forwardDown : forwardRight} alt="modal window activity indicator" />
       </div>
-      {props.title === 'Genere' && modalVisibility ? <GenreFilter /> : null}
-      {props.title === 'Price' && modalVisibility ? <PriceFilter /> : null}
-      {props.title === 'Sort by' && modalVisibility ? <Sort sortClickHandler={sortClickHandler} /> : null}
+      {props.title === 'Genre' && modalVisibility && <GenreFilter />}
+      {props.title === 'Price' && modalVisibility && <PriceFilter />}
+      {props.title === 'Sort by' && modalVisibility && <Sort sortClickHandler={sortClickHandler} />}
     </FilterContainer>
   );
 };

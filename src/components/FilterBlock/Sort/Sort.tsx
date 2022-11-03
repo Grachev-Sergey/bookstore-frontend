@@ -5,15 +5,15 @@ const sortBy = ['Price', 'Name', 'Author name', 'Rating', 'Date of issue'];
 
 type PropsType = {
   sortClickHandler: (value: string) => void;
-} & React.PropsWithChildren;
+};
 
-const Sort: React.FC<PropsType> = (props) => {
+const Sort: React.FC<PropsType> = ({ sortClickHandler }) => {
   return (
     <SortContainer>
         <img className="polygon" src={polygon} />
       {
         sortBy.map((item) => (
-          <div className="sort-item" key={item} onClick={() => props.sortClickHandler(item)}>{item}</div>
+          <div className="sort-item" key={item} onClick={() => sortClickHandler(item)}>{item}</div>
         ))
       }
     </SortContainer>
