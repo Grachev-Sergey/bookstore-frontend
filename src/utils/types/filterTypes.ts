@@ -1,7 +1,6 @@
 export type GenreType = {
   id: string;
-  title: string;
-  chosenGenre: boolean;
+  name: string;
 };
 
 export type AllGenreType = {

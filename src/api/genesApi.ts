@@ -1,8 +1,8 @@
 import customAxios from '.';
-import type { GenreType } from '../utils/types/filterTypes';
+import type { AllGenreType } from '../utils/types/filterTypes';
 
 const getGenres = () => {
-  return customAxios.get<GenreType[]>('/genres');
+  return customAxios.get<AllGenreType>('/genres');
 };
 export default {
   getGenres,

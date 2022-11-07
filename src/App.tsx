@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AppContainer } from './AppContainer.styles';
 import Header from './components/Header';
@@ -31,7 +31,8 @@ const App: React.FC = () => {
         await dispatch(userThunks.checkUser()).unwrap();
       } catch (err) {
         const error = err as Error;
-        return toast.error(error.message);
+        // eslint-disable-next-line no-console
+        console.log(error.message);
       } finally {
         setIsLoaded(true);
       }

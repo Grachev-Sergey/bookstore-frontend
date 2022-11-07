@@ -7,6 +7,11 @@ export const BookContainer = styled.div`
   .book__cover {
     position: relative;
     max-width: 305px;
+    max-height: 448px;
+  }
+
+  .book-cover {
+    max-height: 448px;
   }
 
   img {
@@ -81,11 +86,16 @@ export const BookContainer = styled.div`
 
   @media only screen and (${({ theme }) => theme.media.tablet}) {
     max-width: 254px;
+    max-height: 372px;
     margin: 0 10.5px 30px 0;
 
     .book__cover {
       position: relative;
       max-width: 254px;
+    }
+
+    .book-cover {
+      max-height: 372px;
     }
 
     .favoriteButton {
@@ -115,10 +125,15 @@ export const BookContainer = styled.div`
 
   @media only screen and (${({ theme }) => theme.media.medium}) {
     max-width: 270px;
+
     margin: 0 20px 30px 0;
 
     .book__cover {
       max-width: 280px;
+    }
+
+    .book-cover {
+      max-height: 286px;
     }
   }
 
@@ -164,6 +179,10 @@ export const BookContainer = styled.div`
     .book__cover {
       position: relative;
       max-width: 135px;
+    }
+
+    .book-cover {
+      max-height: 198px;
     }
 
     .favoriteButton {

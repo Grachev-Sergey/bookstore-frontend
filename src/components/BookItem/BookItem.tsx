@@ -25,7 +25,7 @@ const BookItem: React.FC<PropsType> = (props) => {
           src={isActiveButton ? addFavoritesActive : addFavorites}
         />
         <Link to={`/book/${props.book.id}`}>
-          <img src={`${props.book.cover}`} alt="book cover" />
+          <img className="book-cover" src={`${props.book.cover}`} alt="book cover" />
         </Link>
         {props.book.status &&
           <div className={`book__status book__status--${props.book.status}`}>{props.book.status}</div>
