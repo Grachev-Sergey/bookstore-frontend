@@ -17,6 +17,22 @@ const getAllBooks = createAsyncThunk(
   },
 );
 
+const getAllFiltredBooks = createAsyncThunk(
+  'books/getFiltredBooks',
+  async (genres: string, { rejectWithValue }) => {
+    try {
+      const data = await bookApi.getFiltredBooks(genres);
+      return data.data;
+    } catch (err) {
+      if (err instanceof AxiosError) {
+        return rejectWithValue(err.response?.data);
+      }
+      throw err;
+    }
+  },
+);
+
 export default {
   getAllBooks,
+  getAllFiltredBooks,
 };

@@ -1,23 +1,31 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import { GenreItemContainer } from './GenreItem.styles';
 import checkboxActive from '../../../../assets/icons/checkboxActive.png';
 import checkbox from '../../../../assets/icons/checkbox.png';
 
 type PropsType = {
   genre: string;
+  addSelectGenres?: (genre: string) => void;
+  selectedGenres?: string[];
 };
 
-const GenreItem: React.FC<PropsType> = (props) => {
-  const [activeCheckbox, setActiveChekbox] = useState(false);
-
+const GenreItem: React.FC<PropsType> = ({ genre, addSelectGenres, selectedGenres }) => {
   const checkboxClickHandler = () => {
-    setActiveChekbox(!activeCheckbox);
+    if (addSelectGenres) {
+      addSelectGenres(genre);
+    }
   };
+
+  const activeCheckbox = selectedGenres?.includes(genre);
 
   return (
     <GenreItemContainer onClick={checkboxClickHandler}>
-      <img className="checkbox" src={activeCheckbox ? checkboxActive : checkbox} alt="filter selection" />
-      <p className="genre">{props.genre}</p>
+      <img
+        className="checkbox"
+        src={activeCheckbox ? checkboxActive : checkbox}
+        alt="filter selection"
+      />
+      <p className="genre">{genre}</p>
     </GenreItemContainer>
   );
 };

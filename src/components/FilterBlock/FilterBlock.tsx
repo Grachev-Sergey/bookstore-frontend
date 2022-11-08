@@ -1,10 +1,19 @@
 import Filter from './Filter';
 import { FilerBlockContainer } from './FilterBlock.styles';
 
-const FilterBlock: React.FC = () => {
+type PropsType = {
+  addSelectGenres: (genre: string) => void;
+  selectedGenres: string[];
+};
+
+const FilterBlock: React.FC<PropsType> = ({ addSelectGenres, selectedGenres }) => {
   return (
     <FilerBlockContainer>
-      <Filter title="Genre" />
+      <Filter
+        title="Genre"
+        addSelectGenres={addSelectGenres}
+        selectedGenres={selectedGenres}
+      />
       <Filter title="Price" />
       <Filter title="Sort by" />
     </FilerBlockContainer>

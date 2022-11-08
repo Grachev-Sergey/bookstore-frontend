@@ -24,6 +24,7 @@ export const BookContainer = styled.div`
     height: 48px;
     left: 20px;
     top: 20px;
+    cursor: pointer;
   }
 
   .book__status {

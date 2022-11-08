@@ -6,7 +6,12 @@ import polygon from '../../../assets/icons/Polygon.png';
 import genesApi from '../../../api/genesApi';
 import type { GenreType } from '../../../utils/types/filterTypes';
 
-const GenreFilter: React.FC = () => {
+type PropsType = {
+  addSelectGenres?: (genre: string) => void;
+  selectedGenres?: string[];
+};
+
+const GenreFilter: React.FC<PropsType> = ({ addSelectGenres, selectedGenres }) => {
   const [genres, setGenres] = useState<GenreType[]>();
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -32,7 +37,12 @@ const GenreFilter: React.FC = () => {
       <img className="polygon" src={polygon} />
       {
         genres?.map((item) => (
-          <GenreItem key={item.id} genre={item.name} />
+          <GenreItem
+          key={item.id}
+          genre={item.name}
+          addSelectGenres={addSelectGenres}
+          selectedGenres={selectedGenres}
+        />
         ))
       }
     </GenreFilterContainer>

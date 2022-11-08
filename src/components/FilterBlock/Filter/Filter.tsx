@@ -8,9 +8,11 @@ import Sort from '../Sort';
 
 type PropsType = {
   title: string;
+  addSelectGenres?: (genre: string) => void;
+  selectedGenres?: string[];
 };
 
-const Filter: React.FC<PropsType> = (props) => {
+const Filter: React.FC<PropsType> = ({ title, addSelectGenres, selectedGenres }) => {
   const [modalVisibility, setModalVisibility] = useState(false);
   const [selectSorting, setSelectSorting] = useState('Price');
   const modalWindowRef = useRef<HTMLDivElement>(null);
@@ -39,16 +41,22 @@ const Filter: React.FC<PropsType> = (props) => {
       <div className="filterButton" onClick={toggleVisibility}>
         <p className="title">
           {
-            props.title === 'Sort by'
-              ? `${props.title} ${selectSorting.toLowerCase()}`
-              : props.title
+            title === 'Sort by'
+              ? `${title} ${selectSorting.toLowerCase()}`
+              : title
           }
         </p>
         <img className="forward" src={modalVisibility ? forwardDown : forwardRight} alt="modal window activity indicator" />
       </div>
-      {props.title === 'Genre' && modalVisibility && <GenreFilter />}
-      {props.title === 'Price' && modalVisibility && <PriceFilter />}
-      {props.title === 'Sort by' && modalVisibility && <Sort sortClickHandler={sortClickHandler} />}
+      {title === 'Genre' &&
+        modalVisibility &&
+        (<GenreFilter
+          addSelectGenres={addSelectGenres}
+          selectedGenres={selectedGenres}
+        />)
+      }
+      {title === 'Price' && modalVisibility && <PriceFilter />}
+      {title === 'Sort by' && modalVisibility && <Sort sortClickHandler={sortClickHandler} />}
     </FilterContainer>
   );
 };
