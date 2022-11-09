@@ -1,22 +1,19 @@
-// import { useState } from 'react';
 import { GenreItemContainer } from './GenreItem.styles';
 import checkboxActive from '../../../../assets/icons/checkboxActive.png';
 import checkbox from '../../../../assets/icons/checkbox.png';
 
 type PropsType = {
   genre: string;
-  addSelectGenres?: (genre: string) => void;
-  selectedGenres?: string[];
+  genresList: string;
+  addSelectedGenres: (genre: string) => void;
 };
 
-const GenreItem: React.FC<PropsType> = ({ genre, addSelectGenres, selectedGenres }) => {
-  const checkboxClickHandler = () => {
-    if (addSelectGenres) {
-      addSelectGenres(genre);
-    }
-  };
+const GenreItem: React.FC<PropsType> = ({ genre, genresList, addSelectedGenres }) => {
+  const activeCheckbox = genresList?.includes(genre);
 
-  const activeCheckbox = selectedGenres?.includes(genre);
+  const checkboxClickHandler = () => {
+    addSelectedGenres(genre);
+  };
 
   return (
     <GenreItemContainer onClick={checkboxClickHandler}>

@@ -37,6 +37,7 @@ export const BannerContainer = styled.section`
     display: block;
     text-align: start;
     max-width: 231px;
+    cursor: default;
   }
   .img {
     margin-left: 146px;

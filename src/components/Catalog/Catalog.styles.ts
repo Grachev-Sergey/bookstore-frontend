@@ -18,7 +18,7 @@ export const CatalogContainer = styled.section`
     color: ${({ theme }) => theme.colors.dark};
   }
 
-  .booksContainer {
+  .books-container {
     display: flex;
     flex-wrap: wrap;
   }

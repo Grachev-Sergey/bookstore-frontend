@@ -22,6 +22,7 @@ export const SortContainer = styled.section`
     text-align: start;
     font-size: ${({ theme }) => theme.fontSize.small};
     line-height: ${({ theme }) => theme.lineHight.regular};
+    cursor: pointer;
   }
 
   @media only screen and (${({ theme }) => theme.media.tablet}) {

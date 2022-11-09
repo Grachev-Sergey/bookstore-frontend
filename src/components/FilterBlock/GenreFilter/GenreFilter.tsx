@@ -1,4 +1,6 @@
+/* eslint-disable no-console */
 import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { GenreFilterContainer } from './GenreFilter.styles';
 import GenreItem from './GenreItem/GenreItem';
@@ -6,14 +8,13 @@ import polygon from '../../../assets/icons/Polygon.png';
 import genesApi from '../../../api/genesApi';
 import type { GenreType } from '../../../utils/types/filterTypes';
 
-type PropsType = {
-  addSelectGenres?: (genre: string) => void;
-  selectedGenres?: string[];
-};
-
-const GenreFilter: React.FC<PropsType> = ({ addSelectGenres, selectedGenres }) => {
+const GenreFilter: React.FC = () => {
   const [genres, setGenres] = useState<GenreType[]>();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [selectedGenres, setSelectedGenres] = useState(searchParams.get('genres') || '');
+  const genreArr = selectedGenres.split(',');
+
   useEffect(() => {
     (async () => {
       try {
@@ -28,6 +29,25 @@ const GenreFilter: React.FC<PropsType> = ({ addSelectGenres, selectedGenres }) =
     })();
   }, []);
 
+  useEffect(() => {
+    setSelectedGenres(searchParams.get('genres') || '');
+  }, [searchParams]);
+
+  const addSelectedGenres = (genre: string) => {
+    let genreList = '';
+    if (selectedGenres.includes(genre)) {
+      genreArr.splice(genreArr.indexOf(genre), 1);
+      genreList = genreArr.join();
+    } else {
+      genreList = `${selectedGenres},${genre}`;
+    }
+    searchParams.set('genres', genreList);
+    if (genreList === '') {
+      searchParams.delete('genres');
+    }
+    setSearchParams(searchParams);
+  };
+
   if (!isLoaded) {
     return <p>loading...</p>;
   }
@@ -38,11 +58,11 @@ const GenreFilter: React.FC<PropsType> = ({ addSelectGenres, selectedGenres }) =
       {
         genres?.map((item) => (
           <GenreItem
-          key={item.id}
-          genre={item.name}
-          addSelectGenres={addSelectGenres}
-          selectedGenres={selectedGenres}
-        />
+            genresList={selectedGenres}
+            addSelectedGenres={addSelectedGenres}
+            key={item.id}
+            genre={item.name}
+          />
         ))
       }
     </GenreFilterContainer>

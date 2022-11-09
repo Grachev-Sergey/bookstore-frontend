@@ -1,12 +1,31 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import ReactSlider from 'react-slider';
 import { PriceFilterContainer } from './PriceFilter.styles';
 import polygon from '../../../assets/icons/Polygon.png';
 
 const PriceFilter: React.FC = () => {
-  const minValue = 20;
-  const maxValue = 200;
-  const [value, setValue] = useState([minValue, maxValue]);
+  const minStartPrice = 5;
+  const maxStartPrice = 25;
+  const [value, setValue] = useState([minStartPrice, maxStartPrice]);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const minValue = Number(searchParams.get('minPrise') || minStartPrice);
+    const maxValue = Number(searchParams.get('maxPrise') || maxStartPrice);
+    setValue([minValue, maxValue]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const selectionPriceHandler = (value: number[]) => {
+    searchParams.set('minPrice', value[0].toString());
+    searchParams.set('maxPrice', value[1].toString());
+    if (value[0] === minStartPrice && value[1] === maxStartPrice) {
+      searchParams.delete('minPrice');
+      searchParams.delete('maxPrice');
+    }
+    setSearchParams(searchParams);
+  };
 
   const changeHandler = (value: number[]) => {
     setValue(value);
@@ -17,9 +36,10 @@ const PriceFilter: React.FC = () => {
       <img className="polygon" src={polygon} />
       <ReactSlider
           value={value}
-          min={minValue}
-          max={maxValue}
+          min={minStartPrice}
+          max={maxStartPrice}
           onChange={(value) => changeHandler(value)}
+          onAfterChange={(value) => selectionPriceHandler(value)}
           thumbClassName="example-thumb"
           trackClassName="example-track"
           renderThumb={(props, state) => <div {...props}>{state.valueNow}</div>}

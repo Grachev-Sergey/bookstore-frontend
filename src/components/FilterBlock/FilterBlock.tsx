@@ -1,21 +1,27 @@
-import Filter from './Filter';
+import { useState } from 'react';
+import DropDownButton from './DropDownButton';
 import { FilerBlockContainer } from './FilterBlock.styles';
+import GenreFilter from './GenreFilter';
+import PriceFilter from './PriceFilter';
+import Sort from './Sort';
 
-type PropsType = {
-  addSelectGenres: (genre: string) => void;
-  selectedGenres: string[];
-};
+const FilterBlock: React.FC = () => {
+  const [selectSorting, setSelectSorting] = useState('Price');
 
-const FilterBlock: React.FC<PropsType> = ({ addSelectGenres, selectedGenres }) => {
+  const sortClickHandler = (value: string) => {
+    setSelectSorting(value);
+  };
   return (
     <FilerBlockContainer>
-      <Filter
-        title="Genre"
-        addSelectGenres={addSelectGenres}
-        selectedGenres={selectedGenres}
-      />
-      <Filter title="Price" />
-      <Filter title="Sort by" />
+      <DropDownButton filterType="Genre">
+        <GenreFilter />
+      </DropDownButton>
+      <DropDownButton filterType="Price">
+        <PriceFilter />
+      </DropDownButton>
+      <DropDownButton filterType="Sort by" selectSorting={selectSorting}>
+        <Sort sortClickHandler={sortClickHandler} />
+      </DropDownButton>
     </FilerBlockContainer>
   );
 };

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FilterContainer = styled.div`
+export const DropDownButtonContainer = styled.div`
   position: relative;
   max-height: 48px;
   min-width: 196px;
@@ -10,6 +10,7 @@ export const FilterContainer = styled.div`
   font-size: ${({ theme }) => theme.fontSize.filter};
   line-height: ${({ theme }) => theme.lineHight.regular};
   letter-spacing: 0.75px;
+  cursor: pointer;
 
   :not(:first-child) {
     margin-left: 20px;
@@ -19,7 +20,7 @@ export const FilterContainer = styled.div`
     padding-right: 5px;
   }
 
-  .filterButton {
+  .filter-button {
     width: 100%;
     align-items: center;
     display: flex;
