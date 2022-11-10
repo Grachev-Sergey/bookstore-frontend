@@ -9,9 +9,9 @@ import genesApi from '../../../api/genesApi';
 import type { GenreType } from '../../../utils/types/filterTypes';
 
 const GenreFilter: React.FC = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [genres, setGenres] = useState<GenreType[]>();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [isLoaded, setIsLoaded] = useState(false);
   const [selectedGenres, setSelectedGenres] = useState(searchParams.get('genres') || '');
   const genreArr = selectedGenres.split(',');
 

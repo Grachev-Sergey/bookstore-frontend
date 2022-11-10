@@ -7,12 +7,12 @@ import polygon from '../../../assets/icons/Polygon.png';
 const PriceFilter: React.FC = () => {
   const minStartPrice = 5;
   const maxStartPrice = 25;
-  const [value, setValue] = useState([minStartPrice, maxStartPrice]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [value, setValue] = useState([minStartPrice, maxStartPrice]);
 
   useEffect(() => {
-    const minValue = Number(searchParams.get('minPrise') || minStartPrice);
-    const maxValue = Number(searchParams.get('maxPrise') || maxStartPrice);
+    const minValue = Number(searchParams.get('minPrice') || minStartPrice);
+    const maxValue = Number(searchParams.get('maxPrice') || maxStartPrice);
     setValue([minValue, maxValue]);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import DropDownButton from './DropDownButton';
 import { FilerBlockContainer } from './FilterBlock.styles';
 import GenreFilter from './GenreFilter';
@@ -6,10 +7,13 @@ import PriceFilter from './PriceFilter';
 import Sort from './Sort';
 
 const FilterBlock: React.FC = () => {
-  const [selectSorting, setSelectSorting] = useState('Price');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [selectSorting, setSelectSorting] = useState(searchParams.get('sorting') || 'Price');
 
   const sortClickHandler = (value: string) => {
     setSelectSorting(value);
+    searchParams.set('sorting', value);
+    setSearchParams(searchParams);
   };
   return (
     <FilerBlockContainer>

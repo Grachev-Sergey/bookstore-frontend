@@ -1,5 +1,6 @@
 export type QueryType = {
   genre: string;
-  maxPrice: string;
-  minPrice:string;
+  maxPrice: number;
+  minPrice: number;
+  sorting: string;
 };

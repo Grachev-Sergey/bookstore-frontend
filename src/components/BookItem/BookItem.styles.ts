@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const BookContainer = styled.div`
   max-width: 305px;
-  margin: 0 15px 60px 0;
+  margin: 0 15px 80px 0;
 
   .book__cover {
     position: relative;

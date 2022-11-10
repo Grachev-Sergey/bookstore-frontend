@@ -1,27 +1,30 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-// import { toast } from 'react-toastify';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
 import { CatalogContainer } from './Catalog.styles';
 import bookThunks from '../../store/bookSlice/bookThunks';
 import BookItem from '../BookItem';
 import FilterBlock from '../FilterBlock';
+import Pagination from '../Pagination';
 import type { QueryType } from '../../utils/types/queryTypes';
 
 const Catalog: React.FC = () => {
   const books = useAppSelector((state) => state.books);
+  const counter = books.books.length;
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchParams] = useSearchParams();
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     const genre = searchParams.get('genres') || '';
-    const minPrice = searchParams.get('minPrice') || '5';
-    const maxPrice = searchParams.get('maxPrice') || '25';
+    const minPrice = Number(searchParams.get('minPrice') || '5');
+    const maxPrice = Number(searchParams.get('maxPrice') || '25');
+    const sorting = (searchParams.get('sorting') || 'Price').toLowerCase();
     const query: QueryType = {
       genre,
       minPrice,
       maxPrice,
+      sorting,
     };
     dispatch(bookThunks.getAllFiltredBooks(query));
     setIsLoaded(true);
@@ -46,7 +49,7 @@ const Catalog: React.FC = () => {
           ))
         }
       </div>
-      <div className="pagination">pagination</div>
+      <Pagination counter={counter} />
     </CatalogContainer>
   );
 };
