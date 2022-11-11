@@ -19,8 +19,8 @@ const BookItem: React.FC<PropsType> = (props) => {
     <BookContainer>
       <div className="book__cover">
         <img
-          className="favoriteButton"
-          alt="remove"
+          className="favorite-button"
+          alt="add favorter button"
           onClick={toggleFavoritButton}
           src={isActiveButton ? addFavoritesActive : addFavorites}
         />
@@ -34,7 +34,7 @@ const BookItem: React.FC<PropsType> = (props) => {
       <p className="book__title">{props.book.title}</p>
       <p className="book__author">{props.book.author}</p>
       <div className="rating">rating</div>
-      <Button className="addToCartButton">$ {props.book.hardCoverPrice} USD</Button>
+      <Button className="add-to-cart-button">$ {props.book.hardCoverPrice} USD</Button>
     </BookContainer>
   );
 };

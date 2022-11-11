@@ -25,8 +25,15 @@ export const PaginationContainer = styled.div`
   }
 
   .indicator {
+    height: 14px;
+    width: 14px;
+    border: 2px solid black;
+    border-radius: 50%;
     :not(:first-child) {
     margin-left: 37px;
   }
+  }
+  .indicator--selected {
+    background-color: black;
   }
 `;

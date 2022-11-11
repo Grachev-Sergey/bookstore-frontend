@@ -4,6 +4,8 @@ import bookThunks from './bookThunks';
 
 const initialState: BooksType = {
   books: [],
+  counter: 0,
+  numberPerPage: 0,
 };
 
 const bookSlice = createSlice({

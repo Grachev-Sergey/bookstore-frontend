@@ -17,4 +17,6 @@ export type BookType = {
 
 export type BooksType = {
   books: BookType[];
+  counter: number;
+  numberPerPage: number;
 };

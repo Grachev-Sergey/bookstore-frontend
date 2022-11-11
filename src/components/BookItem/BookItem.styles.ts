@@ -11,14 +11,14 @@ export const BookContainer = styled.div`
   }
 
   .book-cover {
-    max-height: 448px;
+    height: 448px;
   }
 
   img {
     width: 100%;
   }
 
-  .favoriteButton {
+  .favorite-button {
     position: absolute;
     width: 48px;
     height: 48px;
@@ -76,7 +76,7 @@ export const BookContainer = styled.div`
     margin: 20px 0 30px 0;
   }
 
-  .addToCartButton{
+  .add-to-cart-button{
     width: 100%;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
     font-size: ${({ theme }) => theme.fontSize.regular};
@@ -96,7 +96,7 @@ export const BookContainer = styled.div`
     }
 
     .book-cover {
-      max-height: 372px;
+      height: 372px;
     }
 
     .favoriteButton {
@@ -134,7 +134,7 @@ export const BookContainer = styled.div`
     }
 
     .book-cover {
-      max-height: 286px;
+      height: 286px;
     }
   }
 
@@ -183,7 +183,7 @@ export const BookContainer = styled.div`
     }
 
     .book-cover {
-      max-height: 198px;
+      height: 198px;
     }
 
     .favoriteButton {

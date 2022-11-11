@@ -27,7 +27,7 @@ export const NavigationButtonContainer = styled.div`
   .favorites {
     margin-right: 27px;
     background-image: url(${favoritesIcon});
-    background-position: 10px 14px;
+    background-position: 11px 13px;
   }
   .profile {
     background-image: url(${profileIcon});

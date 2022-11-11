@@ -3,4 +3,5 @@ export type QueryType = {
   maxPrice: number;
   minPrice: number;
   sorting: string;
+  page: number;
 };

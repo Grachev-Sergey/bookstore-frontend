@@ -10,7 +10,6 @@ import type { QueryType } from '../../utils/types/queryTypes';
 
 const Catalog: React.FC = () => {
   const books = useAppSelector((state) => state.books);
-  const counter = books.books.length;
   const [isLoaded, setIsLoaded] = useState(false);
   const [searchParams] = useSearchParams();
   const dispatch = useAppDispatch();
@@ -20,11 +19,13 @@ const Catalog: React.FC = () => {
     const minPrice = Number(searchParams.get('minPrice') || '5');
     const maxPrice = Number(searchParams.get('maxPrice') || '25');
     const sorting = (searchParams.get('sorting') || 'Price').toLowerCase();
+    const page = (Number(searchParams.get('page') || 1));
     const query: QueryType = {
       genre,
       minPrice,
       maxPrice,
       sorting,
+      page,
     };
     dispatch(bookThunks.getAllFiltredBooks(query));
     setIsLoaded(true);
@@ -49,7 +50,7 @@ const Catalog: React.FC = () => {
           ))
         }
       </div>
-      <Pagination counter={counter} />
+      <Pagination />
     </CatalogContainer>
   );
 };
