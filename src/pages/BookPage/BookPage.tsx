@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { Rating } from 'react-simple-star-rating';
 import { toast } from 'react-toastify';
 import bookApi from '../../api/bookApi';
 import Button from '../../components/Button/Button';
+import RatingElem from '../../components/Rating/Rating';
 import { useAppSelector } from '../../store/hooks';
-import AuthorizeBanner from '../../components/AuthorizeBanner/AuthorizeBanner';
+import AuthorizeBanner from '../../components/AuthorizeBanner';
 import { BookPageContainer } from './BookPage.styles';
 import addFavoritesActive from '../../assets/icons/addFavoritesActive.png';
 import addFavorites from '../../assets/icons/addFavorites.png';
+import backArrow from '../../assets/icons/backArrow.png';
 import type { BookType } from '../../utils/types/bookTypes';
 
 const BookPage: React.FC = () => {
@@ -37,9 +40,6 @@ const BookPage: React.FC = () => {
     <>Loading...</>;
   }
 
-  // eslint-disable-next-line no-console
-  console.log(typeof (book?.paperback));
-
   return (
     <BookPageContainer>
       <div className="book-block">
@@ -55,7 +55,21 @@ const BookPage: React.FC = () => {
         <div className="book-info">
           <h2 className="book-info__title">{book?.title}</h2>
           <p className="book-info__author">{book?.author}</p>
-          <p className="book-info__rating">Rating</p>
+          {/* <p className="book-info__rating">Rating</p> */}
+          <div className="book-info__rating">
+            <Rating
+              iconsCount={1}
+              emptyColor="#BFCC94"
+              allowHover={false}
+              size={30}
+            />
+            <span className="rating__text">{book?.rating || 0}</span>
+            <RatingElem />
+            <div className="rate-this-book">
+              <img className="rate-this-book__img" src={backArrow} alt="pointer to rating" />
+              <span className="rate-this-book__text">Rate this book</span>
+            </div>
+          </div>
           <div className="description">
             <p className="description__title">Description</p>
             <p className="description__text">{book?.description}</p>

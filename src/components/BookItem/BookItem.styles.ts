@@ -74,6 +74,19 @@ export const BookContainer = styled.div`
 
   .rating {
     margin: 20px 0 30px 0;
+    display: flex;
+    align-items: center;
+  }
+
+  svg {
+    margin-right: 8px;
+  }
+
+  .rating__text {
+    font-weight: ${({ theme }) => theme.fontWeight.medium};
+    font-size: ${({ theme }) => theme.fontSize.small};
+    line-height: ${({ theme }) => theme.lineHight.regularSmall};
+    color: ${({ theme }) => theme.colors.darkGray};
   }
 
   .add-to-cart-button{

@@ -47,8 +47,37 @@ export const BookPageContainer = styled.section`
 
   .book-info__rating {
     margin-top: 30px;
+    display: flex;
+    align-items: center;
   }
 
+  .rating__text {
+    margin: 0 42px 0 14px;
+    font-weight: ${({ theme }) => theme.fontWeight.medium};
+    font-size: ${({ theme }) => theme.fontSize.small};
+    line-height: ${({ theme }) => theme.lineHight.regularSmall};
+    color: ${({ theme }) => theme.colors.darkGray};
+  }
+
+  .rate-this-book {
+    display: flex;
+    align-items: center;
+    margin-left: 27px;
+  }
+
+  .rate-this-book__img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .rate-this-book__text {
+    margin-left: 10px;
+    font-weight: ${({ theme }) => theme.fontWeight.medium};
+    font-size: ${({ theme }) => theme.fontSize.small};
+    line-height: ${({ theme }) => theme.lineHight.regularSmall};
+    color: ${({ theme }) => theme.colors.darkGray};
+  }
+  
   .description__title{
     margin-top: 30px;
     font-weight: ${({ theme }) => theme.fontWeight.medium};

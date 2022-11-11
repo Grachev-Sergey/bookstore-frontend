@@ -4,7 +4,8 @@ import { BookContainer } from './BookItem.styles';
 import addFavoritesActive from '../../assets/icons/addFavoritesActive.png';
 import addFavorites from '../../assets/icons/addFavorites.png';
 import type { BookType } from '../../utils/types/bookTypes';
-import Button from '../Button/Button';
+import Button from '../Button';
+import RatingElem from '../Rating';
 
 type PropsType = {
   book: BookType;
@@ -33,7 +34,10 @@ const BookItem: React.FC<PropsType> = (props) => {
       </div>
       <p className="book__title">{props.book.title}</p>
       <p className="book__author">{props.book.author}</p>
-      <div className="rating">rating</div>
+      <div className="rating">
+        <RatingElem />
+        <span className="rating__text">{props.book.rating || 0}</span>
+      </div>
       <Button className="add-to-cart-button">$ {props.book.hardCoverPrice} USD</Button>
     </BookContainer>
   );
