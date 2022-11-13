@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useAppSelector } from '../../store/hooks';
+
 import { PaginationContainer } from './Pagination.styles';
+
+import { useAppSelector } from '../../store/hooks';
+
 import previousPage from '../../assets/icons/previousPage.png';
 import nextPage from '../../assets/icons/nextPage.png';
 

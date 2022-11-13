@@ -1,15 +1,19 @@
 import { useFormik } from 'formik';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Input from '../../components/Input/Input';
-import mail from '../../assets/icons/mail.png';
-import hide from '../../assets/icons/hide.png';
+
 import { SignUpPageContainer } from './SignUp.styles';
-import man from '../../assets/images/man.png';
-import Button from '../../components/Button/Button';
+
 import { useAppDispatch } from '../../store/hooks';
 import userThunks from '../../store/userSlice/userThunks';
 import schemas from '../../utils/schemas';
+
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+
+import mail from '../../assets/icons/mail.png';
+import hide from '../../assets/icons/hide.png';
+import man from '../../assets/images/man.png';
 
 const initialElem = {
   email: '',
@@ -85,17 +89,17 @@ const SignUpPage: React.FC = () => {
         />
         <Button
           type="submit"
-          className="signUpButton"
+          className="sign-up__button"
         >
         Sing Up
         </Button>
       </form>
-      <img className="readingMan" src={man} alt="picture of a reading man" />
+      <img className="reading-man" src={man} alt="picture of a reading man" />
 
-      <div className="logIn">
-        <p className="logIn__title">If you already have an account, then log in</p>
+      <div className="log-in">
+        <p className="log-in__title">If you already have an account, then log in</p>
         <Link to="/login">
-          <Button className="logIn__button">Log In</Button>
+          <Button className="log-in__button">Log In</Button>
         </Link>
       </div>
     </SignUpPageContainer>

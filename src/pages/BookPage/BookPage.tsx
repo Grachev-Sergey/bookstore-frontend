@@ -2,16 +2,23 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Rating } from 'react-simple-star-rating';
 import { toast } from 'react-toastify';
-import bookApi from '../../api/bookApi';
-import Button from '../../components/Button/Button';
-import RatingElem from '../../components/Rating/Rating';
-import { useAppSelector } from '../../store/hooks';
-import AuthorizeBanner from '../../components/AuthorizeBanner';
+
 import { BookPageContainer } from './BookPage.styles';
+
+import bookApi from '../../api/bookApi';
+
+import { useAppSelector } from '../../store/hooks';
+
+import Button from '../../components/Button';
+import RatingElem from '../../components/Rating';
+import AuthorizeBanner from '../../components/AuthorizeBanner';
+
+import type { BookType } from '../../utils/types/bookTypes';
+
 import addFavoritesActive from '../../assets/icons/addFavoritesActive.png';
 import addFavorites from '../../assets/icons/addFavorites.png';
 import backArrow from '../../assets/icons/backArrow.png';
-import type { BookType } from '../../utils/types/bookTypes';
+import Loading from '../../components/Loading/Loading';
 
 const BookPage: React.FC = () => {
   const userInfo = useAppSelector((state) => state.user.user?.email);
@@ -37,7 +44,7 @@ const BookPage: React.FC = () => {
   }, [bookId]);
 
   if (!isLoaded) {
-    <>Loading...</>;
+    return <Loading />;
   }
 
   return (

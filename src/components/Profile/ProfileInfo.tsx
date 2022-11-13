@@ -1,8 +1,11 @@
 import type { FormikErrors, FormikTouched } from 'formik';
+
+import ProfileInfoContainer from './ProfileInfo.styles';
+
+import Input from '../Input';
+
 import grayProfileIcon from '../../assets/icons/grayProfileIcon.png';
 import mail from '../../assets/icons/mail.png';
-import Input from '../Input/Input';
-import ProfileInfoContainer from './ProfileInfo.styles';
 
 type PropsType = {
   onChange?: (e: React.ChangeEvent) => void;
@@ -23,23 +26,23 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
   return (
     <ProfileInfoContainer>
       {props.selectFieldToChange !== 'info'
-        ? (<div className="infoContainer">
-            <div className="textContainer">
-              <img className="infoIcon" src={grayProfileIcon} alt="Profile icon" />
-              <div className="textBlock">
+        ? (<div className="info__container">
+            <div className="text__container">
+              <img className="info__icon" src={grayProfileIcon} alt="Profile icon" />
+              <div className="text__block">
                 <p>{props.fullName}</p>
               </div>
               <p className="title">Your name</p>
             </div>
-            <div className="textContainer">
-              <img className="infoIcon" src={mail} alt="Mail icon" />
-              <div className="textBlock">
+            <div className="text__container">
+              <img className="info__icon" src={mail} alt="Mail icon" />
+              <div className="text__block">
                 <p>{props.email}</p>
               </div>
               <p className="title">Your email</p>
             </div>
            </div>)
-        : (<div className="infoContainer">
+        : (<div className="info__container">
             <Input
               onChange={props.onChange}
               value={props.fullName}
@@ -52,7 +55,6 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
             />
             <Input
               onChange={props.onChange}
-              className="styled-user-page__styled-text-input"
               value={props.email}
               placeholder="Email"
               id="email"

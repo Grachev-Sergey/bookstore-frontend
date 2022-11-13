@@ -18,7 +18,7 @@ export const SignUpPageContainer = styled.section`
     color: ${({ theme }) => theme.colors.dark};
   }
 
-  .signUpButton {
+  .sign-up__button {
     padding: 10px 53px;
     display: block;
     text-align: start;
@@ -26,19 +26,19 @@ export const SignUpPageContainer = styled.section`
     max-width: 167px;
   }
 
-  .readingMan {
+  .reading-man {
     position: absolute;
     right: 0;
     top: 0;
   }
 
-  .logIn {
+  .log-in {
     display: flex;
     justify-content: center;
     margin-bottom: 52px;
   }
 
-  .logIn__title {
+  .log-in__title {
     line-height: ${({ theme }) => theme.lineHight.titleTablet};
     margin-right: 40px;
   }
@@ -56,7 +56,7 @@ export const SignUpPageContainer = styled.section`
       line-height: ${({ theme }) => theme.lineHight.titleTablet};
     }
 
-    .readingMan {
+    .reading-man {
       max-width: 390px;
       margin-top: 83px;
     }
@@ -74,27 +74,27 @@ export const SignUpPageContainer = styled.section`
       margin-bottom: 40px;
     }
 
-    .signUpButton {
+    .sign-up__button {
       margin: 40px 0 34px 0;
     }
 
-    .readingMan {
+    .reading-man {
       right: 100px;
       top: 570px;
     }
 
-    .logIn {
+    .log-in {
       flex-direction: column;
       align-items: center;
       margin-bottom: 410px;
     }
 
-    .logIn__title {
+    .log-in__title {
       line-height: ${({ theme }) => theme.lineHight.titleTablet};
       margin-right: 0;
     }
 
-    .logIn__button {
+    .log-in__button {
       max-width: 166px;
     }
   }
@@ -103,7 +103,7 @@ export const SignUpPageContainer = styled.section`
     max-width: 430px;
     margin: 50px auto 0 auto;
 
-    .readingMan {
+    .reading-man {
       right: 20px;
     }
   }
@@ -118,28 +118,28 @@ export const SignUpPageContainer = styled.section`
       margin-bottom: 30px;
     }
 
-    .signUpButton {
+    .sign-up__button {
       font-size: ${({ theme }) => theme.fontSize.small};
       margin-bottom: 20px;
     }
 
-    .logIn {
+    .log-in {
       flex-direction: column;
       align-items: flex-start;
       margin-bottom: 360px;
     }
 
-    .logIn__title {
+    .log-in__title {
       font-size: ${({ theme }) => theme.fontSize.commentDescription};
       margin-right: 0;
     }
 
-    .logIn__button {
+    .log-in__button {
       width: 166px;
       font-size: ${({ theme }) => theme.fontSize.small};
     }
 
-    .readingMan {
+    .reading-man {
       max-width: 290px;
       right: 0;
       top: 520px;

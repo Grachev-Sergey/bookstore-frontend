@@ -1,16 +1,19 @@
 import { useFormik } from 'formik';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-// import { AxiosError } from 'axios';
+
 import { LogInPageContainer } from './LogInPage.styles';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
-import mail from '../../assets/icons/mail.png';
-import hide from '../../assets/icons/hide.png';
-import man from '../../assets/images/man.png';
+
 import { useAppDispatch } from '../../store/hooks';
 import userThunks from '../../store/userSlice/userThunks';
 import schemas from '../../utils/schemas';
+
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+
+import mail from '../../assets/icons/mail.png';
+import hide from '../../assets/icons/hide.png';
+import man from '../../assets/images/man.png';
 
 const initialElem = {
   email: '',
@@ -71,12 +74,12 @@ const LogInPage: React.FC = () => {
         />
         <Button
           type="submit"
-          className="logInButton"
+          className="log-in__button"
         >
         Log In
         </Button>
       </form>
-      <img className="readingMan" src={man} alt="picture of a reading man" />
+      <img className="reading-man" src={man} alt="picture of a reading man" />
     </LogInPageContainer>
   );
 };

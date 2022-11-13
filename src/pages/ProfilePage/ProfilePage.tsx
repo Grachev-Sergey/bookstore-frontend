@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { toast } from 'react-toastify';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
+
 import { ProfilePageContainer } from './ProfilePage.styles';
-import Button from '../../components/Button';
-import { ProfileInfo } from '../../components/Profile/ProfileInfo';
-import { ProfilePassword } from '../../components/Profile/ProfilePassword';
+
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import userThunks from '../../store/userSlice/userThunks';
 import { baseUrl } from '../../utils/config';
 import schemas from '../../utils/schemas';
+
+import Button from '../../components/Button';
+import { ProfileInfo } from '../../components/Profile/ProfileInfo';
+import { ProfilePassword } from '../../components/Profile/ProfilePassword';
 
 const ProfilePage: React.FC = () => {
   const dispatch = useAppDispatch();

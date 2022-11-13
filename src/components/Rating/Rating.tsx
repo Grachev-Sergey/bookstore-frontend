@@ -1,4 +1,5 @@
 import { Rating } from 'react-simple-star-rating';
+
 import { RatingContainer } from './Rating.styles';
 
 const RatingElem: React.FC = () => {

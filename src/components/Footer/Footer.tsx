@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
+
 import { FooterContainer, StyledFooter } from './Footer.styles';
+
 import logo from '../../assets/images/logoBlackBg.png';
 import map from '../../assets/images/map.png';
 

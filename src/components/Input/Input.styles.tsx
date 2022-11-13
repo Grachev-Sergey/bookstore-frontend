@@ -35,7 +35,7 @@ export const InputContainer = styled.div`
 
   }
 
-  .inputTitle {
+  .input__title {
     margin: 9px 0 10px 0;
     text-align: start;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
@@ -46,9 +46,9 @@ export const InputContainer = styled.div`
     color: ${({ theme }) => theme.colors.darkBlue};
   }
 
-  .errorTitle {
+  .error__title {
     position: absolute;
-    bottom: -20px;
+    bottom: -15px;
     left: 0;
     color: ${({ theme }) => theme.colors.error};
   }
@@ -59,7 +59,7 @@ export const InputContainer = styled.div`
         font-size: ${({ theme }) => theme.fontSize.imputTitle};
       }
     }
-    .inputTitle {
+    .input__title {
       margin-top: 4px;
       font-size: ${({ theme }) => theme.fontSize.commentDescription};
       line-height: ${({ theme }) => theme.lineHight.commentDescription};

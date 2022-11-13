@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ReactSlider from 'react-slider';
+
 import { PriceFilterContainer } from './PriceFilter.styles';
+
 import polygon from '../../../assets/icons/Polygon.png';
 
 const PriceFilter: React.FC = () => {

@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import { BookContainer } from './BookItem.styles';
-import addFavoritesActive from '../../assets/icons/addFavoritesActive.png';
-import addFavorites from '../../assets/icons/addFavorites.png';
-import type { BookType } from '../../utils/types/bookTypes';
+
 import Button from '../Button';
 import RatingElem from '../Rating';
+
+import type { BookType } from '../../utils/types/bookTypes';
+
+import addFavoritesActive from '../../assets/icons/addFavoritesActive.png';
+import addFavorites from '../../assets/icons/addFavorites.png';
 
 type PropsType = {
   book: BookType;

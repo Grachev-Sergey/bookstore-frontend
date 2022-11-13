@@ -2,19 +2,24 @@ import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 import { AppContainer } from './AppContainer.styles';
-import Header from './components/Header';
-import Footer from './components/Footer';
+
+import PrivateRoute from './utils/PrivateRoute';
+import { useAppDispatch } from './store/hooks';
+import userThunks from './store/userSlice/userThunks';
+
 import MainPage from './pages/MainPage';
-import BookPage from './pages/BookPage/BookPage';
+import BookPage from './pages/BookPage';
 import ProfilePage from './pages/ProfilePage';
 import SignUpPage from './pages/SignUpPage';
 import CartPage from './pages/CartPage';
 import FavoritesPage from './pages/FavoritesPage';
 import LogInPage from './pages/LogInPage';
-import PrivateRoute from './utils/PrivateRoute';
-import { useAppDispatch } from './store/hooks';
-import userThunks from './store/userSlice/userThunks';
+
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Loading from './components/Loading/Loading';
 
 const App: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -41,7 +46,9 @@ const App: React.FC = () => {
 
   if (!isLoaded) {
     return (
-      <>loading</>
+      <div className="loading">
+        <Loading />
+      </div>
     );
   }
   return (

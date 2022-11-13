@@ -1,4 +1,5 @@
 import { GenreItemContainer } from './GenreItem.styles';
+
 import checkboxActive from '../../../../assets/icons/checkboxActive.png';
 import checkbox from '../../../../assets/icons/checkbox.png';
 

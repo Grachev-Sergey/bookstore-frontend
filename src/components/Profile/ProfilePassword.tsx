@@ -1,6 +1,9 @@
 import type { FormikErrors, FormikTouched } from 'formik';
-import Input from '../Input';
+
 import ProfilePasswordContainer from './ProfileInfo.styles';
+
+import Input from '../Input';
+
 import hide from '../../assets/icons/hide.png';
 
 type PropsType = {
@@ -25,16 +28,16 @@ export const ProfilePassword: React.FC<PropsType> = (props) => {
   return (
     <ProfilePasswordContainer>
       {props.selectFieldToChange !== 'password'
-        ? (<div className="passwordContainer">
-          <div className="textContainer">
-            <img className="infoIcon" src={hide} alt="Password icon" />
-            <div className="textBlock">
+        ? (<div className="password__container">
+          <div className="text__container">
+            <img className="info__icon" src={hide} alt="Password icon" />
+            <div className="text__block">
             <p>*******</p>
             </div>
             <p className="title">Your password</p>
           </div>
            </div>)
-        : (<div className="passwordContainer">
+        : (<div className="password__container">
           <Input
             icon={hide}
             id="oldPassword"

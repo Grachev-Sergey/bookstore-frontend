@@ -1,4 +1,5 @@
 import { SortContainer } from './Sort.styles';
+
 import polygon from '../../../assets/icons/Polygon.png';
 
 const sortBy = ['Price', 'Name', 'Author name', 'Rating', 'Date of issue'];

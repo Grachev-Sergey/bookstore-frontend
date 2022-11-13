@@ -2,11 +2,17 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 import { GenreFilterContainer } from './GenreFilter.styles';
-import GenreItem from './GenreItem/GenreItem';
-import polygon from '../../../assets/icons/Polygon.png';
+
 import genesApi from '../../../api/genesApi';
+
+import GenreItem from './GenreItem';
+
 import type { GenreType } from '../../../utils/types/filterTypes';
+
+import polygon from '../../../assets/icons/Polygon.png';
+import Loading from '../../Loading/Loading';
 
 const GenreFilter: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -49,7 +55,7 @@ const GenreFilter: React.FC = () => {
   };
 
   if (!isLoaded) {
-    return <p>loading...</p>;
+    return <Loading />;
   }
 
   return (

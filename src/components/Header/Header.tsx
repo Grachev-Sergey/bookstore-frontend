@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom';
+
 import { HeaderContainer } from './Header.styles';
+
+import { useAppSelector } from '../../store/hooks';
+
+import Button from '../Button';
+import NavigationButton from '../NavigationButton';
+import Input from '../Input';
+
 import logo from '../../assets/images/logo.png';
 import search from '../../assets/icons/search.png';
-import Button from '../Button/Button';
-import NavigationButton from '../NavigationButton';
-import { useAppSelector } from '../../store/hooks';
-import Input from '../Input/Input';
 
 const Header: React.FC = () => {
   const userInfo = useAppSelector((state) => state.user.user?.email);

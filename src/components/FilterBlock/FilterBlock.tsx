@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import DropDownButton from './DropDownButton';
+
 import { FilerBlockContainer } from './FilterBlock.styles';
+
+import DropDownButton from './DropDownButton';
 import GenreFilter from './GenreFilter';
 import PriceFilter from './PriceFilter';
 import Sort from './Sort';

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { InputContainer } from './Input.styles';
 
 type InutPropsType = {
@@ -42,10 +43,10 @@ const Input: React.FC<InutPropsType> = (props) => {
         onBlur={props.onBlur}
       />
       {props.inputTitle &&
-      <div className="inputTitle">{props.inputTitle}</div>}
+      <div className="input__title">{props.inputTitle}</div>}
 
       {props.touched
-        ? <div className="errorTitle">{props.error}</div>
+        ? <div className="error__title">{props.error}</div>
         : null}
     </InputContainer>
   );

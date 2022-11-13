@@ -2,14 +2,14 @@ import styled from 'styled-components';
 
 export default styled.section`
   width: 100%;
-  .infoIcon {
+  .info__icon {
     width: 24px;
     position: absolute;
     margin-left: 24px;
     border: none;
   }
 
-  .textBlock {
+  .text__block {
     background: ${({ theme }) => theme.colors.light};
     border-radius: ${({ theme }) => theme.borderRadius};
     width: 100%;
@@ -28,15 +28,15 @@ export default styled.section`
     color: ${({ theme }) => theme.colors.dark};
   }
 
-  .infoContainer {
+  .info__container {
     margin-bottom: 40px;
   }
 
-  .passwordContainer {
+  .password__container {
     margin-bottom: 40px;
   }
 
-  .textContainer {
+  .text__container {
     position: relative;
     display: flex;
     align-items: center;
@@ -64,7 +64,7 @@ export default styled.section`
     .title {
       font-size: 12px; 
     }
-    .infoContainer {
+    .info__container {
       margin-bottom: 30px;
     }
   }

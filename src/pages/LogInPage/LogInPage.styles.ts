@@ -18,7 +18,7 @@ export const LogInPageContainer = styled.section`
     color: ${({ theme }) => theme.colors.dark};
   }
 
-  .logInButton {
+  .log-in__button {
     padding: 10px 53px;
     display: block;
     text-align: start;
@@ -26,7 +26,7 @@ export const LogInPageContainer = styled.section`
     max-width: 167px;
   }
 
-  .readingMan {
+  .reading-man {
     position: absolute;
     right: 0;
     top: 0;
@@ -45,11 +45,11 @@ export const LogInPageContainer = styled.section`
       line-height: ${({ theme }) => theme.lineHight.titleTablet};
     }
 
-    .logInButton {
+    .log-in__button {
       margin: 60px 0 104px 0;
     }
 
-    .readingMan {
+    .reading-man {
       max-width: 390px;
       margin-top: 5px;
     }
@@ -67,11 +67,11 @@ export const LogInPageContainer = styled.section`
       margin-bottom: 40px;
     }
 
-    .logInButton {
+    .log-in__button {
       margin: 40px 0 454px 0;
     }
 
-    .readingMan {
+    .reading-man {
       right: 100px;
       top: 418px;
     }
@@ -81,11 +81,11 @@ export const LogInPageContainer = styled.section`
     max-width: 430px;
     margin: 50px auto 0 auto;
 
-    .logInButton {
+    .log-in__button {
       margin: 40px 0 454px 0;
     }
 
-    .readingMan {
+    .reading-man {
       right: 20px;
     }
   }
@@ -100,12 +100,12 @@ export const LogInPageContainer = styled.section`
       margin-bottom: 30px;
     }
 
-    .logInButton {
+    .log-in__button {
       font-size: ${({ theme }) => theme.fontSize.small};
       margin-bottom: 377px;
     }
 
-    .readingMan {
+    .reading-man {
       max-width: 290px;
       right: 0;
       top: 378px;

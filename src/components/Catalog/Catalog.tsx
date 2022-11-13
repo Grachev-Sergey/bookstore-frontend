@@ -1,12 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { useAppSelector, useAppDispatch } from '../../store/hooks';
+
 import { CatalogContainer } from './Catalog.styles';
+
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
+
 import bookThunks from '../../store/bookSlice/bookThunks';
 import BookItem from '../BookItem';
 import FilterBlock from '../FilterBlock';
 import Pagination from '../Pagination';
+
 import type { QueryType } from '../../utils/types/queryTypes';
+import Loading from '../Loading/Loading';
 
 const Catalog: React.FC = () => {
   const books = useAppSelector((state) => state.books);
@@ -33,7 +38,7 @@ const Catalog: React.FC = () => {
 
   if (!isLoaded) {
     return (
-      <>loading</>
+      <Loading />
     );
   }
 
