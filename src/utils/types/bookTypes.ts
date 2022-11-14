@@ -11,7 +11,7 @@ export type BookType = {
   paperback: boolean;
   paperbackPrice?: string;
   status?: string;
-  rating?: string;
+  rating?: number;
   comments?: string;
 };
 

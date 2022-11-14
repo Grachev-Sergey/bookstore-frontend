@@ -15,7 +15,7 @@ type PropsType = {
   book: BookType;
 };
 
-const BookItem: React.FC<PropsType> = (props) => {
+const BookItem: React.FC<PropsType> = ({ book }) => {
   const [isActiveButton, setIsActiveButton] = useState(false);
   const toggleFavoritButton = () => {
     setIsActiveButton(!isActiveButton);
@@ -29,20 +29,20 @@ const BookItem: React.FC<PropsType> = (props) => {
           onClick={toggleFavoritButton}
           src={isActiveButton ? addFavoritesActive : addFavorites}
         />
-        <Link to={`/book/${props.book.id}`}>
-          <img className="book-cover" src={`${props.book.cover}`} alt="book cover" />
+        <Link to={`/book/${book.id}`}>
+          <img className="book-cover" src={`${book.cover}`} alt="book cover" />
         </Link>
-        {props.book.status &&
-          <div className={`book__status book__status--${props.book.status}`}>{props.book.status}</div>
+        {book.status &&
+          <div className={`book__status book__status--${book.status}`}>{book.status}</div>
         }
       </div>
-      <p className="book__title">{props.book.title}</p>
-      <p className="book__author">{props.book.author}</p>
+      <p className="book__title">{book.title}</p>
+      <p className="book__author">{book.author}</p>
       <div className="rating">
-        <RatingElem />
-        <span className="rating__text">{props.book.rating || 0}</span>
+        <RatingElem initialValue={book.rating || 0} readOnly />
+        <span className="rating__text">{(book.rating || 0).toFixed(1)}</span>
       </div>
-      <Button className="add-to-cart-button">$ {props.book.hardCoverPrice} USD</Button>
+      <Button className="add-to-cart-button">$ {book.hardCoverPrice} USD</Button>
     </BookContainer>
   );
 };

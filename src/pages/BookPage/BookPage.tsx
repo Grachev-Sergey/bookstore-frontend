@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { BookPageContainer } from './BookPage.styles';
 
 import bookApi from '../../api/bookApi';
+import ratingApi from '../../api/ratingApi';
 
 import { useAppSelector } from '../../store/hooks';
 
@@ -14,6 +15,7 @@ import RatingElem from '../../components/Rating';
 import AuthorizeBanner from '../../components/AuthorizeBanner';
 
 import type { BookType } from '../../utils/types/bookTypes';
+import type { ChangeRatingType } from '../../utils/types/ratingType';
 
 import addFavoritesActive from '../../assets/icons/addFavoritesActive.png';
 import addFavorites from '../../assets/icons/addFavorites.png';
@@ -21,9 +23,11 @@ import backArrow from '../../assets/icons/backArrow.png';
 import Loading from '../../components/Loading/Loading';
 
 const BookPage: React.FC = () => {
-  const userInfo = useAppSelector((state) => state.user.user?.email);
+  const userInfo = useAppSelector((state) => state.user.user);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isActiveButton, setIsActiveButton] = useState(false);
+  const [isRated, setIsRate] = useState(false);
+
   const toggleFavoritButton = () => {
     setIsActiveButton(!isActiveButton);
   };
@@ -41,7 +45,17 @@ const BookPage: React.FC = () => {
         setIsLoaded(true);
       }
     })();
-  }, [bookId]);
+  }, [bookId, book?.rating]);
+
+  const changeRating = (rate: number) => {
+    setIsRate(true);
+    const ratingInfo: ChangeRatingType = {
+      bookId: Number(bookId.id),
+      userId: Number(userInfo?.id),
+      rating: rate,
+    };
+    ratingApi.change(ratingInfo);
+  };
 
   if (!isLoaded) {
     return <Loading />;
@@ -70,12 +84,17 @@ const BookPage: React.FC = () => {
               allowHover={false}
               size={30}
             />
-            <span className="rating__text">{book?.rating || 0}</span>
-            <RatingElem />
-            <div className="rate-this-book">
+            <span className="rating__text">{(book?.rating || 0).toFixed(1)}</span>
+            <RatingElem
+              initialValue={book?.rating || 0}
+              readOnly={false}
+              onClick={(rate) => changeRating(rate)}
+            />
+            {!isRated &&
+            (<div className="rate-this-book">
               <img className="rate-this-book__img" src={backArrow} alt="pointer to rating" />
               <span className="rate-this-book__text">Rate this book</span>
-            </div>
+             </div>)}
           </div>
           <div className="description">
             <p className="description__title">Description</p>
@@ -110,7 +129,7 @@ const BookPage: React.FC = () => {
       <div className="comments">
         <h2 className="comments__title">Comments</h2>
       </div>
-      {!userInfo && <AuthorizeBanner />}
+      {!userInfo?.email && <AuthorizeBanner />}
       <div className="recommendations">
         <h2 className="recommendations__title">Recommendations</h2>
       </div>

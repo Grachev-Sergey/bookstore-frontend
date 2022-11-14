@@ -2,7 +2,13 @@ import { Rating } from 'react-simple-star-rating';
 
 import { RatingContainer } from './Rating.styles';
 
-const RatingElem: React.FC = () => {
+type PropsType = {
+  initialValue: number;
+  readOnly: boolean;
+  onClick?: (rate: number) => void;
+};
+
+const RatingElem: React.FC<PropsType> = ({ initialValue, readOnly, onClick }) => {
   return (
     <RatingContainer>
       <Rating
@@ -10,6 +16,9 @@ const RatingElem: React.FC = () => {
         allowFraction
         transition
         emptyColor="#fff"
+        initialValue={initialValue}
+        readonly={readOnly}
+        onClick={onClick}
       />
     </RatingContainer>
   );
