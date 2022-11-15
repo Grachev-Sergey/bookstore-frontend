@@ -1,12 +1,18 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { BookContainer } from './BookItem.styles';
+
+import favoritesApi from '../../api/favoritesApi';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import userThunks from '../../store/userSlice/userThunks';
 
 import Button from '../Button';
 import RatingElem from '../Rating';
 
 import type { BookType } from '../../utils/types/bookTypes';
+import type { FavoriteType } from '../../utils/types/favoriteType';
 
 import removeFavorites from '../../assets/icons/removeFavorites.png';
 import addFavorites from '../../assets/icons/addFavorites.png';
@@ -16,10 +22,36 @@ type PropsType = {
 };
 
 const BookItem: React.FC<PropsType> = ({ book }) => {
-  const [isActiveButton, setIsActiveButton] = useState(false);
-  const toggleFavoritButton = () => {
-    setIsActiveButton(!isActiveButton);
+  const id = book.id;
+  const dispatch = useAppDispatch();
+  const userInfo = useAppSelector((state) => state.user.user);
+  const [isInFavorites, setIsInFavorites] = useState(userInfo?.favorite?.includes(Number(id)));
+
+  const navigate = useNavigate();
+
+  const toggleFavoritButton = async () => {
+    try {
+      const favoriteInfo: FavoriteType = {
+        bookId: Number(id),
+        userId: Number(userInfo?.id),
+      };
+      if (!userInfo?.email) {
+        navigate('/signup');
+      } else if (!isInFavorites) {
+        await favoritesApi.addToFavorites(favoriteInfo);
+        await dispatch(userThunks.checkUser());
+        setIsInFavorites(true);
+      } else if (isInFavorites) {
+        await favoritesApi.removeFromFavorites(favoriteInfo);
+        await dispatch(userThunks.checkUser());
+        setIsInFavorites(false);
+      }
+    } catch (err) {
+      const error = err as Error;
+      return toast.error(error.message);
+    }
   };
+
   return (
     <BookContainer>
       <div className="book__cover">
@@ -27,7 +59,7 @@ const BookItem: React.FC<PropsType> = ({ book }) => {
           className="favorite-button"
           alt="add favorter button"
           onClick={toggleFavoritButton}
-          src={isActiveButton ? removeFavorites : addFavorites}
+          src={isInFavorites ? removeFavorites : addFavorites}
         />
         <Link to={`/book/${book.id}`}>
           <img className="book-cover" src={`${book.cover}`} alt="book cover" />

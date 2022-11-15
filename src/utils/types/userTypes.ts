@@ -4,7 +4,7 @@ export type UserType = {
   fullName?: string;
   avatar?: string;
   rating?: number[];
-  favorites?: number[];
+  favorite?: number[];
 };
 
 export type UserObjectType = {

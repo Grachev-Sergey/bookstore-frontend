@@ -7,8 +7,10 @@ import { BookPageContainer } from './BookPage.styles';
 
 import bookApi from '../../api/bookApi';
 import ratingApi from '../../api/ratingApi';
+import favoritesApi from '../../api/favoritesApi';
 
-import { useAppSelector } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import userThunks from '../../store/userSlice/userThunks';
 
 import Button from '../../components/Button';
 import RatingElem from '../../components/Rating';
@@ -16,6 +18,7 @@ import AuthorizeBanner from '../../components/AuthorizeBanner';
 
 import type { BookType } from '../../utils/types/bookTypes';
 import type { ChangeRatingType } from '../../utils/types/ratingType';
+import type { FavoriteType } from '../../utils/types/favoriteType';
 
 import removeFavorites from '../../assets/icons/removeFavorites.png';
 import addFavorites from '../../assets/icons/addFavorites.png';
@@ -23,13 +26,13 @@ import backArrow from '../../assets/icons/backArrow.png';
 import Loading from '../../components/Loading';
 
 const BookPage: React.FC = () => {
-  const userInfo = useAppSelector((state) => state.user.user);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isActiveButton, setIsActiveButton] = useState(false);
-  const [book, setBook] = useState<BookType | null>(null);
-
   const { id } = useParams();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const userInfo = useAppSelector((state) => state.user.user);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [book, setBook] = useState<BookType | null>(null);
+  const [isInFavorites, setIsInFavorites] = useState(userInfo?.favorite?.includes(Number(id)));
 
   useEffect(() => {
     (async () => {
@@ -46,24 +49,48 @@ const BookPage: React.FC = () => {
   }, [id]);
 
   const changeRating = async (rate: number) => {
-    if (!userInfo?.email) {
-      navigate('/signup');
-    } else {
-      const ratingInfo: ChangeRatingType = {
-        bookId: Number(id),
-        userId: Number(userInfo?.id),
-        rating: rate,
-      };
-      const newRating = await ratingApi.change(ratingInfo);
-      setBook((prev) => {
-        if (!prev) { return null; }
-        return ({ ...prev, rating: newRating.data.rating });
-      });
+    try {
+      if (!userInfo?.email) {
+        navigate('/signup');
+      } else {
+        const ratingInfo: ChangeRatingType = {
+          bookId: Number(id),
+          userId: Number(userInfo?.id),
+          rating: rate,
+        };
+        const newRating = await ratingApi.change(ratingInfo);
+        setBook((prev) => {
+          if (!prev) return null;
+          return ({ ...prev, rating: newRating.data.rating });
+        });
+      }
+    } catch (err) {
+      const error = err as Error;
+      return toast.error(error.message);
     }
   };
 
-  const toggleFavoritButton = () => {
-    setIsActiveButton(!isActiveButton);
+  const toggleFavoritButton = async () => {
+    try {
+      const favoriteInfo: FavoriteType = {
+        bookId: Number(id),
+        userId: Number(userInfo?.id),
+      };
+      if (!userInfo?.email) {
+        navigate('/signup');
+      } else if (!isInFavorites) {
+        await favoritesApi.addToFavorites(favoriteInfo);
+        await dispatch(userThunks.checkUser());
+        setIsInFavorites(true);
+      } else if (isInFavorites) {
+        await favoritesApi.removeFromFavorites(favoriteInfo);
+        await dispatch(userThunks.checkUser());
+        setIsInFavorites(false);
+      }
+    } catch (err) {
+      const error = err as Error;
+      return toast.error(error.message);
+    }
   };
 
   if (!isLoaded) {
@@ -79,7 +106,7 @@ const BookPage: React.FC = () => {
             className="favorite-button"
             alt="add favorter button"
             onClick={toggleFavoritButton}
-            src={isActiveButton ? removeFavorites : addFavorites}
+            src={isInFavorites ? removeFavorites : addFavorites}
           />
         </div>
         <div className="book-info">

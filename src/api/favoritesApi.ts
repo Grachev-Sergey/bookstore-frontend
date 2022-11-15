@@ -2,10 +2,15 @@ import customAxios from '.';
 
 import type { FavoriteType } from '../utils/types/favoriteType';
 
-const change = (favoriteInfo: FavoriteType) => {
-  return customAxios.post('/favorite', favoriteInfo);
+const addToFavorites = (favoriteInfo: FavoriteType) => {
+  return customAxios.post('/favorite/add', favoriteInfo);
+};
+
+const removeFromFavorites = (favoriteInfo: FavoriteType) => {
+  return customAxios.post('/favorite/remove', favoriteInfo);
 };
 
 export default {
-  change,
+  addToFavorites,
+  removeFromFavorites,
 };
