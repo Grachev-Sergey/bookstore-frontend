@@ -12,6 +12,8 @@ const initialState: UserObjectType = {
     email: '',
     fullName: '',
     avatar: '',
+    rating: [],
+    favorites: [],
   },
 };
 

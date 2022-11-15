@@ -3,6 +3,8 @@ export type UserType = {
   email: string;
   fullName?: string;
   avatar?: string;
+  rating?: number[];
+  favorites?: number[];
 };
 
 export type UserObjectType = {

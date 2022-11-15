@@ -8,7 +8,7 @@ import RatingElem from '../Rating';
 
 import type { BookType } from '../../utils/types/bookTypes';
 
-import addFavoritesActive from '../../assets/icons/addFavoritesActive.png';
+import removeFavorites from '../../assets/icons/removeFavorites.png';
 import addFavorites from '../../assets/icons/addFavorites.png';
 
 type PropsType = {
@@ -27,7 +27,7 @@ const BookItem: React.FC<PropsType> = ({ book }) => {
           className="favorite-button"
           alt="add favorter button"
           onClick={toggleFavoritButton}
-          src={isActiveButton ? addFavoritesActive : addFavorites}
+          src={isActiveButton ? removeFavorites : addFavorites}
         />
         <Link to={`/book/${book.id}`}>
           <img className="book-cover" src={`${book.cover}`} alt="book cover" />

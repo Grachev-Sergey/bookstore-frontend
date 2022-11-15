@@ -1,9 +1,9 @@
 import customAxios from '.';
 
-import type { ChangeRatingType } from '../utils/types/ratingType';
+import type { ResponseRatingType, ChangeRatingType } from '../utils/types/ratingType';
 
 const change = (ratingInfo: ChangeRatingType) => {
-  return customAxios.put('/rating', ratingInfo);
+  return customAxios.post<ResponseRatingType>('/rating', ratingInfo);
 };
 
 export default {

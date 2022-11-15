@@ -52,7 +52,7 @@ export const BookPageContainer = styled.section`
   }
 
   .rating__text {
-    margin: 0 42px 0 14px;
+    margin: 0 30px 0 14px;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
     font-size: ${({ theme }) => theme.fontSize.small};
     line-height: ${({ theme }) => theme.lineHight.regularSmall};
