@@ -127,6 +127,10 @@ export const BookPageContainer = styled.section`
     text-align: start;
   }
 
+  .banner {
+    margin-top: 130px;
+  }
+
   .recommendations {
     margin: 110px 0;
   }

@@ -9,9 +9,9 @@ import bookThunks from '../../store/bookSlice/bookThunks';
 import BookItem from '../BookItem';
 import FilterBlock from '../FilterBlock';
 import Pagination from '../Pagination';
+import Loading from '../Loading';
 
-import type { QueryType } from '../../utils/types/queryTypes';
-import Loading from '../Loading/Loading';
+import type { FilterQueryType } from '../../utils/types/filterTypes';
 
 const Catalog: React.FC = () => {
   const books = useAppSelector((state) => state.books);
@@ -25,7 +25,7 @@ const Catalog: React.FC = () => {
     const maxPrice = Number(searchParams.get('maxPrice') || '25');
     const sorting = (searchParams.get('sorting') || 'Price').toLowerCase();
     const page = (Number(searchParams.get('page') || 1));
-    const query: QueryType = {
+    const query: FilterQueryType = {
       genre,
       minPrice,
       maxPrice,

@@ -6,3 +6,11 @@ export type GenreType = {
 export type AllGenreType = {
   genres: GenreType[];
 };
+
+export type FilterQueryType = {
+  genre: string;
+  maxPrice: number;
+  minPrice: number;
+  sorting: string;
+  page: number;
+};

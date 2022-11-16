@@ -24,6 +24,7 @@ import removeFavorites from '../../assets/icons/removeFavorites.png';
 import addFavorites from '../../assets/icons/addFavorites.png';
 import backArrow from '../../assets/icons/backArrow.png';
 import Loading from '../../components/Loading';
+import Comments from '../../components/Comments/Comments';
 
 const BookPage: React.FC = () => {
   const { id } = useParams();
@@ -164,8 +165,9 @@ const BookPage: React.FC = () => {
       </div>
       <div className="comments">
         <h2 className="comments__title">Comments</h2>
+        <Comments userInfo={userInfo} bookId={id} />
       </div>
-      {!userInfo?.email && <AuthorizeBanner />}
+      {!userInfo?.email && <AuthorizeBanner className="banner" />}
       <div className="recommendations">
         <h2 className="recommendations__title">Recommendations</h2>
       </div>
