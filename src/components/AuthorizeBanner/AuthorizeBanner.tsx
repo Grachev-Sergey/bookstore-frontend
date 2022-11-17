@@ -5,11 +5,7 @@ import { AuthorizeBannerContainer } from './AuthorizeBanner.styles';
 import Button from '../Button';
 import castle from '../../assets/images/castle.png';
 
-type PropsType = {
-  className?: string;
-};
-
-const AuthorizeBanner: React.FC<PropsType> = () => {
+const AuthorizeBanner: React.FC = () => {
   return (
     <AuthorizeBannerContainer>
       <div className="banner__info">

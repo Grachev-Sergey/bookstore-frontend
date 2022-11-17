@@ -15,6 +15,8 @@ import userThunks from '../../store/userSlice/userThunks';
 import Button from '../../components/Button';
 import RatingElem from '../../components/Rating';
 import AuthorizeBanner from '../../components/AuthorizeBanner';
+import Loading from '../../components/Loading';
+import Comments from '../../components/Comments';
 
 import type { BookType } from '../../utils/types/bookTypes';
 import type { ChangeRatingType } from '../../utils/types/ratingType';
@@ -23,8 +25,6 @@ import type { FavoriteType } from '../../utils/types/favoriteType';
 import removeFavorites from '../../assets/icons/removeFavorites.png';
 import addFavorites from '../../assets/icons/addFavorites.png';
 import backArrow from '../../assets/icons/backArrow.png';
-import Loading from '../../components/Loading';
-import Comments from '../../components/Comments/Comments';
 
 const BookPage: React.FC = () => {
   const { id } = useParams();
@@ -113,26 +113,30 @@ const BookPage: React.FC = () => {
         <div className="book-info">
           <h2 className="book-info__title">{book?.title}</h2>
           <p className="book-info__author">{book?.author}</p>
-          {/* <p className="book-info__rating">Rating</p> */}
           <div className="book-info__rating">
-            <Rating
-              iconsCount={1}
-              emptyColor="#BFCC94"
-              allowHover={false}
-              size={30}
-            />
-            <span className="rating__text">{(book?.rating || 0).toFixed(1)}</span>
-            <RatingElem
-              initialValue={book?.rating || 0}
-              readOnly={false}
-              onClick={(rate) => changeRating(rate)}
-            />
-            {!userInfo?.rating?.includes(Number(id)) &&
-              (<div className="rate-this-book">
-                <img className="rate-this-book__img" src={backArrow} alt="pointer to rating" />
-                <span className="rate-this-book__text">Rate this book</span>
-               </div>)}
+            <div className="rating__container">
+              <Rating
+                iconsCount={1}
+                emptyColor="#BFCC94"
+                allowHover={false}
+              />
+              <span className="rating__text">{(book?.rating || 0).toFixed(1)}</span>
+            </div>
+            <div className="rating__container groop-stars">
+              <RatingElem
+                initialValue={book?.rating || 0}
+                readOnly={false}
+                onClick={(rate) => changeRating(rate)}
+              />
+              {!userInfo?.rating?.includes(Number(id)) &&
+                (<div className="rate-this-book">
+                  <img className="rate-this-book__img" src={backArrow} alt="pointer to rating" />
+                  <span className="rate-this-book__text">Rate this book</span>
+                 </div>)}
+            </div>
           </div>
+        </div>
+        <div className="description-and-add-to-cart">
           <div className="description">
             <p className="description__title">Description</p>
             <p className="description__text">{book?.description}</p>
@@ -167,7 +171,7 @@ const BookPage: React.FC = () => {
         <h2 className="comments__title">Comments</h2>
         <Comments userInfo={userInfo} bookId={id} />
       </div>
-      {!userInfo?.email && <AuthorizeBanner className="banner" />}
+      {!userInfo?.email && <AuthorizeBanner />}
       <div className="recommendations">
         <h2 className="recommendations__title">Recommendations</h2>
       </div>

@@ -7,7 +7,7 @@ export const StyledFooter = styled.footer`
 export const FooterContainer = styled.section`
   display: flex;
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 155px auto 0 auto;
   padding: 73px 0;
 
   p, a {

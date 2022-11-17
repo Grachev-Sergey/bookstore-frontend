@@ -8,7 +8,7 @@ import commentsApi from '../../api/commentsApi';
 import Button from '../Button';
 import CommentItem from './CommentItem/CommentItem';
 
-import type { CommentInfoType, CommentsType } from '../../utils/types/commentsType';
+import type { CommentInfoType, CommentType } from '../../utils/types/commentsType';
 import type { UserType } from '../../utils/types/userTypes';
 
 type PropsType = {
@@ -17,14 +17,14 @@ type PropsType = {
 };
 
 const Comments: React.FC<PropsType> = ({ userInfo, bookId }) => {
-  const [bookComments, setBookComments] = useState<CommentsType>({ comments: [] });
+  const [bookComments, setBookComments] = useState<CommentType[]>([]);
   const [commentText, setCommentText] = useState('');
 
   useEffect(() => {
     (async () => {
       try {
         const comments = await commentsApi.getAllComments(Number(bookId));
-        setBookComments(comments.data);
+        setBookComments(comments.data.comments);
       } catch (err) {
         const error = err as Error;
         return toast.error(error.message);
@@ -37,13 +37,22 @@ const Comments: React.FC<PropsType> = ({ userInfo, bookId }) => {
   };
 
   const addComment = async () => {
-    const commentInfoData: CommentInfoType = {
-      userId: Number(userInfo?.id),
-      bookId: Number(bookId),
-      commentText,
-    };
-    await commentsApi.addComment(commentInfoData);
-    setCommentText('');
+    try {
+      const commentInfoData: CommentInfoType = {
+        userId: Number(userInfo?.id),
+        bookId: Number(bookId),
+        commentText,
+      };
+      const newComment = await commentsApi.addComment(commentInfoData);
+      setCommentText('');
+      setBookComments((prev) => {
+        if (!prev) return [];
+        return [...prev, newComment.data.comment];
+      });
+    } catch (err) {
+      const error = err as Error;
+      return toast.error(error.message);
+    }
   };
 
   return (
@@ -51,7 +60,7 @@ const Comments: React.FC<PropsType> = ({ userInfo, bookId }) => {
       {!bookComments
         ? <div className="no-comments">Be the first to comment</div>
         : (
-          bookComments.comments.map((item) => {
+          bookComments.map((item) => {
             return (
               <CommentItem
                 key={item.id}

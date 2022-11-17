@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
+// import dayjs from 'dayjs';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 
 import { CommentItemContainer } from './CommentItem.styles';
-import { baseUrl } from '../../../utils/config';
-
 import userApi from '../../../api/userApi';
+
+import userProfile from '../../../assets/icons/userProfile.png';
 
 type PropsType = {
   userId: number;
@@ -16,6 +17,8 @@ type PropsType = {
 const CommentItem: React.FC<PropsType> = ({ userId, date, text }) => {
   const [userName, setUserName] = useState('Anonim');
   const [userAvatar, setUserAvatar] = useState('');
+
+  // dayjs.extend();
 
   useEffect(() => {
     (async () => {
@@ -36,12 +39,15 @@ const CommentItem: React.FC<PropsType> = ({ userId, date, text }) => {
 
   return (
     <CommentItemContainer>
-      <img className="comment-photo" src={`${baseUrl}/${userAvatar}`} />
-      <div className="comment-info">
-        <p className="comment-info__user-name">{userName}</p>
-        <p className="comment-info__date">Left a comment {moment(date).fromNow()}</p>
-        <p className="comment-info__text">{text}</p>
+      <div className="user-info">
+        <img className="user-info__photo" src={userAvatar ? `${userAvatar}` : `${userProfile}`} />
+        <div className="user-info__text">
+          <p className="user-info__name">{userName}</p>
+      {/* <p className="user-info__comment-date">{`Left a comment ${dayjs(date).fromNow()}`}</p> */}
+          <p className="user-info__comment-date">{`Left a comment ${moment(date).fromNow()}`}</p>
+        </div>
       </div>
+      <p className="comment-text">{text}</p>
     </CommentItemContainer>
   );
 };

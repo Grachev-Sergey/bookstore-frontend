@@ -6,7 +6,6 @@ import { ProfilePageContainer } from './ProfilePage.styles';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import userThunks from '../../store/userSlice/userThunks';
-import { baseUrl } from '../../utils/config';
 import schemas from '../../utils/schemas';
 
 import Button from '../../components/Button';
@@ -88,7 +87,7 @@ const ProfilePage: React.FC = () => {
           {userInfo?.avatar &&
             (<img
               className="avatar"
-              src={`${baseUrl}/${userInfo?.avatar}`}
+              src={`${userInfo?.avatar}`}
               alt="User avatar"
             />)}
             <div className="addPhoto">

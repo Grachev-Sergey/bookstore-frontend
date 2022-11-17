@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const CatalogContainer = styled.section`
   max-width: 1280px;
-  margin: 110px auto 150px auto;
+  margin: 110px auto 0 auto;
 
   .header {
     display: flex;

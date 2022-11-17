@@ -47,4 +47,73 @@ export const CommentsContainer = styled.div`
     line-height: ${({ theme }) => theme.lineHight.regularBig};
     color: ${({ theme }) => theme.colors.light};
   }
+
+  @media only screen and (${({ theme }) => theme.media.tablet}) {
+    max-width: 667px;
+
+    .no-comments {
+      font-size: ${({ theme }) => theme.fontSize.small};
+      line-height: ${({ theme }) => theme.lineHight.regularSmall};
+    }
+
+    .add-comments {
+      margin-top: 40px;
+    }
+
+    .add-comments__textarea {
+      min-width: 738px;
+    }
+  }
+
+  @media only screen and (${({ theme }) => theme.media.medium}) {
+    max-width: 580px;
+
+    .no-comments {
+      font-size: ${({ theme }) => theme.fontSize.small};
+      line-height: ${({ theme }) => theme.lineHight.regularSmall};
+    }
+
+    .add-comments {
+      margin-top: 40px;
+    }
+
+    .add-comments__textarea {
+      min-width: 580px;
+    }
+  }
+
+  @media only screen and (${({ theme }) => theme.media.small}) {
+    max-width: 430px;
+    margin-top: 20px;
+
+    .add-comments__textarea {
+      min-width: 430px;
+    }
+  }
+
+  @media only screen and (${({ theme }) => theme.media.mobile}) {
+    max-width: 290px;
+
+    .no-comments {
+      font-size: ${({ theme }) => theme.fontSize.imputTitle};
+      line-height: ${({ theme }) => theme.lineHight.small};
+    }
+
+    .add-comments {
+      margin-top: 20px;
+    }
+    
+    .add-comments__textarea {
+      min-width: 290px;
+      padding: 20px 0 0 24px;
+      font-size: ${({ theme }) => theme.fontSize.commentDescription};
+    }
+
+    .add-comments__button {
+      max-width: 210px;
+      letter-spacing: 0.75px;
+      font-size: ${({ theme }) => theme.fontSize.commentDescription};
+      line-height: ${({ theme }) => theme.lineHight.commentDescription};
+    }
+  }
 `;
