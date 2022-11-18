@@ -1,41 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 // import dayjs from 'dayjs';
 import moment from 'moment';
-import { toast } from 'react-toastify';
 
 import { CommentItemContainer } from './CommentItem.styles';
-import userApi from '../../../api/userApi';
+
+import type { UserType } from '../../../utils/types/userTypes';
 
 import userProfile from '../../../assets/icons/userProfile.png';
 
 type PropsType = {
-  userId: number;
+  user: UserType;
   date: Date;
   text: string;
 };
 
-const CommentItem: React.FC<PropsType> = ({ userId, date, text }) => {
-  const [userName, setUserName] = useState('Anonim');
-  const [userAvatar, setUserAvatar] = useState('');
+const CommentItem: React.FC<PropsType> = ({ user, date, text }) => {
+  const [userName] = useState(user.fullName || 'Anonim');
+  const [userAvatar] = useState(user.avatar || '');
 
   // dayjs.extend();
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const user = await userApi.genUserById(userId);
-        if (user.data.user?.fullName) {
-          setUserName(user.data.user.fullName);
-        }
-        if (user.data.user?.avatar) {
-          setUserAvatar(user.data.user?.avatar);
-        }
-      } catch (err) {
-        const error = err as Error;
-        return toast.error(error.message);
-      }
-    })();
-  }, [userId]);
 
   return (
     <CommentItemContainer>

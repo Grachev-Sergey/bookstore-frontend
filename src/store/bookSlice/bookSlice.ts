@@ -13,9 +13,6 @@ const bookSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(bookThunks.getAllBooks.fulfilled, (state, action) => {
-      return action.payload;
-    });
     builder.addCase(bookThunks.getAllFiltredBooks.fulfilled, (state, action) => {
       return action.payload;
     });

@@ -1,3 +1,5 @@
+import type { CommentType } from './commentsType';
+
 export type BookType = {
   id: string;
   cover: string;
@@ -19,4 +21,9 @@ export type BooksType = {
   books: BookType[];
   counter: number;
   numberPerPage: number;
+};
+
+export type GetOneBookType = {
+  book: BookType;
+  comments: CommentType[];
 };

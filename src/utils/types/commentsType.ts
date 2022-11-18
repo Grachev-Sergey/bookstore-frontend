@@ -1,3 +1,5 @@
+import type { UserType } from './userTypes';
+
 export type CommentInfoType = {
   userId: number;
   bookId: number;
@@ -9,8 +11,5 @@ export type CommentType = {
   createdAt: Date;
   comment: string;
   id: number;
-};
-
-export type CommentsType = {
-  comments: CommentType[];
+  user: UserType;
 };

@@ -1,16 +1,11 @@
 import customAxios from '.';
 
-import type { CommentsType, CommentInfoType } from '../utils/types/commentsType';
+import type { CommentInfoType, CommentType } from '../utils/types/commentsType';
 
 const addComment = (commentInfoData: CommentInfoType) => {
-  return customAxios.post('/comment/add', commentInfoData);
-};
-
-const getAllComments = (id: number) => {
-  return customAxios.get<CommentsType>(`/comment/${id}`);
+  return customAxios.post<CommentType>('/comment/add', commentInfoData);
 };
 
 export default {
   addComment,
-  getAllComments,
 };

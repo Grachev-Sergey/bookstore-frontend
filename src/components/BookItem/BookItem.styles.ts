@@ -78,10 +78,6 @@ export const BookContainer = styled.div`
     align-items: center;
   }
 
-  svg {
-    margin-right: 8px;
-  }
-
   .rating__text {
     font-weight: ${({ theme }) => theme.fontWeight.medium};
     font-size: ${({ theme }) => theme.fontSize.small};
@@ -148,6 +144,7 @@ export const BookContainer = styled.div`
 
     .book-cover {
       height: 286px;
+      width: 233px;
     }
   }
 

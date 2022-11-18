@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
 import { CommentsContainer } from './Comments.styles';
@@ -14,23 +14,12 @@ import type { UserType } from '../../utils/types/userTypes';
 type PropsType = {
   userInfo: UserType | null;
   bookId?: string;
+  comments: CommentType[] | null;
 };
 
-const Comments: React.FC<PropsType> = ({ userInfo, bookId }) => {
-  const [bookComments, setBookComments] = useState<CommentType[]>([]);
+const Comments: React.FC<PropsType> = ({ comments, userInfo, bookId }) => {
+  const [bookComments, setBookComments] = useState<CommentType[] | null>(comments);
   const [commentText, setCommentText] = useState('');
-
-  useEffect(() => {
-    (async () => {
-      try {
-        const comments = await commentsApi.getAllComments(Number(bookId));
-        setBookComments(comments.data.comments);
-      } catch (err) {
-        const error = err as Error;
-        return toast.error(error.message);
-      }
-    })();
-  }, [bookId]);
 
   const handleChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentText(e.target.value);
@@ -47,7 +36,7 @@ const Comments: React.FC<PropsType> = ({ userInfo, bookId }) => {
       setCommentText('');
       setBookComments((prev) => {
         if (!prev) return [];
-        return [...prev, newComment.data.comment];
+        return [...prev, newComment.data];
       });
     } catch (err) {
       const error = err as Error;
@@ -64,7 +53,7 @@ const Comments: React.FC<PropsType> = ({ userInfo, bookId }) => {
             return (
               <CommentItem
                 key={item.id}
-                userId={item.userId}
+                user={item.user}
                 date={item.createdAt}
                 text={item.comment}
               />

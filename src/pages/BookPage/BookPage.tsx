@@ -17,10 +17,12 @@ import RatingElem from '../../components/Rating';
 import AuthorizeBanner from '../../components/AuthorizeBanner';
 import Loading from '../../components/Loading';
 import Comments from '../../components/Comments';
+import Recommendations from '../../components/Recommendations/Recommendations';
 
 import type { BookType } from '../../utils/types/bookTypes';
 import type { ChangeRatingType } from '../../utils/types/ratingType';
 import type { FavoriteType } from '../../utils/types/favoriteType';
+import type { CommentType } from '../../utils/types/commentsType';
 
 import removeFavorites from '../../assets/icons/removeFavorites.png';
 import addFavorites from '../../assets/icons/addFavorites.png';
@@ -33,13 +35,15 @@ const BookPage: React.FC = () => {
   const userInfo = useAppSelector((state) => state.user.user);
   const [isLoaded, setIsLoaded] = useState(false);
   const [book, setBook] = useState<BookType | null>(null);
+  const [comments, setComments] = useState<CommentType[] | null>(null);
   const [isInFavorites, setIsInFavorites] = useState(userInfo?.favorite?.includes(Number(id)));
 
   useEffect(() => {
     (async () => {
       try {
         const getOneBook = await bookApi.getBook(Number(id));
-        setBook(getOneBook.data);
+        setBook(getOneBook.data.book);
+        setComments(getOneBook.data.comments);
       } catch (err) {
         const error = err as Error;
         return toast.error(error.message);
@@ -169,11 +173,12 @@ const BookPage: React.FC = () => {
       </div>
       <div className="comments">
         <h2 className="comments__title">Comments</h2>
-        <Comments userInfo={userInfo} bookId={id} />
+        <Comments comments={comments} userInfo={userInfo} bookId={id} />
       </div>
       {!userInfo?.email && <AuthorizeBanner />}
       <div className="recommendations">
         <h2 className="recommendations__title">Recommendations</h2>
+        <Recommendations />
       </div>
     </BookPageContainer>
   );

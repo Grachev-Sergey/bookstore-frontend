@@ -1,13 +1,9 @@
 import customAxios from '.';
-import type { BooksType, BookType } from '../utils/types/bookTypes';
+import type { BooksType, GetOneBookType } from '../utils/types/bookTypes';
 import type { FilterQueryType } from '../utils/types/filterTypes';
 
-const getBooks = () => {
-  return customAxios.get<BooksType>('/book');
-};
-
 const getBook = (id: number) => {
-  return customAxios.get<BookType>(`/book/${id}`);
+  return customAxios.get<GetOneBookType>(`/book/${id}`);
 };
 
 const getFiltredBooks = (query: FilterQueryType) => {
@@ -15,7 +11,6 @@ const getFiltredBooks = (query: FilterQueryType) => {
 };
 
 export default {
-  getBooks,
   getBook,
   getFiltredBooks,
 };
