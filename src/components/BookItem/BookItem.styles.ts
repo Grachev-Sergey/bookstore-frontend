@@ -85,13 +85,24 @@ export const BookContainer = styled.div`
     color: ${({ theme }) => theme.colors.darkGray};
   }
 
-  .add-to-cart-button{
+  .add-to-cart__button {
     width: 100%;
+    border: solid 1px;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
     font-size: ${({ theme }) => theme.fontSize.regular};
     line-height: ${({ theme }) => theme.lineHight.regular};
     letter-spacing: 0.75px;
     color: ${({ theme }) => theme.colors.light};
+  }
+
+  .add-to-cart__button--gray {
+    background: ${({ theme }) => theme.colors.darkGray};
+  }
+
+  .add-to-cart__button--added {
+    background-color: #fff;
+    border: black solid 1px;
+    color: ${({ theme }) => theme.colors.dark};
   }
 
   @media only screen and (${({ theme }) => theme.media.tablet}) {

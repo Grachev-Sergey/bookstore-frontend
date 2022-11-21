@@ -72,6 +72,7 @@ const ProfilePage: React.FC = () => {
       fileReader.onload = async () => {
         try {
           await dispatch(userThunks.uploadPhoto({ avatar: fileReader.result }));
+          await dispatch(userThunks.checkUser());
         } catch (err) {
           // eslint-disable-next-line no-console
           console.log(err);

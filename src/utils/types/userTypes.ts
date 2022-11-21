@@ -5,6 +5,12 @@ export type UserType = {
   avatar?: string;
   rating?: number[];
   favorite?: number[];
+  cart?: BooksInCartType[];
+};
+
+type BooksInCartType = {
+  bookId: number;
+  bookCover: string;
 };
 
 export type UserObjectType = {

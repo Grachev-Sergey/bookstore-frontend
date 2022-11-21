@@ -160,6 +160,12 @@ export const BookPageContainer = styled.section`
     background: ${({ theme }) => theme.colors.darkGray};
   }
 
+  .add-to-cart__button--added {
+    background-color: #fff;
+    border: black solid 1px;
+    color: ${({ theme }) => theme.colors.dark};
+  }
+
   @media only screen and (${({ theme }) => theme.media.tablet}) {
     max-width: 804px;
 

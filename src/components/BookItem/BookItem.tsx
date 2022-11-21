@@ -5,14 +5,22 @@ import { toast } from 'react-toastify';
 import { BookContainer } from './BookItem.styles';
 
 import favoritesApi from '../../api/favoritesApi';
+import cartApi from '../../api/cartApi';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import userThunks from '../../store/userSlice/userThunks';
+import cover from '../../utils/config';
+import {
+  setClassNameForAddToCartButton,
+  setValueForAddToCartButton,
+  disableButton,
+} from '../../utils/addToCartButtonInfo';
 
 import Button from '../Button';
 import RatingElem from '../Rating';
 
 import type { BookType } from '../../utils/types/bookTypes';
 import type { FavoriteType } from '../../utils/types/favoriteType';
+import type { AddToCartInfoType } from '../../utils/types/cartTypes';
 
 import removeFavorites from '../../assets/icons/removeFavorites.png';
 import addFavorites from '../../assets/icons/addFavorites.png';
@@ -52,6 +60,25 @@ const BookItem: React.FC<PropsType> = ({ book }) => {
     }
   };
 
+  const addToCartHandler = async (cover: string) => {
+    try {
+      if (!userInfo?.email) {
+        navigate('/signup');
+      } else {
+        const addToCartInfo: AddToCartInfoType = {
+          bookId: Number(id),
+          userId: Number(userInfo?.id),
+          cover,
+        };
+        await cartApi.addToCart(addToCartInfo);
+        await dispatch(userThunks.checkUser());
+      }
+    } catch (err) {
+      const error = err as Error;
+      return toast.error(error.message);
+    }
+  };
+
   return (
     <BookContainer>
       <div className="book__cover">
@@ -74,7 +101,13 @@ const BookItem: React.FC<PropsType> = ({ book }) => {
         <RatingElem initialValue={book.rating || 0} readOnly />
         <span className="rating__text">{(book.rating || 0).toFixed(1)}</span>
       </div>
-      <Button className="add-to-cart-button">$ {book.hardCoverPrice} USD</Button>
+      <Button
+        className={setClassNameForAddToCartButton(book, userInfo, 'hardCover')}
+        isDisabled={disableButton(book, userInfo, 'hardCover')}
+        onClick={() => addToCartHandler(cover.hardCover)}
+      >
+        {setValueForAddToCartButton(book, userInfo, 'hardCover')}
+      </Button>
     </BookContainer>
   );
 };

@@ -14,6 +14,7 @@ const initialState: UserObjectType = {
     avatar: '',
     rating: [],
     favorite: [],
+    cart: [],
   },
 };
 
