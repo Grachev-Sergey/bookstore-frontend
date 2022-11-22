@@ -1,12 +1,12 @@
 import customAxios from '.';
 
-import type { AddToCartInfoType, GetBooksFromCartType, InfoToDeleteType } from '../utils/types/cartTypes';
+import type { AddToCartInfoType, GetBooksFromCartType, InfoToDeleteType, GetBooksFromCartReqType } from '../utils/types/cartTypes';
 
 const addToCart = (addToCartInfo: AddToCartInfoType) => {
   return customAxios.post('/cart', addToCartInfo);
 };
 
-const getBooksFromCart = (userId: number) => {
+const getBooksFromCart = (userId: GetBooksFromCartReqType) => {
   return customAxios.get<GetBooksFromCartType>('/cart', { params: userId });
 };
 

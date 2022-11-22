@@ -99,7 +99,7 @@ export const BannerContainer = styled.section`
 
     h2 {
       margin: 20px 0 0 40px;
-      font-size: ${({ theme }) => theme.fontSize.autor};
+      font-size: ${({ theme }) => theme.fontSize.author};
       line-height: ${({ theme }) => theme.lineHight.regular};
     }
     p {

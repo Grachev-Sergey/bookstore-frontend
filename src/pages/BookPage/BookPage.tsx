@@ -111,7 +111,7 @@ const BookPage: React.FC = () => {
     }
   };
 
-  const addToCartHandler = async (cover: string) => {
+  const addToCartHandler = async (cover: string, price: number) => {
     try {
       if (!userInfo?.email) {
         navigate('/signup');
@@ -120,6 +120,7 @@ const BookPage: React.FC = () => {
           bookId: Number(id),
           userId: Number(userInfo?.id),
           cover,
+          price,
         };
         await cartApi.addToCart(addToCartInfo);
         await dispatch(userThunks.checkUser());
@@ -184,7 +185,7 @@ const BookPage: React.FC = () => {
                 // eslint-disable-next-line no-nested-ternary
                 className={setClassNameForAddToCartButton(book, userInfo, 'paperBack')}
                 isDisabled={disableButton(book, userInfo, 'paperBack')}
-                onClick={() => addToCartHandler(cover.paperBack)}
+                onClick={() => addToCartHandler(cover.paperBack, Number(book?.paperbackPrice))}
               >
                 {setValueForAddToCartButton(book, userInfo, 'paperBack')}
               </Button>
@@ -194,7 +195,7 @@ const BookPage: React.FC = () => {
               <Button
                 className={setClassNameForAddToCartButton(book, userInfo, 'hardCover')}
                 isDisabled={disableButton(book, userInfo, 'hardCover')}
-                onClick={() => addToCartHandler(cover.hardCover)}
+                onClick={() => addToCartHandler(cover.hardCover, Number(book?.hardCoverPrice))}
               >
                 {setValueForAddToCartButton(book, userInfo, 'hardCover')}
               </Button>

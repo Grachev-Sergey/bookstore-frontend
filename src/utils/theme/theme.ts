@@ -25,7 +25,7 @@ export const baseTheme: DefaultTheme = {
     title: '40px',
     bigPrice: '36px',
     titleTablet: '32px',
-    autor: '24px',
+    author: '24px',
     regular: '20px',
     filter: '18px',
     small: '16px',

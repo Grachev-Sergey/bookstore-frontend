@@ -42,7 +42,7 @@ export const BookPageContainer = styled.section`
 
   .book-info__author {
     font-weight: ${({ theme }) => theme.fontWeight.medium};
-    font-size: ${({ theme }) => theme.fontSize.autor};
+    font-size: ${({ theme }) => theme.fontSize.author};
     line-height: ${({ theme }) => theme.lineHight.author};
     color: ${({ theme }) => theme.colors.dark};
   }
@@ -102,7 +102,7 @@ export const BookPageContainer = styled.section`
   .description__title {
     margin-top: 30px;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
-    font-size: ${({ theme }) => theme.fontSize.autor};
+    font-size: ${({ theme }) => theme.fontSize.author};
     line-height: ${({ theme }) => theme.lineHight.author};
     color: ${({ theme }) => theme.colors.dark};
   }
@@ -328,7 +328,7 @@ export const BookPageContainer = styled.section`
     }
 
     h2 {
-      font-size: ${({ theme }) => theme.fontSize.autor};
+      font-size: ${({ theme }) => theme.fontSize.author};
       line-height: ${({ theme }) => theme.lineHight.author};
     }
 

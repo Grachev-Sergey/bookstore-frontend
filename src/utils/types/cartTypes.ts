@@ -1,6 +1,7 @@
 export type AddToCartInfoType = {
   bookId?: number;
   userId?: number;
+  price?: number;
   cover?: string;
 };
 
@@ -10,10 +11,15 @@ export type GetBookFromCartType = {
   bookTitle: string;
   bookAuthor: string;
   bookPrice: number;
+  coverType: string;
 };
 
 export type GetBooksFromCartType = {
   cart: GetBookFromCartType[];
+};
+
+export type GetBooksFromCartReqType = {
+  userId: number;
 };
 
 export type InfoToDeleteType = {

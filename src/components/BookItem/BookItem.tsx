@@ -60,7 +60,7 @@ const BookItem: React.FC<PropsType> = ({ book }) => {
     }
   };
 
-  const addToCartHandler = async (cover: string) => {
+  const addToCartHandler = async (cover: string, price: number) => {
     try {
       if (!userInfo?.email) {
         navigate('/signup');
@@ -69,6 +69,7 @@ const BookItem: React.FC<PropsType> = ({ book }) => {
           bookId: Number(id),
           userId: Number(userInfo?.id),
           cover,
+          price,
         };
         await cartApi.addToCart(addToCartInfo);
         await dispatch(userThunks.checkUser());
@@ -104,7 +105,7 @@ const BookItem: React.FC<PropsType> = ({ book }) => {
       <Button
         className={setClassNameForAddToCartButton(book, userInfo, 'hardCover')}
         isDisabled={disableButton(book, userInfo, 'hardCover')}
-        onClick={() => addToCartHandler(cover.hardCover)}
+        onClick={() => addToCartHandler(cover.hardCover, Number(book?.hardCoverPrice))}
       >
         {setValueForAddToCartButton(book, userInfo, 'hardCover')}
       </Button>

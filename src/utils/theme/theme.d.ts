@@ -26,7 +26,7 @@ declare module 'styled-components' {
       title: string;
       bigPrice: string;
       titleTablet: string;
-      autor: string;
+      author: string;
       regular: string;
       filter: string;
       small: string;

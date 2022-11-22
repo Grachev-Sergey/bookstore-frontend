@@ -29,7 +29,7 @@ export const PaginationContainer = styled.div`
     width: 14px;
     border: 2px solid black;
     border-radius: 50%;
-    :not(:first-child) {
+    :(:first-child) {
     margin-left: 37px;
   }
   }
