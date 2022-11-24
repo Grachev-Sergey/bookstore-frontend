@@ -8,9 +8,13 @@ export type UserType = {
   cart?: BooksInCartType[];
 };
 
-type BooksInCartType = {
+export type BooksInCartType = {
   bookId: number;
   bookCover: string;
+};
+
+export type UserIdType = {
+  userId: number;
 };
 
 export type UserObjectType = {
@@ -31,12 +35,14 @@ export type UserDataType = {
 export type ChangeInfoType = {
   email?: string;
   fullName?: string;
+  userId?: number;
 };
 
 export type ChangePassType = {
   oldPassword: string;
   newPassword: string;
   repeatedNewPassword: string;
+  userId?: number;
 };
 
 export type UploadPhotoType = {

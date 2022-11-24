@@ -1,3 +1,5 @@
+import type { BookType } from './bookTypes';
+
 export type AddToCartInfoType = {
   bookId?: number;
   userId?: number;
@@ -5,24 +7,19 @@ export type AddToCartInfoType = {
   cover?: string;
 };
 
-export type GetBookFromCartType = {
+export type CartType = {
   bookId: number;
-  bookCover: string;
-  bookTitle: string;
-  bookAuthor: string;
   bookPrice: number;
   coverType: string;
-};
-
-export type GetBooksFromCartType = {
-  cart: GetBookFromCartType[];
-};
-
-export type GetBooksFromCartReqType = {
+  cartId: number;
   userId: number;
+  book: BookType;
+};
+
+export type CartArrayType = {
+  cart: CartType[];
 };
 
 export type InfoToDeleteType = {
-  bookId: number;
-  userId: number;
+  cartId: number;
 };

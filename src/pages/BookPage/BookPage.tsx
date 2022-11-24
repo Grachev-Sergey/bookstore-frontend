@@ -53,7 +53,7 @@ const BookPage: React.FC = () => {
       try {
         const getOneBook = await bookApi.getBook(Number(id));
         setBook(getOneBook.data.book);
-        setComments(getOneBook.data.comments);
+        setComments(getOneBook.data.book.comments);
       } catch (err) {
         const error = err as Error;
         return toast.error(error.message);

@@ -6,6 +6,11 @@ import profileIcon from '../../assets/icons/profileIcon.png';
 export const NavigationButtonContainer = styled.div`
   display: flex;
   margin-left: 30px;
+  position: relative;
+
+  a {
+    position: relative;
+  }
 
   button {
     width: 48px;
@@ -21,7 +26,7 @@ export const NavigationButtonContainer = styled.div`
   .cart {
     margin-right: 27px;
     background-image: url(${cartIcon});
-    background-position: center center;
+    background-position: 9px 10px;
   }
 
   .favorites {

@@ -22,6 +22,7 @@ export const PaginationContainer = styled.div`
   .indicator-block {
     display: flex;
     align-items: center;
+    gap: 36px;
   }
 
   .indicator {
@@ -29,10 +30,8 @@ export const PaginationContainer = styled.div`
     width: 14px;
     border: 2px solid black;
     border-radius: 50%;
-    :(:first-child) {
-    margin-left: 37px;
   }
-  }
+
   .indicator--selected {
     background-color: black;
   }

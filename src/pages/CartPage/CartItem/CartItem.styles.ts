@@ -49,7 +49,6 @@ export const CartItemContainer = styled.div`
     border-radius: 50%;
     border: none;
     background: ${({ theme }) => theme.colors.light};
-
     font-weight: 600;
     letter-spacing: 0.75px;
     font-size: ${({ theme }) => theme.fontSize.small};
@@ -70,6 +69,7 @@ export const CartItemContainer = styled.div`
     width: 20px;
     height: 20px;
     margin-left: 58px;
+    cursor: pointer;
   }
 
   .cart-item-info__price {

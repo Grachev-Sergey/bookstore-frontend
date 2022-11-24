@@ -16,10 +16,12 @@ const ProfilePage: React.FC = () => {
   const dispatch = useAppDispatch();
   const userInfo = useAppSelector((state) => state.user.user);
   const [selectFieldToChange, setSelectFieldToChange] = useState('');
+  const userId = Number(userInfo?.id);
 
   const initialInfoValues = {
     fullName: userInfo?.fullName || '',
     email: userInfo?.email || '',
+    userId,
   };
 
   const formikUserInfo = useFormik({
@@ -40,6 +42,7 @@ const ProfilePage: React.FC = () => {
     oldPassword: '',
     newPassword: '',
     repeatedNewPassword: '',
+    userId,
   };
 
   const formikPassword = useFormik({
