@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import { HeaderContainer } from './Header.styles';
 
@@ -12,7 +13,19 @@ import logo from '../../assets/images/logo.png';
 import search from '../../assets/icons/search.png';
 
 const Header: React.FC = () => {
+  const [searchText, setSearchText] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
   const userInfo = useAppSelector((state) => state.user.user?.email);
+
+  const searchHandler = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      searchParams.set('search', searchText);
+      if (searchText === '') {
+        searchParams.delete('search');
+      }
+      setSearchParams(searchParams);
+    }
+  };
 
   return (
     <HeaderContainer>
@@ -29,15 +42,16 @@ const Header: React.FC = () => {
           className="search__elem"
           placeholder="Search"
           icon={search}
+          onChange={(e) => setSearchText(e.target.value)}
+          onKeyDown={searchHandler}
+          value={searchText}
           />
       </div>
       <div className="menu">
         {!userInfo
-          ? (
-            <Link to="/signup">
+          ? (<Link to="/signup">
               <Button className="navigation__button">Log In/ Sing Up</Button>
-            </Link>
-          )
+             </Link>)
           : <NavigationButton />
         }
       </div>

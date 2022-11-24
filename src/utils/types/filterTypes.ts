@@ -13,4 +13,5 @@ export type FilterQueryType = {
   minPrice: number;
   sorting: string;
   page: number;
+  search: string;
 };

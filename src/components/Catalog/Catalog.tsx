@@ -25,12 +25,14 @@ const Catalog: React.FC = () => {
     const maxPrice = Number(searchParams.get('maxPrice') || '25');
     const sorting = (searchParams.get('sorting') || 'Price').toLowerCase();
     const page = (Number(searchParams.get('page') || 1));
+    const search = searchParams.get('search') || '';
     const query: FilterQueryType = {
       genre,
       minPrice,
       maxPrice,
       sorting,
       page,
+      search,
     };
     dispatch(bookThunks.getAllFiltredBooks(query));
     setIsLoaded(true);

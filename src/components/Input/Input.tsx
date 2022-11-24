@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import { InputContainer } from './Input.styles';
 
@@ -6,6 +6,7 @@ type InutPropsType = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   type?: string;
   toggleType?: string;
   id?:string;
@@ -41,6 +42,7 @@ const Input: React.FC<InutPropsType> = (props) => {
         placeholder={props.placeholder}
         onChange={props.onChange}
         onBlur={props.onBlur}
+        onKeyDown={props.onKeyDown}
       />
       {props.inputTitle &&
       <div className="input__title">{props.inputTitle}</div>}
