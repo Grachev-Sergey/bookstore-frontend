@@ -1,23 +1,23 @@
 import styled from 'styled-components';
 
-export const EmptyCartPageContainer = styled.div`
+export const EmptyPageContainer = styled.div`
   max-width: 1007px;
   margin: 118px auto 0 auto;
   display: flex;
   
-  .cart-info {
+  .empty-page {
     margin-left: 109px;
     text-align: start;
   }
 
-  .cart-info__title {
+  .empty-page__title {
     font-weight: ${({ theme }) => theme.fontWeight.bold};
     font-size: ${({ theme }) => theme.fontSize.title};
     line-height: ${({ theme }) => theme.lineHight.title};
     color: ${({ theme }) => theme.colors.dark};
   }
 
-  .cart-info__text {
+  .empty-page__text {
     max-width: 465px;
     margin-top: 20px;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
@@ -26,14 +26,14 @@ export const EmptyCartPageContainer = styled.div`
     color: ${({ theme }) => theme.colors.darkBlue};
   }
 
-  .cart-info__button {
+  .empty-page__button {
     margin-top: 60px;
   }
 
   @media only screen and (${({ theme }) => theme.media.tablet}) {
     max-width: 804px;
 
-    .cart-info {
+    .empty-page {
       margin-left: 62px;
     }
 
@@ -42,18 +42,18 @@ export const EmptyCartPageContainer = styled.div`
       height: 212px;
     }
 
-    .cart-info__title {
+    .empty-page__title {
       font-size: ${({ theme }) => theme.fontSize.titleTablet};
       line-height: ${({ theme }) => theme.lineHight.titleTablet};
     }
 
-    .cart-info__text {
+    .empty-page__text {
       max-width: 310px;
       font-size: ${({ theme }) => theme.fontSize.small};
       line-height: ${({ theme }) => theme.lineHight.regularSmall};
     }
 
-    .cart-info__button {
+    .empty-page__button {
       margin-top: 50px;
     }
   }
@@ -68,18 +68,18 @@ export const EmptyCartPageContainer = styled.div`
       margin-top: 40px;
     }
 
-    .cart-info {
+    .empty-page {
       margin: 0;
       display: flex;
       flex-direction: column;
     }
 
-    .cart-info__text {
+    .empty-page__text {
       margin-top: 15px;
       max-width: 100%;
     }
 
-    .cart-info__button {
+    .empty-page__button {
       margin-top: 30px;
     }
   }
@@ -96,12 +96,12 @@ export const EmptyCartPageContainer = styled.div`
       height: 176px;
     }
 
-    .cart-info__title {
+    .empty-page__title {
       font-size: ${({ theme }) => theme.fontSize.filter};
       line-height: ${({ theme }) => theme.lineHight.regular};
     }
 
-    .cart-info__text {
+    .empty-page__text {
       font-size: ${({ theme }) => theme.fontSize.commentDescription};
       line-height: ${({ theme }) => theme.lineHight.commentDescription};
     }

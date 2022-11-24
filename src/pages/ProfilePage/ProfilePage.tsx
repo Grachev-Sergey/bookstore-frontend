@@ -74,7 +74,7 @@ const ProfilePage: React.FC = () => {
       fileReader.readAsDataURL(selectedFile[0]);
       fileReader.onload = async () => {
         try {
-          await dispatch(userThunks.uploadPhoto({ avatar: fileReader.result }));
+          await dispatch(userThunks.uploadPhoto({ avatar: fileReader.result, userId }));
           await dispatch(userThunks.checkUser());
         } catch (err) {
           // eslint-disable-next-line no-console

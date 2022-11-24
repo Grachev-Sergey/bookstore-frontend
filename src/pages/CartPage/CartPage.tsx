@@ -5,15 +5,14 @@ import { Link } from 'react-router-dom';
 import { CartPageContainer } from './CartPage.styles';
 
 import CartItem from './CartItem';
+import EmptyPage from '../EmptyPage';
+import Button from '../../components/Button';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import userThunks from '../../store/userSlice/userThunks';
 import cartApi from '../../api/cartApi';
 
 import type { CartType } from '../../utils/types/cartTypes';
-
-import EmptyCartPage from './EmptyCart/EmptyCart';
-import Button from '../../components/Button/Button';
 
 const CartPage: React.FC = () => {
   const userInfo = useAppSelector((state) => state.user.user);
@@ -27,7 +26,7 @@ const CartPage: React.FC = () => {
       try {
         const cartList = await cartApi.getBooksFromCart(userId);
         setCart(cartList.data.cart);
-        const totalPrice = cartList.data.cart.reduce((acc, item) => acc + item.bookPrice, 0);
+        const totalPrice = cartList.data.cart.reduce((acc, item) => acc + item.price, 0);
         setPrice(Number(totalPrice.toFixed(2)));
       } catch (err) {
         const error = err as Error;
@@ -38,7 +37,7 @@ const CartPage: React.FC = () => {
   }, [userId]);
 
   const updateItemInCart = (id: number) => {
-    const newCart = cart.filter((item) => item.cartId !== id);
+    const newCart = cart.filter((item) => item.id !== id);
     setCart(newCart);
   };
 
@@ -68,7 +67,7 @@ const CartPage: React.FC = () => {
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {!cart.length
-        ? <EmptyCartPage />
+        ? <EmptyPage type="cart" />
         : (<CartPageContainer>
             <div className="cart-list">
               {

@@ -1,9 +1,10 @@
 import { BookCountIndicatorContainer } from './BookCountIndicator.styled';
 
-import type { BooksInCartType } from '../../../utils/types/userTypes';
+import type { UserCartType } from '../../../utils/types/cartTypes';
+import type { UserFavoriteType } from '../../../utils/types/favoriteType';
 
 type PropsType = {
-  counter?: BooksInCartType[] | number[];
+  counter?: UserCartType[] | UserFavoriteType[];
 
 };
 

@@ -23,11 +23,11 @@ const CartItem: React.FC<PropsType> = ({ cartItem, updateCart, setTotalPrice }) 
   const deleteBookFromCartHandler = async () => {
     try {
       const query: InfoToDeleteType = {
-        cartId: cartItem.cartId,
+        cartId: cartItem.id,
       };
       await cartApi.deleteBookFromCart(query);
       await dispatch(userThunks.checkUser());
-      updateCart(cartItem.cartId);
+      updateCart(cartItem.id);
     } catch (err) {
       const error = err as Error;
       return toast.error(error.message);
@@ -37,7 +37,7 @@ const CartItem: React.FC<PropsType> = ({ cartItem, updateCart, setTotalPrice }) 
   const increaceNumberOfBooks = () => {
     setCounter(counter + 1);
     const mathOperation = '+';
-    setTotalPrice(cartItem.bookPrice, mathOperation);
+    setTotalPrice(cartItem.price, mathOperation);
   };
 
   const reduceNumberOfBooks = () => {
@@ -46,7 +46,7 @@ const CartItem: React.FC<PropsType> = ({ cartItem, updateCart, setTotalPrice }) 
     }
     setCounter(counter - 1);
     const mathOperation = '-';
-    setTotalPrice(cartItem.bookPrice, mathOperation);
+    setTotalPrice(cartItem.price, mathOperation);
   };
 
   return (
@@ -55,7 +55,7 @@ const CartItem: React.FC<PropsType> = ({ cartItem, updateCart, setTotalPrice }) 
       <div className="cart-item-info">
         <h2 className="cart-item-info__book-title">{cartItem.book.title}</h2>
         <p className="cart-item-info__book-author">{cartItem.book.author}</p>
-        <p className="cart-item-info__book-cover-type">{cartItem.coverType === 'hardCover' ? 'Hardcover' : 'Paperback'}</p>
+        <p className="cart-item-info__book-cover-type">{cartItem.bookCover === 'hardCover' ? 'Hardcover' : 'Paperback'}</p>
         <div className="counter-block">
           <button
             className="counter-block__button"
@@ -75,7 +75,7 @@ const CartItem: React.FC<PropsType> = ({ cartItem, updateCart, setTotalPrice }) 
             onClick={deleteBookFromCartHandler}
           />
         </div>
-        <p className="cart-item-info__price">$ {cartItem.bookPrice} USD</p>
+        <p className="cart-item-info__price">$ {cartItem.price} USD</p>
       </div>
     </CartItemContainer>
   );

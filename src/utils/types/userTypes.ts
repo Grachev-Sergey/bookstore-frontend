@@ -1,16 +1,15 @@
+import type { UserCartType } from './cartTypes';
+import type { UserFavoriteType } from './favoriteType';
+import type { UserRatingType } from './ratingType';
+
 export type UserType = {
   id: string;
   email: string;
   fullName?: string;
   avatar?: string;
-  rating?: number[];
-  favorite?: number[];
-  cart?: BooksInCartType[];
-};
-
-export type BooksInCartType = {
-  bookId: number;
-  bookCover: string;
+  rating?: UserRatingType[];
+  favorite?: UserFavoriteType[];
+  cart?: UserCartType[];
 };
 
 export type UserIdType = {
@@ -47,4 +46,5 @@ export type ChangePassType = {
 
 export type UploadPhotoType = {
   avatar: string | ArrayBuffer | null;
+  userId?: number;
 };

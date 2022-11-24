@@ -46,7 +46,10 @@ const BookPage: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [book, setBook] = useState<BookType | null>(null);
   const [comments, setComments] = useState<CommentType[] | null>(null);
-  const [isInFavorites, setIsInFavorites] = useState(userInfo?.favorite?.includes(Number(id)));
+  const favoritsId = userInfo?.favorite?.map((item) => item.bookId);
+  const ratingId = userInfo?.rating?.map((item) => item.bookId);
+  const [isInFavorites, setIsInFavorites] = useState(favoritsId?.includes(Number(id)));
+  const [isRated, setIsRated] = useState(ratingId?.includes(Number(id)));
 
   useEffect(() => {
     (async () => {
@@ -79,6 +82,7 @@ const BookPage: React.FC = () => {
           return ({ ...prev, rating: newRating.data.rating });
         });
         await dispatch(userThunks.checkUser());
+        setIsRated(true);
       }
     } catch (err) {
       const error = err as Error;
@@ -165,7 +169,7 @@ const BookPage: React.FC = () => {
                 readOnly={false}
                 onClick={(rate) => changeRating(rate)}
               />
-              {!userInfo?.rating?.includes(Number(id)) &&
+              {!isRated &&
                 (<div className="rate-this-book">
                   <img className="rate-this-book__img" src={backArrow} alt="pointer to rating" />
                   <span className="rate-this-book__text">Rate this book</span>

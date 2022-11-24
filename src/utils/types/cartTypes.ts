@@ -7,11 +7,19 @@ export type AddToCartInfoType = {
   cover?: string;
 };
 
-export type CartType = {
+export type UserCartType = {
+  id: number;
+  bookCover: string;
   bookId: number;
-  bookPrice: number;
-  coverType: string;
-  cartId: number;
+  price: number;
+  userId: number;
+};
+
+export type CartType = {
+  id: number;
+  bookCover: string;
+  bookId: number;
+  price: number;
   userId: number;
   book: BookType;
 };

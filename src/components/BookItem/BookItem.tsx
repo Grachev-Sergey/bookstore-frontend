@@ -31,10 +31,10 @@ type PropsType = {
 
 const BookItem: React.FC<PropsType> = ({ book }) => {
   const id = book.id;
-  const dispatch = useAppDispatch();
   const userInfo = useAppSelector((state) => state.user.user);
-  const [isInFavorites, setIsInFavorites] = useState(userInfo?.favorite?.includes(Number(id)));
-
+  const favoritsId = userInfo?.favorite?.map((item) => item.bookId);
+  const dispatch = useAppDispatch();
+  const [isInFavorites, setIsInFavorites] = useState(favoritsId?.includes(Number(id)));
   const navigate = useNavigate();
 
   const toggleFavoritButton = async () => {
