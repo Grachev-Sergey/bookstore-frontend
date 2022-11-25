@@ -13,6 +13,7 @@ const Pagination: React.FC = () => {
   const [page, setPage] = useState(Number(searchParams.get('page') || 1));
   const counter = useAppSelector((state) => state.books.counter);
   const numberPerPage = useAppSelector((state) => state.books.numberPerPage);
+  const userId = useAppSelector((state) => state.user.user?.id);
   const maxPages = Math.ceil(counter / numberPerPage);
 
   useEffect(() => {
@@ -36,7 +37,7 @@ const Pagination: React.FC = () => {
   };
 
   return (
-    <PaginationContainer>
+    <PaginationContainer userId={Boolean(userId)}>
       <img
         className="previous-page__button page-button"
         src={previousPage}

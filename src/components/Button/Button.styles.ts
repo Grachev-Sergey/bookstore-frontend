@@ -11,8 +11,11 @@ export const StyledButton = styled.button`
   cursor: pointer;
   border: none;
 
-  @media only screen and (${({ theme }) => theme.media.mobile}) {
+  @media only screen and (${({ theme }) => theme.media.small}) {
     padding: 10px 17px;
+  }
+
+  @media only screen and (${({ theme }) => theme.media.mobile}) {
     font-size: ${({ theme }) => theme.fontSize.commentDescription};
     line-height: ${({ theme }) => theme.lineHight.commentDescription};
   }

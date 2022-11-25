@@ -5,6 +5,7 @@ export const FavoritesPageContainer = styled.section`
   flex-wrap: wrap;
   max-width: 1280px;
   margin: 60px auto 0 auto;
+  gap: 0 20px;
 
   @media only screen and (${({ theme }) => theme.media.tablet}) {
     max-width: 804px;

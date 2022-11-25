@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.section`
+export default styled.div`
   width: 100%;
   .info__icon {
     width: 24px;
@@ -29,10 +29,6 @@ export default styled.section`
   }
 
   .info__container {
-    margin-bottom: 40px;
-  }
-
-  .password__container {
     margin-bottom: 40px;
   }
 

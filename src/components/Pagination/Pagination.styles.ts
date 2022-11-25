@@ -1,9 +1,17 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const PaginationContainer = styled.div`
+export const PaginationContainer = styled.div<{ userId: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  ${({ userId }) => (userId
+    ? css`
+      margin-bottom: 150px;
+    `
+    : css`
+      margin-bottom: 92px;
+    `)
+}
 
   .page-button {
     width: 7px;
@@ -34,5 +42,32 @@ export const PaginationContainer = styled.div`
 
   .indicator--selected {
     background-color: black;
+  }
+
+  @media only screen and (${({ theme }) => theme.media.tablet}) {
+    margin-top: 30px;
+    ${({ userId }) => (userId
+    ? css`
+      margin-bottom: 100px;
+    `
+    : css`
+      margin-bottom: 82px;
+    `)
+}
+  }
+
+  @media only screen and (${({ theme }) => theme.media.small}) {
+    ${({ userId }) => (userId
+    ? css`
+      margin-bottom: 70px;
+    `
+    : css`
+      margin-bottom: 75px;
+    `)
+}
+  }
+
+  @media only screen and (${({ theme }) => theme.media.mobile}) {
+    margin-top: 10px;
   }
 `;

@@ -6,7 +6,7 @@ import fairy3 from '../../assets/images/fairy3.png';
 export const AuthorizeBannerContainer = styled.section`
   position: relative;
   max-width: 1280px;
-  margin: 130px auto 0 auto;
+  margin: 0 auto;
   display: flex;
   background-color: ${({ theme }) => theme.colors.light};
   border-radius: ${({ theme }) => theme.borderRadius};
@@ -111,7 +111,6 @@ export const AuthorizeBannerContainer = styled.section`
   @media only screen and (${({ theme }) => theme.media.mobile}) {
     max-width: 290px;
     background-size: 200px;
-    margin-top: 62px;
 
     h2 {
       font-size: ${({ theme }) => theme.fontSize.filter};

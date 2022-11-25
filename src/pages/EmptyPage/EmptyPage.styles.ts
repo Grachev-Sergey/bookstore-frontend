@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const EmptyPageContainer = styled.div`
+export const EmptyPageContainer = styled.div<{type: string}>`
   max-width: 1007px;
-  margin: 118px auto 0 auto;
+  margin: 118px auto 104px auto;
   display: flex;
   
   .empty-page {

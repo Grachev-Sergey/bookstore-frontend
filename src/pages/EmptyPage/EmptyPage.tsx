@@ -11,7 +11,7 @@ type PropsType = {
 
 const EmptyPage: React.FC<PropsType> = ({ type }) => {
   return (
-    <EmptyPageContainer>
+    <EmptyPageContainer type={type}>
       <img className="stack-of-books" src={booksImg} alt="stack of books" />
       <div className="empty-page">
         <h2 className="empty-page__title">Your {type} is empty</h2>

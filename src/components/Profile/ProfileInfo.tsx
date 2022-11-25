@@ -52,6 +52,7 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
               type="text"
               error={props.errors?.fullName}
               touched={props.touched?.fullName}
+              inputTitle="Enter your name"
             />
             <Input
               onChange={props.onChange}
@@ -62,6 +63,7 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
               type="text"
               error={props.errors?.email}
               touched={props.touched?.email}
+              inputTitle="Enter your email"
             />
            </div>)
       }

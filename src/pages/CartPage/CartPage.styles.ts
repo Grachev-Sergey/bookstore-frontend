@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const CartPageContainer = styled.section`
   max-width: 1280px;
-  margin: 60px auto 0 auto;
+  margin: 60px auto 114px auto;
   text-align: start;
 
   .total-price {
@@ -36,10 +36,12 @@ export const CartPageContainer = styled.section`
 
   @media only screen and (${({ theme }) => theme.media.tablet}) {
     max-width: 804px;
+    margin: 60px auto 104px auto;
   }
 
   @media only screen and (${({ theme }) => theme.media.medium}) {
     max-width: 580px;
+    margin: 60px auto 100px auto;
 
     .total-price {
       margin-top: 70px;

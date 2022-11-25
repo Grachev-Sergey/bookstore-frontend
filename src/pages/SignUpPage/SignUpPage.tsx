@@ -60,6 +60,7 @@ const SignUpPage: React.FC = () => {
           onBlur={formik.handleBlur}
           touched={formik.touched.email}
           error={formik.errors.email}
+          successMessage="Email available!"
         />
         <Input
           icon={hide}
@@ -73,6 +74,7 @@ const SignUpPage: React.FC = () => {
           onBlur={formik.handleBlur}
           touched={formik.touched.password}
           error={formik.errors.password}
+          successMessage="Password available!"
         />
         <Input
           icon={hide}
@@ -86,6 +88,7 @@ const SignUpPage: React.FC = () => {
           onBlur={formik.handleBlur}
           touched={formik.touched.repeatedPassword}
           error={formik.errors.repeatedPassword}
+          successMessage="Passwords match!"
         />
         <Button
           type="submit"

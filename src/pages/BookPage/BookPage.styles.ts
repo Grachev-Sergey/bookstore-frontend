@@ -14,16 +14,16 @@ export const BookPageContainer = styled.section`
 
   .book-block {
     display: flex;
-    flex-wrap: wrap;
   }
 
   .cover {
-    position: absolute;
+    position: relative;
   }
 
   .picture {
     width: 522px;
     height: 779px;
+    border-radius: ${({ theme }) => theme.borderRadius};
   }
 
   .favorite-button {
@@ -35,8 +35,11 @@ export const BookPageContainer = styled.section`
     cursor: pointer;
   }
 
+  .book-info-wrapper {
+    margin-left: 128px;
+  }
+
   .book-info {
-    margin-left: 650px;
     text-align: start;
   }
 
@@ -53,6 +56,10 @@ export const BookPageContainer = styled.section`
     align-items: center;
   }
 
+  svg {
+    width: 52px;
+  }
+
   .rating__text {
     margin: 0 25px 0 14px;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
@@ -66,14 +73,6 @@ export const BookPageContainer = styled.section`
     align-items: center;
   }
 
-  svg {
-    height: 33px;
-    width: 45.5px;
-    path{
-        stroke: #BFCC94;
-        stroke-width: 1;
-    }
-  }
 
   .rate-this-book {
     display: flex;
@@ -95,7 +94,6 @@ export const BookPageContainer = styled.section`
   }
 
   .description-and-add-to-cart {
-    margin-left: 650px;
     text-align: start;
   }
   
@@ -141,7 +139,7 @@ export const BookPageContainer = styled.section`
   }
 
   .comments {
-    margin-top: 231px;
+    margin-top: 110px;
   }
 
   .comments__title {
@@ -184,8 +182,8 @@ export const BookPageContainer = styled.section`
       height: 48px;
     }
 
-    .book-info {
-      margin-left: 412px;
+    .book-info-wrapper {
+      margin-left: 21px;
     }
 
     .book-info__author {
@@ -200,16 +198,12 @@ export const BookPageContainer = styled.section`
     }
 
     svg {
-      height: 25px;
-      width: 25px;
+      height: 29px;
+      width: 43px;
     }
 
     .groop-stars {
       margin-top: 17px;
-    }
-
-    .description-and-add-to-cart {
-      margin-left: 412px;
     }
 
     .description__title {
@@ -228,7 +222,7 @@ export const BookPageContainer = styled.section`
     }
 
     .add-to-cart__button {
-      padding: 10px 22px;
+      padding: 10px 19px;
       min-width: 184px;
     }
 
@@ -247,20 +241,25 @@ export const BookPageContainer = styled.section`
 
   @media only screen and (${({ theme }) => theme.media.medium}) {
     max-width: 580px;
-    flex-wrap: wrap;
-    
 
     .book-block {
       align-items: flex-start;
+      flex-direction: column;
     }
 
     .cover {
       position: relative;
     }
 
+    .book-info-wrapper {
+      margin-left: 0;
+    }
+
     .book-info {
-      margin-left: 20px;
-      max-width: 270px;
+      max-width: 290px;
+      margin-left: 310px;
+      margin-top: -495px;
+      height: 483px;
     }
 
     .picture {
@@ -271,6 +270,11 @@ export const BookPageContainer = styled.section`
     .description-and-add-to-cart {
       margin-left: 0;
       text-align: start;
+    }
+
+    svg {
+      height: 33px;
+      width: 48px;
     }
 
     .groop-stars {
@@ -313,8 +317,10 @@ export const BookPageContainer = styled.section`
     }
 
     .book-info {
-      margin-left: 20px;
-      max-width: 210px;
+      max-width: 290px;
+      margin-left: 215px;
+      margin-top: -290px;
+      height: 275px;
     }
 
     .picture {
@@ -337,6 +343,11 @@ export const BookPageContainer = styled.section`
       line-height: ${({ theme }) => theme.lineHight.small};
     }
 
+    svg {
+      height: 25px;
+      width: 33px;
+    }
+
     .add-to-cart__button {
       font-size: ${({ theme }) => theme.fontSize.small};
       line-height: ${({ theme }) => theme.lineHight.small};
@@ -357,8 +368,10 @@ export const BookPageContainer = styled.section`
     }
 
     .book-info {
-      margin-left: 20px;
-      max-width: 135px;
+      max-width: 145px;
+      margin-left: 145px;
+      margin-top: -210px;
+      height: 202px;
     }
 
     h2 {
@@ -372,14 +385,13 @@ export const BookPageContainer = styled.section`
       line-height: ${({ theme }) => theme.lineHight.commentDescription};
     }
 
+    svg {
+      height: 17px;
+      width: 21px;
+    }
 
     .rating__container {
       max-height: 18px;
-    }
-
-    svg {
-      height: 18px;
-      width: 18px;
     }
 
     .rating__text {

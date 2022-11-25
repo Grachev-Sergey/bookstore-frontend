@@ -46,11 +46,12 @@ export const InputContainer = styled.div`
     color: ${({ theme }) => theme.colors.darkBlue};
   }
 
-  .error__title {
-    position: absolute;
-    bottom: -15px;
-    left: 0;
+  .error {
     color: ${({ theme }) => theme.colors.error};
+  }
+
+  .success {
+    color: #00966D;
   }
 
   @media only screen and (${({ theme }) => theme.media.mobile}) {

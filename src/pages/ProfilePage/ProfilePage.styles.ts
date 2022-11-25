@@ -10,8 +10,8 @@ export const ProfilePageContainer = styled.section`
   align-items: flex-start;
   width: 100%;
   padding-right: 305px;
-
-  .avatarContainer {
+  
+  .avatar-container {
     position: relative;
     width: 305px;
     height: 305px;
@@ -30,11 +30,11 @@ export const ProfilePageContainer = styled.section`
     height: 100%;
   }
 
-  .addPhoto__input {
+  .add-photo__input {
     display: none;
   }
 
-  .addPhoto__button {
+  .add-photo__button {
     position: absolute;
     background: ${({ theme }) => theme.colors.darkBlue};
     border-radius: 50%;
@@ -50,14 +50,13 @@ export const ProfilePageContainer = styled.section`
     border: none;
   }
   
-  .formContainer {
-    margin-bottom: 100px;
-    margin-left: 128px;
+  .form-container {
+    margin: 0 0 104px 128px;
     width: 100%;
     max-width: 522px;
   }
-
-  .titleAndChangeButton {
+  
+  .title-and-change-button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -66,14 +65,14 @@ export const ProfilePageContainer = styled.section`
     flex-wrap: wrap;
   }
 
-  .profileTitle, .passwordTitle {
+  .profile-title {
     font-weight: ${({ theme }) => theme.fontWeight.regular};
     font-size: ${({ theme }) => theme.fontSize.regular};
     line-height: ${({ theme }) => theme.lineHight.regularBig};
     color: ${({ theme }) => theme.colors.dark};
   }
 
-  .changeButton {
+  .change-button {
     font-size: ${({ theme }) => theme.fontSize.inputTitle};
     line-height: ${({ theme }) => theme.lineHight.small};
     color: ${({ theme }) => theme.colors.darkGreen};
@@ -81,7 +80,8 @@ export const ProfilePageContainer = styled.section`
     cursor: pointer;
   }
 
-  .confirmButton {
+  .confirm-button {
+    margin-top: 40px;
     display: block;
     text-align: start;
   }
@@ -90,39 +90,39 @@ export const ProfilePageContainer = styled.section`
     max-width: 804px;
     padding-right: 0;
 
-    .avatarContainer {
+    .avatar-container {
       margin-bottom: 10px;
       background-size: 135px; 
     }
 
-    .addPhoto__button {
+    .add-photo__button {
       width: 40px;
       height: 40px;
       margin: 0 15px 15px 0;
     }
 
-    .formContainer {
-      margin-bottom: 100px;
+    .form-container {
       margin-left: 20px;
       width: 100%;
       max-width: 529px;
     }
 
-    .titleAndChangeButton {
+    .title-and-change-button {
       margin-bottom: 20px;
     }
 
-    .profileTitle, .passwordTitle {
+    .profile-title {
       font-size: ${({ theme }) => theme.fontSize.small};
       line-height: ${({ theme }) => theme.lineHight.regularSmall};
     }
 
-    .changeButton {
+    .change-button {
       font-size: ${({ theme }) => theme.fontSize.commentDescription};
       line-height: ${({ theme }) => theme.lineHight.commentDescription};
     }
 
-    .confirmButton {
+    .confirm-button {
+      margin-top: 40px;
       padding: 10px 50px;
       font-size: ${({ theme }) => theme.fontSize.small};
       line-height: ${({ theme }) => theme.lineHight.regularSmall};
@@ -134,14 +134,14 @@ export const ProfilePageContainer = styled.section`
     flex-direction: column;
     align-items: center;
 
-    .avatarContainer {
+    .avatar-container {
       margin-bottom: 30px;
     }
   }
 
   @media only screen and (${({ theme }) => theme.media.small}) {
     max-width: 430px;
-    .formContainer {
+    .form-container {
       margin-left: 0;
     }
   }
@@ -149,27 +149,31 @@ export const ProfilePageContainer = styled.section`
   @media only screen and (${({ theme }) => theme.media.mobile}) {
     max-width: 290px;
 
-    .avatarContainer {
+    .form-container {
+      margin-bottom: 100px;
+    }
+
+    .avatar-container {
       width: 290px;
       height: 290px;
       background-repeat: no-repeat;
       margin-bottom: 30px;
     }
 
-    .titleAndChangeButton {
+    .title-and-change-button {
       margin-bottom: 10px;
     }
 
-    .profileTitle {
+    .profile-title {
       margin: 0 20px 10px 0;
     }
 
-    .profileTitle, passwordTitle {
+    .profile-title {
       font-size: ${({ theme }) => theme.fontSize.small};
       line-height: ${({ theme }) => theme.lineHight.regularSmall};
     }
 
-    .changeButton {
+    .change-button {
       margin-bottom: 3px;
     }
   }

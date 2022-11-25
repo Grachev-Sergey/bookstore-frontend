@@ -47,6 +47,7 @@ export const ProfilePassword: React.FC<PropsType> = (props) => {
             onChange={props.onChange}
             error={props.errors?.oldPassword}
             touched={props.touched?.oldPassword}
+            inputTitle="Enter your old password"
           />
           <Input
             icon={hide}
@@ -58,6 +59,7 @@ export const ProfilePassword: React.FC<PropsType> = (props) => {
             onChange={props.onChange}
             error={props.errors?.newPassword}
             touched={props.touched?.newPassword}
+            inputTitle="Enter your new password"
           />
           <Input
             icon={hide}
@@ -69,6 +71,7 @@ export const ProfilePassword: React.FC<PropsType> = (props) => {
             onChange={props.onChange}
             touched={props.touched?.repeatedNewPassword}
             error={props.errors?.repeatedNewPassword}
+            inputTitle="Repeat new password without errors"
           />
            </div>)
       }

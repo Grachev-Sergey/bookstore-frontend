@@ -21,6 +21,7 @@ export const CatalogContainer = styled.section`
   .books-container {
     display: flex;
     flex-wrap: wrap;
+    gap: 0 20px
   }
 
   .pagination {
@@ -29,7 +30,7 @@ export const CatalogContainer = styled.section`
 
   @media only screen and (${({ theme }) => theme.media.tablet}) {
     max-width: 804px;
-    margin: 60px auto 100px auto;
+    margin: 60px auto 0 auto;
 
     .header {
       flex-wrap: wrap;

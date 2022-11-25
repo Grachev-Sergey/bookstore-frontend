@@ -87,32 +87,32 @@ const ProfilePage: React.FC = () => {
   return (
     <ProfilePageContainer>
       <div>
-        <div className="avatarContainer">
+        <div className="avatar-container">
           {userInfo?.avatar &&
             (<img
               className="avatar"
               src={`${userInfo?.avatar}`}
               alt="User avatar"
             />)}
-            <div className="addPhoto">
+            <div className="add-photo">
               <input
-                className="addPhoto__input"
+                className="add-photo__input"
                 type="file" accept="image/png, image/jpeg"
                 id="photo"
                 name="photo"
                 onChange={uploadPhoto}
               />
-              <label htmlFor="photo" className="addPhoto__button" />
+              <label htmlFor="photo" className="add-photo__button" />
             </div>
         </div>
       </div>
-      <div className="formContainer">
+      <div className="form-container">
         <form onSubmit={onSubmitCange}>
           <div>
-            <div className="titleAndChangeButton">
-              <p className="profileTitle">Personal information</p>
+            <div className="title-and-change-button">
+              <p className="profile-title">Personal information</p>
               <p
-                className="changeButton"
+                className="change-button"
                 onClick={() => setSelectFieldToChange('info')}
               >Change information
               </p>
@@ -125,10 +125,10 @@ const ProfilePage: React.FC = () => {
               errors={formikUserInfo.errors}
               touched={formikUserInfo.touched}
             />
-            <div className="titleAndChangeButton">
-              <p className="passwordTitle">Password</p>
+            <div className="title-and-change-button">
+              <p className="profile-title">Password</p>
               <p
-                className="changeButton"
+                className="change-button"
                 onClick={() => setSelectFieldToChange('password')}
               >Change password
               </p>
@@ -143,7 +143,7 @@ const ProfilePage: React.FC = () => {
               touched={formikPassword.touched}
             />
             {selectFieldToChange &&
-              <Button className="confirmButton" type="submit">Confirm</Button>
+              <Button className="confirm-button" type="submit">Confirm</Button>
             }
           </div>
         </form>

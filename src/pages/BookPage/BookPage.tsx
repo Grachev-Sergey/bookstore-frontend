@@ -151,58 +151,60 @@ const BookPage: React.FC = () => {
             src={isInFavorites ? removeFavorites : addFavorites}
           />
         </div>
-        <div className="book-info">
-          <h2 className="book-info__title">{book?.title}</h2>
-          <p className="book-info__author">{book?.author}</p>
-          <div className="book-info__rating">
-            <div className="rating__container">
-              <Rating
-                iconsCount={1}
-                emptyColor="#BFCC94"
-                allowHover={false}
-              />
-              <span className="rating__text">{(book?.rating || 0).toFixed(1)}</span>
-            </div>
-            <div className="rating__container groop-stars">
-              <RatingElem
-                initialValue={book?.rating || 0}
-                readOnly={false}
-                onClick={(rate) => changeRating(rate)}
-              />
-              {!isRated &&
-                (<div className="rate-this-book">
-                  <img className="rate-this-book__img" src={backArrow} alt="pointer to rating" />
-                  <span className="rate-this-book__text">Rate this book</span>
-                 </div>)}
+        <div className="book-info-wrapper">
+          <div className="book-info">
+            <h2 className="book-info__title">{book?.title}</h2>
+            <p className="book-info__author">{book?.author}</p>
+            <div className="book-info__rating">
+              <div className="rating__container">
+                <Rating
+                  iconsCount={1}
+                  emptyColor="#BFCC94"
+                  allowHover={false}
+                />
+                <span className="rating__text">{(book?.rating || 0).toFixed(1)}</span>
+              </div>
+              <div className="rating__container groop-stars">
+                <RatingElem
+                  initialValue={book?.rating || 0}
+                  readOnly={false}
+                  onClick={(rate) => changeRating(rate)}
+                />
+                {!isRated &&
+                  (<div className="rate-this-book">
+                    <img className="rate-this-book__img" src={backArrow} alt="pointer to rating" />
+                    <span className="rate-this-book__text">Rate this book</span>
+                   </div>)}
+              </div>
             </div>
           </div>
-        </div>
-        <div className="description-and-add-to-cart">
-          <div className="description">
-            <p className="description__title">Description</p>
-            <p className="description__text">{book?.description}</p>
-          </div>
-          <div className="add-to-cart">
-            <div className="cover-selection">
-              <p className="cover-selection__title">Paperback</p>
-              <Button
-                // eslint-disable-next-line no-nested-ternary
-                className={setClassNameForAddToCartButton(book, userInfo, 'paperBack')}
-                isDisabled={disableButton(book, userInfo, 'paperBack')}
-                onClick={() => addToCartHandler(cover.paperBack, Number(book?.paperbackPrice))}
-              >
-                {setValueForAddToCartButton(book, userInfo, 'paperBack')}
-              </Button>
+          <div className="description-and-add-to-cart">
+            <div className="description">
+              <p className="description__title">Description</p>
+              <p className="description__text">{book?.description}</p>
             </div>
-            <div className="cover-selection cover-selection--hardcover">
-              <p className="cover-selection__title">Hardcover</p>
-              <Button
-                className={setClassNameForAddToCartButton(book, userInfo, 'hardCover')}
-                isDisabled={disableButton(book, userInfo, 'hardCover')}
-                onClick={() => addToCartHandler(cover.hardCover, Number(book?.hardCoverPrice))}
-              >
-                {setValueForAddToCartButton(book, userInfo, 'hardCover')}
-              </Button>
+            <div className="add-to-cart">
+              <div className="cover-selection">
+                <p className="cover-selection__title">Paperback</p>
+                <Button
+                  // eslint-disable-next-line no-nested-ternary
+                  className={setClassNameForAddToCartButton(book, userInfo, 'paperBack')}
+                  isDisabled={disableButton(book, userInfo, 'paperBack')}
+                  onClick={() => addToCartHandler(cover.paperBack, Number(book?.paperbackPrice))}
+                >
+                  {setValueForAddToCartButton(book, userInfo, 'paperBack')}
+                </Button>
+              </div>
+              <div className="cover-selection cover-selection--hardcover">
+                <p className="cover-selection__title">Hardcover</p>
+                <Button
+                  className={setClassNameForAddToCartButton(book, userInfo, 'hardCover')}
+                  isDisabled={disableButton(book, userInfo, 'hardCover')}
+                  onClick={() => addToCartHandler(cover.hardCover, Number(book?.hardCoverPrice))}
+                >
+                  {setValueForAddToCartButton(book, userInfo, 'hardCover')}
+                </Button>
+              </div>
             </div>
           </div>
         </div>

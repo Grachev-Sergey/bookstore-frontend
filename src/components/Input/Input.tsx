@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState } from 'react';
 
 import { InputContainer } from './Input.styles';
@@ -18,6 +19,7 @@ type InutPropsType = {
   iconText?: string;
   error?: string;
   touched?: boolean;
+  successMessage?: string;
 };
 
 const Input: React.FC<InutPropsType> = (props) => {
@@ -43,13 +45,14 @@ const Input: React.FC<InutPropsType> = (props) => {
         onChange={props.onChange}
         onBlur={props.onBlur}
         onKeyDown={props.onKeyDown}
+        className={props.className}
       />
-      {props.inputTitle &&
-      <div className="input__title">{props.inputTitle}</div>}
 
-      {props.touched
-        ? <div className="error__title">{props.error}</div>
-        : null}
+      {!props.touched
+        ? props.inputTitle && <div className="input__title">{props.inputTitle}</div>
+        : props.error
+          ? <div className="input__title error">{props.error}</div>
+          : <div className="input__title success">{props.successMessage}</div>}
     </InputContainer>
   );
 };

@@ -58,6 +58,7 @@ const LogInPage: React.FC = () => {
           onBlur={formik.handleBlur}
           touched={formik.touched.email}
           error={formik.errors.email}
+          successMessage="Email available!"
         />
         <Input
           icon={hide}
@@ -71,6 +72,7 @@ const LogInPage: React.FC = () => {
           onBlur={formik.handleBlur}
           touched={formik.touched.password}
           error={formik.errors.password}
+          successMessage="Password available!"
         />
         <Button
           type="submit"

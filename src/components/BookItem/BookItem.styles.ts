@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const BookContainer = styled.div`
   max-width: 305px;
-  margin: 0 15px 80px 0;
+  margin: 0 0 80px 0;
 
   .book__cover {
     position: relative;
@@ -12,6 +12,7 @@ export const BookContainer = styled.div`
 
   .book-cover {
     height: 448px;
+    border-radius: ${({ theme }) => theme.borderRadius};
   }
 
   img {
@@ -70,6 +71,9 @@ export const BookContainer = styled.div`
     font-size: ${({ theme }) => theme.fontSize.regular};
     line-height: ${({ theme }) => theme.lineHight.regularBig};
     color: ${({ theme }) => theme.colors.darkGray};
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .rating {
@@ -79,6 +83,7 @@ export const BookContainer = styled.div`
   }
 
   .rating__text {
+    margin-top: -2px;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
     font-size: ${({ theme }) => theme.fontSize.small};
     line-height: ${({ theme }) => theme.lineHight.regularSmall};
@@ -107,8 +112,7 @@ export const BookContainer = styled.div`
 
   @media only screen and (${({ theme }) => theme.media.tablet}) {
     max-width: 254px;
-    max-height: 372px;
-    margin: 0 10.5px 30px 0;
+    margin: 0 0 30px 0;
 
     .book__cover {
       position: relative;
@@ -138,6 +142,11 @@ export const BookContainer = styled.div`
       line-height: ${({ theme }) => theme.lineHight.regularSmall};
     }
 
+    svg {
+      height: 29px;
+      width: 45px;
+    }
+
     .addToCartButton{
       font-size: ${({ theme }) => theme.fontSize.small};
     }
@@ -145,26 +154,33 @@ export const BookContainer = styled.div`
   }
 
   @media only screen and (${({ theme }) => theme.media.medium}) {
-    max-width: 270px;
-
-    margin: 0 20px 30px 0;
+    max-width: 280px;
 
     .book__cover {
       max-width: 280px;
     }
 
     .book-cover {
-      height: 286px;
-      width: 233px;
+      height: 386px;
+      width: 280px;
+    }
+
+    svg {
+      height: 33px;
+      width: 51px;
     }
   }
 
   @media only screen and (${({ theme }) => theme.media.small}) {
-    max-width: 195px;
-    margin: 0 19px 30px 0;
+    max-width: 205px;
 
     .book__cover {
-      max-width: 195px;
+      max-width: 205px;
+    }
+
+    .book-cover {
+      height: 309px;
+      width: 205px;
     }
 
     .book__status {
@@ -188,15 +204,19 @@ export const BookContainer = styled.div`
       margin: 15px 0;
     }
 
-    .addToCartButton{
+    svg {
+      height: 25px;
+      width: 36px;
+    }
+
+    .add-to-cart__button{
       width: 100%;
-      font-size: ${({ theme }) => theme.fontSize.imputTitle};
+      font-size: ${({ theme }) => theme.fontSize.regular};
     }
   }
 
   @media only screen and (${({ theme }) => theme.media.mobile}) {
     max-width: 135px;
-    margin: 0 10px 30px 0;
 
     .book__cover {
       position: relative;
@@ -204,10 +224,11 @@ export const BookContainer = styled.div`
     }
 
     .book-cover {
-      height: 198px;
+      height: 192px;
+      width: 135px;
     }
 
-    .favoriteButton {
+    .favorite-button {
       width: 25px;
       height: 25px;
       left: 19px;
@@ -235,10 +256,24 @@ export const BookContainer = styled.div`
       line-height: ${({ theme }) => theme.lineHight.small};
     }
 
-    .addToCartButton{
-      padding: 3px 21px;
+    svg {
+      height: 17px;
+      width: 23px;
+    }
+
+    .rating__text {
       font-size: ${({ theme }) => theme.fontSize.imputTitle};
-      line-height: ${({ theme }) => theme.lineHight.regular};
+      line-height: ${({ theme }) => theme.lineHight.small};
+    }
+
+    .add-to-cart__button {
+      padding: 7px 22px;
+      font-size: ${({ theme }) => theme.fontSize.commentDescription};
+      line-height: ${({ theme }) => theme.lineHight.commentDescription};
+    }
+
+    .add-to-cart__button--added {
+      padding: 7px 20px;
     }
   }
 `;

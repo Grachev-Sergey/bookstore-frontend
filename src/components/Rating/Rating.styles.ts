@@ -2,28 +2,38 @@ import styled from 'styled-components';
 
 export const RatingContainer = styled.div`
   svg {
-    margin: 0;
-    height: 33px;
-    width: 57.5px;
+    margin-top: 4px;
+    width: 52px;
     path {
         stroke: #BFCC94;
         stroke-width: 1;
     }
   }
-
   @media only screen and (${({ theme }) => theme.media.tablet}) {
     svg {
+      height: 29px;
+      width: 43px;
+    }
+  }
+
+  @media only screen and (${({ theme }) => theme.media.medium}) {
+    svg {
+      height: 33px;
+      width: 48px;
+    }
+  }
+
+  @media only screen and (${({ theme }) => theme.media.small}) {
+    svg {
       height: 25px;
-      width: 25px;
-      margin-right: 17px;
+      width: 33px;
     }
   }
 
   @media only screen and (${({ theme }) => theme.media.mobile}) {
     svg {
-      height: 18px;
-      width: 18px;
-      margin-right: 11px;
+      height: 17px;
+      width: 21px;
     }
   }
 `;
