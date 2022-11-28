@@ -39,6 +39,17 @@ export const FooterContainer = styled.section`
     margin-left: 166px;
   }
 
+  .logout-button {
+    font-weight: ${({ theme }) => theme.fontWeight.medium};
+    font-size: ${({ theme }) => theme.fontSize.regular};
+    line-height: ${({ theme }) => theme.lineHight.regularBig};
+    color: ${({ theme }) => theme.colors.light};
+    background-color: ${({ theme }) => theme.colors.dark};
+    border: none;
+    margin-bottom: 5px;
+    cursor: pointer;
+  }
+
   .links a:not(:last-child) {
     margin-bottom: 5px;
   }
@@ -58,7 +69,6 @@ export const FooterContainer = styled.section`
     p, a {
       font-size: ${({ theme }) => theme.fontSize.small};
       line-height: ${({ theme }) => theme.lineHight.regularSmall};
-      text-decoration: none;
     }
 
     .email {
@@ -68,6 +78,12 @@ export const FooterContainer = styled.section`
     .links {
       margin-left: 56px;
       min-width: 100px;
+    }
+
+    .logout-button {
+      font-size: ${({ theme }) => theme.fontSize.small};
+      line-height: ${({ theme }) => theme.lineHight.regularSmall};
+      margin-bottom: 11px;
     }
 
     .links a:not(:last-child) {

@@ -5,6 +5,11 @@ import { FooterContainer, StyledFooter } from './Footer.styles';
 import logo from '../../assets/images/logoBlackBg.png';
 import map from '../../assets/images/map.png';
 
+const logoutHandler = () => {
+  localStorage.clear();
+  window.location.reload();
+};
+
 const Footer: React.FC = () => {
   return (
     <StyledFooter>
@@ -15,10 +20,11 @@ const Footer: React.FC = () => {
           <p className = "phone">(480) 555-0103</p>
         </div>
         <div className = "links">
-          <Link to="/" className="link">Home Page</Link>
-          <Link to="/" className="link">Catalog</Link>
-          <Link to="/user/profile" className="link">My Account</Link>
-          <Link to="/user/cart" className="link">Cart</Link>
+          <button className="logout-button" onClick={logoutHandler}>Logout</button>
+          <Link to="/">Home Page</Link>
+          <Link to="/">Catalog</Link>
+          <Link to="/user/profile">My Account</Link>
+          <Link to="/user/cart">Cart</Link>
         </div>
         <div className="address">
           <p>6391 Elgin St. Celina, Delaware 10299</p>
