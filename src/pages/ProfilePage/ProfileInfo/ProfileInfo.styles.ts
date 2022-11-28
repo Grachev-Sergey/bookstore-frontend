@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export default styled.div`
+export const ProfileInfoContainer = styled.div`
   width: 100%;
   .info__icon {
     width: 24px;
@@ -28,7 +28,8 @@ export default styled.div`
     color: ${({ theme }) => theme.colors.dark};
   }
 
-  .info__container {
+  .info-container {
+    position: relative;
     margin-bottom: 40px;
   }
 
@@ -50,9 +51,22 @@ export default styled.div`
     transform: translate(0, -12px);
   }
 
+  .confirm-button {
+    margin-top: 40px;
+    display: block;
+    text-align: start;
+  }
+
   @media only screen and (${({ theme }) => theme.media.tablet}) {
     .title {
       font-size: 14px; 
+    }
+
+    .confirm-button {
+      margin-top: 40px;
+      padding: 10px 50px;
+      font-size: ${({ theme }) => theme.fontSize.small};
+      line-height: ${({ theme }) => theme.lineHight.regularSmall};
     }
   }
 
@@ -60,7 +74,7 @@ export default styled.div`
     .title {
       font-size: 12px; 
     }
-    .info__container {
+    .info-container {
       margin-bottom: 30px;
     }
   }

@@ -1,70 +1,21 @@
 import React, { useState } from 'react';
-import { useFormik } from 'formik';
-import { toast } from 'react-toastify';
 
 import { ProfilePageContainer } from './ProfilePage.styles';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import userThunks from '../../store/userSlice/userThunks';
-import schemas from '../../utils/schemas';
 
-import Button from '../../components/Button';
-import { ProfileInfo } from '../../components/Profile/ProfileInfo';
-import { ProfilePassword } from '../../components/Profile/ProfilePassword';
+import { ProfileInfo } from './ProfileInfo';
+import { ProfilePassword } from './ProfilePassword';
 
 const ProfilePage: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const userInfo = useAppSelector((state) => state.user.user);
   const [selectFieldToChange, setSelectFieldToChange] = useState('');
+  const userInfo = useAppSelector((state) => state.user.user);
   const userId = Number(userInfo?.id);
+  const dispatch = useAppDispatch();
 
-  const initialInfoValues = {
-    fullName: userInfo?.fullName || '',
-    email: userInfo?.email || '',
-    userId,
-  };
-
-  const formikUserInfo = useFormik({
-    initialValues: initialInfoValues,
-    validationSchema: schemas.updateUserInfoSchema,
-    onSubmit: async (values) => {
-      try {
-        await dispatch(userThunks.changeUserInfo(values)).unwrap();
-        setSelectFieldToChange('');
-      } catch (err) {
-        const error = err as Error;
-        return toast.error(error.message);
-      }
-    },
-  });
-
-  const initialPassValues = {
-    oldPassword: '',
-    newPassword: '',
-    repeatedNewPassword: '',
-    userId,
-  };
-
-  const formikPassword = useFormik({
-    initialValues: initialPassValues,
-    validationSchema: schemas.updateUserPassSchema,
-    onSubmit: async (values) => {
-      try {
-        await dispatch(userThunks.changeUserPass(values)).unwrap();
-        setSelectFieldToChange('');
-      } catch (err) {
-        const error = err as Error;
-        return toast.error(error.message);
-      }
-    },
-  });
-
-  const onSubmitCange = (e: React.FormEvent<HTMLFormElement>) => {
-    if (selectFieldToChange === 'info') {
-      formikUserInfo.handleSubmit(e);
-    } if (selectFieldToChange === 'password') {
-      formikPassword.handleSubmit(e);
-    }
+  const changeField = (fieldName: string) => {
+    setSelectFieldToChange(fieldName);
   };
 
   const uploadPhoto = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -106,8 +57,7 @@ const ProfilePage: React.FC = () => {
             </div>
         </div>
       </div>
-      <div className="form-container">
-        <form onSubmit={onSubmitCange}>
+      <div className="profile-container">
           <div>
             <div className="title-and-change-button">
               <p className="profile-title">Personal information</p>
@@ -118,12 +68,8 @@ const ProfilePage: React.FC = () => {
               </p>
             </div>
             <ProfileInfo
+              changeField={changeField}
               selectFieldToChange={selectFieldToChange}
-              onChange={formikUserInfo.handleChange}
-              fullName={formikUserInfo.values.fullName}
-              email={formikUserInfo.values.email}
-              errors={formikUserInfo.errors}
-              touched={formikUserInfo.touched}
             />
             <div className="title-and-change-button">
               <p className="profile-title">Password</p>
@@ -134,19 +80,10 @@ const ProfilePage: React.FC = () => {
               </p>
             </div>
             <ProfilePassword
+              changeField={changeField}
               selectFieldToChange={selectFieldToChange}
-              onChange={formikPassword.handleChange}
-              oldPassword={formikPassword.values.oldPassword}
-              newPassword={formikPassword.values.newPassword}
-              repeatedNewPassword={formikPassword.values.repeatedNewPassword}
-              errors={formikPassword.errors}
-              touched={formikPassword.touched}
             />
-            {selectFieldToChange &&
-              <Button className="confirm-button" type="submit">Confirm</Button>
-            }
           </div>
-        </form>
       </div >
     </ProfilePageContainer>
   );

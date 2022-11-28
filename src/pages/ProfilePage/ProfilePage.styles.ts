@@ -50,7 +50,7 @@ export const ProfilePageContainer = styled.section`
     border: none;
   }
   
-  .form-container {
+  .profile-container {
     margin: 0 0 104px 128px;
     width: 100%;
     max-width: 522px;
@@ -80,12 +80,6 @@ export const ProfilePageContainer = styled.section`
     cursor: pointer;
   }
 
-  .confirm-button {
-    margin-top: 40px;
-    display: block;
-    text-align: start;
-  }
-
   @media only screen and (${({ theme }) => theme.media.tablet}) {
     max-width: 804px;
     padding-right: 0;
@@ -101,7 +95,7 @@ export const ProfilePageContainer = styled.section`
       margin: 0 15px 15px 0;
     }
 
-    .form-container {
+    .profile-container {
       margin-left: 20px;
       width: 100%;
       max-width: 529px;
@@ -120,13 +114,6 @@ export const ProfilePageContainer = styled.section`
       font-size: ${({ theme }) => theme.fontSize.commentDescription};
       line-height: ${({ theme }) => theme.lineHight.commentDescription};
     }
-
-    .confirm-button {
-      margin-top: 40px;
-      padding: 10px 50px;
-      font-size: ${({ theme }) => theme.fontSize.small};
-      line-height: ${({ theme }) => theme.lineHight.regularSmall};
-    }
   }
   
   @media only screen and (${({ theme }) => theme.media.medium}) {
@@ -141,7 +128,7 @@ export const ProfilePageContainer = styled.section`
 
   @media only screen and (${({ theme }) => theme.media.small}) {
     max-width: 430px;
-    .form-container {
+    .profile-container {
       margin-left: 0;
     }
   }
@@ -149,7 +136,7 @@ export const ProfilePageContainer = styled.section`
   @media only screen and (${({ theme }) => theme.media.mobile}) {
     max-width: 290px;
 
-    .form-container {
+    .profile-container {
       margin-bottom: 100px;
     }
 
