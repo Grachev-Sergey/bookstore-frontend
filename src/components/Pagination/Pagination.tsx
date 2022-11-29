@@ -11,8 +11,7 @@ import nextPage from '../../assets/icons/nextPage.png';
 const Pagination: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [page, setPage] = useState(Number(searchParams.get('page') || 1));
-  const counter = useAppSelector((state) => state.books.counter);
-  const numberPerPage = useAppSelector((state) => state.books.numberPerPage);
+  const { counter, numberPerPage } = useAppSelector((state) => state.books);
   const userId = useAppSelector((state) => state.user.user?.id);
   const maxPages = Math.ceil(counter / numberPerPage);
 

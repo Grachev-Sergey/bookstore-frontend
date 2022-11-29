@@ -1,4 +1,3 @@
-import { useState } from 'react';
 // import dayjs from 'dayjs';
 import moment from 'moment';
 
@@ -15,17 +14,14 @@ type PropsType = {
 };
 
 const CommentItem: React.FC<PropsType> = ({ user, date, text }) => {
-  const [userName] = useState(user.fullName || 'Anonim');
-  const [userAvatar] = useState(user.avatar || '');
-
   // dayjs.extend();
 
   return (
     <CommentItemContainer>
       <div className="user-info">
-        <img className="user-info__photo" src={userAvatar ? `${userAvatar}` : `${userProfile}`} />
+        <img className="user-info__photo" src={user.avatar ? `${user.avatar}` : `${userProfile}`} />
         <div className="user-info__text">
-          <p className="user-info__name">{userName}</p>
+          <p className="user-info__name">{user.fullName || 'Anonim'}</p>
       {/* <p className="user-info__comment-date">{`Left a comment ${dayjs(date).fromNow()}`}</p> */}
           <p className="user-info__comment-date">{`Left a comment ${moment(date).fromNow()}`}</p>
         </div>

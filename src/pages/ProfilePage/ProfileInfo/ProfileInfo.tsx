@@ -63,7 +63,7 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
               <p className="title">Your email</p>
             </div>
            </div>)
-        : (<div className="text__container">
+        : (<div className="input-container">
             <form onSubmit={formik.handleSubmit}>
               <Input
                 onChange={formik.handleChange}

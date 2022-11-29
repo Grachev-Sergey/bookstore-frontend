@@ -41,6 +41,10 @@ export const ProfileInfoContainer = styled.div`
     box-sizing: border-box;
   }
 
+  .input-container {
+    margin-bottom: 20px;
+  }
+
   .title {
     position: absolute;
     left: 64px;

@@ -22,14 +22,12 @@ import Comments from '../../components/Comments';
 import Recommendations from '../../components/Recommendations';
 
 import type { BookType } from '../../utils/types/bookTypes';
-import type { ChangeRatingType } from '../../utils/types/ratingType';
 import type { FavoriteType } from '../../utils/types/favoriteType';
 import type { CommentType } from '../../utils/types/commentsType';
-import type { AddToCartInfoType } from '../../utils/types/cartTypes';
 
 import {
   setClassNameForAddToCartButton,
-  setValueForAddToCartButton,
+  getButtonName,
   disableButton,
 } from '../../utils/addToCartButtonInfo';
 
@@ -69,21 +67,19 @@ const BookPage: React.FC = () => {
   const changeRating = async (rate: number) => {
     try {
       if (!userInfo?.email) {
-        navigate('/signup');
-      } else {
-        const ratingInfo: ChangeRatingType = {
-          bookId: Number(id),
-          userId: Number(userInfo?.id),
-          rating: rate,
-        };
-        const newRating = await ratingApi.change(ratingInfo);
-        setBook((prev) => {
-          if (!prev) return null;
-          return ({ ...prev, rating: newRating.data.rating });
-        });
-        await dispatch(userThunks.checkUser());
-        setIsRated(true);
+        return navigate('/signup');
       }
+      const newRating = await ratingApi.change({
+        bookId: Number(id),
+        userId: Number(userInfo?.id),
+        rating: rate,
+      });
+      setBook((prev) => {
+        if (!prev) return null;
+        return ({ ...prev, rating: newRating.data.rating });
+      });
+      await dispatch(userThunks.checkUser());
+      setIsRated(true);
     } catch (err) {
       const error = err as Error;
       return toast.error(error.message);
@@ -93,21 +89,20 @@ const BookPage: React.FC = () => {
   const toggleFavoritButton = async () => {
     try {
       if (!userInfo?.email) {
-        navigate('/signup');
+        return navigate('/signup');
+      }
+      const favoriteInfo: FavoriteType = {
+        bookId: Number(id),
+        userId: Number(userInfo?.id),
+      };
+      if (!isInFavorites) {
+        await favoritesApi.addToFavorites(favoriteInfo);
+        await dispatch(userThunks.checkUser());
+        setIsInFavorites(true);
       } else {
-        const favoriteInfo: FavoriteType = {
-          bookId: Number(id),
-          userId: Number(userInfo?.id),
-        };
-        if (!isInFavorites) {
-          await favoritesApi.addToFavorites(favoriteInfo);
-          await dispatch(userThunks.checkUser());
-          setIsInFavorites(true);
-        } else {
-          await favoritesApi.removeFromFavorites(favoriteInfo);
-          await dispatch(userThunks.checkUser());
-          setIsInFavorites(false);
-        }
+        await favoritesApi.removeFromFavorites(favoriteInfo);
+        await dispatch(userThunks.checkUser());
+        setIsInFavorites(false);
       }
     } catch (err) {
       const error = err as Error;
@@ -118,17 +113,15 @@ const BookPage: React.FC = () => {
   const addToCartHandler = async (cover: string, price: number) => {
     try {
       if (!userInfo?.email) {
-        navigate('/signup');
-      } else {
-        const addToCartInfo: AddToCartInfoType = {
-          bookId: Number(id),
-          userId: Number(userInfo?.id),
-          cover,
-          price,
-        };
-        await cartApi.addToCart(addToCartInfo);
-        await dispatch(userThunks.checkUser());
+        return navigate('/signup');
       }
+      await cartApi.addToCart({
+        bookId: Number(id),
+        userId: Number(userInfo?.id),
+        cover,
+        price,
+      });
+      await dispatch(userThunks.checkUser());
     } catch (err) {
       const error = err as Error;
       return toast.error(error.message);
@@ -192,7 +185,7 @@ const BookPage: React.FC = () => {
                   isDisabled={disableButton(book, userInfo, 'paperBack')}
                   onClick={() => addToCartHandler(cover.paperBack, Number(book?.paperbackPrice))}
                 >
-                  {setValueForAddToCartButton(book, userInfo, 'paperBack')}
+                  {getButtonName(book, userInfo, 'paperBack')}
                 </Button>
               </div>
               <div className="cover-selection cover-selection--hardcover">
@@ -202,7 +195,7 @@ const BookPage: React.FC = () => {
                   isDisabled={disableButton(book, userInfo, 'hardCover')}
                   onClick={() => addToCartHandler(cover.hardCover, Number(book?.hardCoverPrice))}
                 >
-                  {setValueForAddToCartButton(book, userInfo, 'hardCover')}
+                  {getButtonName(book, userInfo, 'hardCover')}
                 </Button>
               </div>
             </div>

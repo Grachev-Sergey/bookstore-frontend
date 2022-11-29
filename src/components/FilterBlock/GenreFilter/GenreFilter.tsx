@@ -32,7 +32,7 @@ const GenreFilter: React.FC<PropsType> = ({ genres }) => {
       genreList = `${selectedGenres},${genre}`;
     }
     searchParams.set('genres', genreList);
-    if (genreList === '') {
+    if (!genreList) {
       searchParams.delete('genres');
     }
     setSearchParams(searchParams);
@@ -44,10 +44,10 @@ const GenreFilter: React.FC<PropsType> = ({ genres }) => {
       {
         genres?.map((item) => (
           <GenreItem
-            genresList={selectedGenres}
             addSelectedGenres={addSelectedGenres}
             key={item.id}
             genre={item.name}
+            isChecked={genreArr.includes(item.name)}
           />
         ))
       }

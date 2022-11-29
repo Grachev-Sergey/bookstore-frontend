@@ -42,7 +42,7 @@ export const setClassNameForAddToCartButton = (
   }
 };
 
-export const setValueForAddToCartButton = (
+export const getButtonName = (
   book: BookType | null,
   userInfo: UserType | null,
   type: string,

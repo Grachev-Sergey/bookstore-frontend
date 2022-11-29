@@ -5,13 +5,11 @@ import checkbox from '../../../../assets/icons/checkbox.png';
 
 type PropsType = {
   genre: string;
-  genresList: string;
   addSelectedGenres: (genre: string) => void;
+  isChecked: boolean;
 };
 
-const GenreItem: React.FC<PropsType> = ({ genre, genresList, addSelectedGenres }) => {
-  const activeCheckbox = genresList?.includes(genre);
-
+const GenreItem: React.FC<PropsType> = ({ genre, isChecked, addSelectedGenres }) => {
   const checkboxClickHandler = () => {
     addSelectedGenres(genre);
   };
@@ -20,7 +18,7 @@ const GenreItem: React.FC<PropsType> = ({ genre, genresList, addSelectedGenres }
     <GenreItemContainer onClick={checkboxClickHandler}>
       <img
         className="checkbox"
-        src={activeCheckbox ? checkboxActive : checkbox}
+        src={isChecked ? checkboxActive : checkbox}
         alt="filter selection"
       />
       <p className="genre">{genre}</p>

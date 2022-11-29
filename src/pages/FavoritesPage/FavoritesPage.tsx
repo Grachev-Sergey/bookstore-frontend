@@ -14,6 +14,7 @@ const FavoritesPage: React.FC = () => {
   const userId = useAppSelector((state) => state.user.user?.id);
   const favorite = useAppSelector((state) => state.user.user?.favorite);
   const [favoritBooks, setFavoritBooks] = useState<FavoriteBooksType[]>([]);
+
   useEffect(() => {
     (async () => {
       try {

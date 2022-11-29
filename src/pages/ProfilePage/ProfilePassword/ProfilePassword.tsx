@@ -46,16 +46,14 @@ export const ProfilePassword: React.FC<PropsType> = (props) => {
   return (
     <ProfilePasswordContainer>
       {props.selectFieldToChange !== 'password'
-        ? (<div className="password-container">
-          <div className="text__container">
-            <img className="info__icon" src={hide} alt="Password icon" />
-            <div className="text__block">
-            <p>*******</p>
-            </div>
-            <p className="title">Your password</p>
-          </div>
+        ? (<div className="text__container">
+              <img className="info__icon" src={hide} alt="Password icon" />
+              <div className="text__block">
+              <p>*******</p>
+              </div>
+              <p className="title">Your password</p>
            </div>)
-        : (<div className="password-container">
+        : (<div>
           <form onSubmit={formik.handleSubmit}>
             <Input
               icon={hide}

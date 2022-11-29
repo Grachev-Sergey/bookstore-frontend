@@ -11,8 +11,6 @@ import FilterBlock from '../FilterBlock';
 import Pagination from '../Pagination';
 import Loading from '../Loading';
 
-import type { FilterQueryType } from '../../utils/types/filterTypes';
-
 const Catalog: React.FC = () => {
   const books = useAppSelector((state) => state.books);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -26,15 +24,14 @@ const Catalog: React.FC = () => {
     const sorting = (searchParams.get('sorting') || 'Price').toLowerCase();
     const page = (Number(searchParams.get('page') || 1));
     const search = searchParams.get('search') || '';
-    const query: FilterQueryType = {
+    dispatch(bookThunks.getAllFiltredBooks({
       genre,
       minPrice,
       maxPrice,
       sorting,
       page,
       search,
-    };
-    dispatch(bookThunks.getAllFiltredBooks(query));
+    }));
     setIsLoaded(true);
   }, [dispatch, searchParams]);
 

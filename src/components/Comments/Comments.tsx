@@ -8,7 +8,7 @@ import commentsApi from '../../api/commentsApi';
 import Button from '../Button';
 import CommentItem from './CommentItem/CommentItem';
 
-import type { CommentInfoType, CommentType } from '../../utils/types/commentsType';
+import type { CommentType } from '../../utils/types/commentsType';
 import type { UserType } from '../../utils/types/userTypes';
 
 type PropsType = {
@@ -27,12 +27,11 @@ const Comments: React.FC<PropsType> = ({ comments, userInfo, bookId }) => {
 
   const addComment = async () => {
     try {
-      const commentInfoData: CommentInfoType = {
+      const newComment = await commentsApi.addComment({
         userId: Number(userInfo?.id),
         bookId: Number(bookId),
         commentText,
-      };
-      const newComment = await commentsApi.addComment(commentInfoData);
+      });
       setCommentText('');
       setBookComments((prev) => {
         if (!prev) return [];

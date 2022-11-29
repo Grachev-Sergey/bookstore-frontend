@@ -6,26 +6,31 @@ import { CartItemContainer } from './CartItem.styles';
 import { useAppDispatch } from '../../../store/hooks';
 import userThunks from '../../../store/userSlice/userThunks';
 import cartApi from '../../../api/cartApi';
-import type { CartType, InfoToDeleteType } from '../../../utils/types/cartTypes';
+import type { CartType } from '../../../utils/types/cartTypes';
 
 import trashCan from '../../../assets/icons/trashCan.png';
 
 type PropsType = {
   cartItem: CartType;
   updateCart: (id: number) => void;
-  setTotalPrice: (bookPrice: number, mathOperation: string) => void;
+  increaseBookPrice: (bookPrice: number) => void;
+  subtractBookPrice: (bookPrice: number) => void;
 };
 
-const CartItem: React.FC<PropsType> = ({ cartItem, updateCart, setTotalPrice }) => {
+const CartItem: React.FC<PropsType> = ({
+  cartItem,
+  updateCart,
+  increaseBookPrice,
+  subtractBookPrice,
+}) => {
   const [counter, setCounter] = useState(1);
   const dispatch = useAppDispatch();
 
   const deleteBookFromCartHandler = async () => {
     try {
-      const query: InfoToDeleteType = {
+      await cartApi.deleteBookFromCart({
         cartId: cartItem.id,
-      };
-      await cartApi.deleteBookFromCart(query);
+      });
       await dispatch(userThunks.checkUser());
       updateCart(cartItem.id);
     } catch (err) {
@@ -36,8 +41,7 @@ const CartItem: React.FC<PropsType> = ({ cartItem, updateCart, setTotalPrice }) 
 
   const increaceNumberOfBooks = () => {
     setCounter(counter + 1);
-    const mathOperation = '+';
-    setTotalPrice(cartItem.price, mathOperation);
+    increaseBookPrice(cartItem.price);
   };
 
   const reduceNumberOfBooks = () => {
@@ -45,8 +49,7 @@ const CartItem: React.FC<PropsType> = ({ cartItem, updateCart, setTotalPrice }) 
       return;
     }
     setCounter(counter - 1);
-    const mathOperation = '-';
-    setTotalPrice(cartItem.price, mathOperation);
+    subtractBookPrice(cartItem.price);
   };
 
   return (
