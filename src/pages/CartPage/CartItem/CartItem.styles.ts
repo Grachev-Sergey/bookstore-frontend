@@ -7,6 +7,10 @@ export const CartItemContainer = styled.div`
     margin-bottom: 40px;
     border-bottom: 1px solid #D6D8E7;
   }
+
+  a {
+    text-decoration: none;
+  }
  
   .book-cover {
     width: 197px;

@@ -17,3 +17,7 @@ export type FavoriteBooksType = {
   userId?: number;
   book: BookType;
 };
+
+export type DeletedFavoriteType = {
+  id?: number;
+};

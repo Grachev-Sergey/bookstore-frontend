@@ -1,13 +1,18 @@
 import customAxios from '.';
 
-import type { FavoriteBooksType, FavoriteType } from '../utils/types/favoriteType';
+import type {
+  FavoriteBooksType,
+  FavoriteType,
+  UserFavoriteType,
+  DeletedFavoriteType,
+} from '../utils/types/favoriteType';
 
 const addToFavorites = (favoriteInfo: FavoriteType) => {
-  return customAxios.post('/favorite', favoriteInfo);
+  return customAxios.post<UserFavoriteType>('/favorite', favoriteInfo);
 };
 
 const removeFromFavorites = (favoriteInfo: FavoriteType) => {
-  return customAxios.delete('/favorite', { params: favoriteInfo });
+  return customAxios.delete<DeletedFavoriteType>('/favorite', { params: favoriteInfo });
 };
 
 const getFavorites = (userId: number) => {

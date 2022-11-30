@@ -6,7 +6,7 @@ import { BookCoverContainer } from './BookCover.styles';
 
 import favoritesApi from '../../../api/favoritesApi';
 import { useAppDispatch } from '../../../store/hooks';
-import userThunks from '../../../store/userSlice/userThunks';
+import { addToFavorites, removeFromFavorites } from '../../../store/userSlice';
 import type { FavoriteType } from '../../../utils/types/favoriteType';
 import type { UserType } from '../../../utils/types/userTypes';
 import type { BookType } from '../../../utils/types/bookTypes';
@@ -36,12 +36,12 @@ const BookCover: React.FC<PropsType> = ({ userInfo, book, id }) => {
         userId: Number(userInfo?.id),
       };
       if (!isInFavorites) {
-        await favoritesApi.addToFavorites(favoriteInfo);
-        await dispatch(userThunks.checkUser());
+        const newFavoriteItem = await favoritesApi.addToFavorites(favoriteInfo);
+        dispatch(addToFavorites(newFavoriteItem.data));
         setIsInFavorites(true);
       } else {
-        await favoritesApi.removeFromFavorites(favoriteInfo);
-        await dispatch(userThunks.checkUser());
+        const removedFavoriteId = await favoritesApi.removeFromFavorites(favoriteInfo);
+        dispatch(removeFromFavorites(removedFavoriteId.data));
         setIsInFavorites(false);
       }
     } catch (err) {

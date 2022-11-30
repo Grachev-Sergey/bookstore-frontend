@@ -1,9 +1,15 @@
 import customAxios from '.';
 
-import type { AddToCartInfoType, CartArrayType, InfoToDeleteType } from '../utils/types/cartTypes';
+import type {
+  AddToCartInfoType,
+  CartArrayType,
+  InfoToDeleteType,
+  UserCartType,
+  DeletedCartItemType,
+} from '../utils/types/cartTypes';
 
 const addToCart = (addToCartInfo: AddToCartInfoType) => {
-  return customAxios.post('/cart', addToCartInfo);
+  return customAxios.post<UserCartType>('/cart', addToCartInfo);
 };
 
 const getBooksFromCart = (userId: number) => {
@@ -11,7 +17,7 @@ const getBooksFromCart = (userId: number) => {
 };
 
 const deleteBookFromCart = (query: InfoToDeleteType) => {
-  return customAxios.delete('/cart', { params: query });
+  return customAxios.delete<DeletedCartItemType>('/cart', { params: query });
 };
 
 const deleteAllBooksFromCart = (userId: number) => {

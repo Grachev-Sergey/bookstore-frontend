@@ -31,3 +31,7 @@ export type CartArrayType = {
 export type InfoToDeleteType = {
   cartId: number;
 };
+
+export type DeletedCartItemType = {
+  id?: number;
+};

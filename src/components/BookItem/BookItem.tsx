@@ -4,11 +4,15 @@ import { toast } from 'react-toastify';
 
 import { BookContainer } from './BookItem.styles';
 
+import cover from '../../utils/config';
 import favoritesApi from '../../api/favoritesApi';
 import cartApi from '../../api/cartApi';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import userThunks from '../../store/userSlice/userThunks';
-import cover from '../../utils/config';
+import {
+  addToFavorites,
+  removeFromFavorites,
+  addToCart,
+} from '../../store/userSlice';
 import {
   setClassNameForAddToCartButton,
   getButtonName,
@@ -46,12 +50,12 @@ const BookItem: React.FC<PropsType> = ({ book }) => {
         userId: Number(userInfo?.id),
       };
       if (!isInFavorites) {
-        await favoritesApi.addToFavorites(favoriteInfo);
-        await dispatch(userThunks.checkUser());
+        const newFavoriteItem = await favoritesApi.addToFavorites(favoriteInfo);
+        dispatch(addToFavorites(newFavoriteItem.data));
         return setIsInFavorites(true);
       }
-      await favoritesApi.removeFromFavorites(favoriteInfo);
-      await dispatch(userThunks.checkUser());
+      const removedFavoriteId = await favoritesApi.removeFromFavorites(favoriteInfo);
+      dispatch(removeFromFavorites(removedFavoriteId.data));
       setIsInFavorites(false);
     } catch (err) {
       const error = err as Error;
@@ -64,15 +68,13 @@ const BookItem: React.FC<PropsType> = ({ book }) => {
       if (!userInfo?.email) {
         navigate('/signup');
       }
-      if (userInfo) {
-        await cartApi.addToCart({
-          bookId: Number(id),
-          cover,
-          price,
-          userId: Number(userInfo.id),
-        });
-        await dispatch(userThunks.checkUser());
-      }
+      const newCartItem = await cartApi.addToCart({
+        bookId: Number(id),
+        cover,
+        price,
+        userId: Number(userInfo?.id),
+      });
+      dispatch(addToCart(newCartItem.data));
     } catch (err) {
       const error = err as Error;
       return toast.error(error.message);

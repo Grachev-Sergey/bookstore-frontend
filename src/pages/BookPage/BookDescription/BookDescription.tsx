@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { BookDescriptionContainer } from './BookDescription.styles';
 
 import { useAppDispatch } from '../../../store/hooks';
-import userThunks from '../../../store/userSlice/userThunks';
+import { addToCart } from '../../../store/userSlice/userSlice';
 import cover from '../../../utils/config';
 import cartApi from '../../../api/cartApi';
 import type { UserType } from '../../../utils/types/userTypes';
@@ -33,13 +33,13 @@ const BookDescription: React.FC<PropsType> = ({ userInfo, book, id }) => {
       if (!userInfo?.email) {
         return navigate('/signup');
       }
-      await cartApi.addToCart({
+      const newCartItem = await cartApi.addToCart({
         bookId: Number(id),
-        userId: Number(userInfo?.id),
         cover,
         price,
+        userId: Number(userInfo?.id),
       });
-      await dispatch(userThunks.checkUser());
+      dispatch(addToCart(newCartItem.data));
     } catch (err) {
       const error = err as Error;
       return toast.error(error.message);
