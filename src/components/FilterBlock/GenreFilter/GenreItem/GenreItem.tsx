@@ -9,7 +9,11 @@ type PropsType = {
   isChecked: boolean;
 };
 
-const GenreItem: React.FC<PropsType> = ({ genre, isChecked, addSelectedGenres }) => {
+const GenreItem: React.FC<PropsType> = ({
+  genre,
+  isChecked,
+  addSelectedGenres,
+}) => {
   const checkboxClickHandler = () => {
     addSelectedGenres(genre);
   };

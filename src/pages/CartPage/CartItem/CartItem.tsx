@@ -24,7 +24,7 @@ const CartItem: React.FC<PropsType> = ({
   increaseBookPrice,
   subtractBookPrice,
 }) => {
-  const [counter, setCounter] = useState(1);
+  const [counter, setCounter] = useState(cartItem.numberOfCopies);
   const dispatch = useAppDispatch();
 
   const deleteBookFromCartHandler = async () => {
@@ -40,17 +40,19 @@ const CartItem: React.FC<PropsType> = ({
     }
   };
 
-  const increaceNumberOfBooks = () => {
+  const increaceNumberOfBooks = async () => {
     setCounter(counter + 1);
     increaseBookPrice(cartItem.price);
+    await cartApi.addCopyToCart(cartItem.id);
   };
 
-  const reduceNumberOfBooks = () => {
+  const reduceNumberOfBooks = async () => {
     if (counter === 1) {
       return;
     }
     setCounter(counter - 1);
     subtractBookPrice(cartItem.price);
+    await cartApi.deleteCopyFromCart(cartItem.id);
   };
 
   return (

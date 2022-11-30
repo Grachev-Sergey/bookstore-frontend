@@ -32,8 +32,6 @@ const SignUpPage: React.FC = () => {
     onSubmit: async (values) => {
       try {
         await dispatch(userThunks.signUpUser(values)).unwrap();
-        // eslint-disable-next-line no-console
-        console.log(location.state);
         if (location.state) {
           navigate(location.state.from);
         }
@@ -97,8 +95,11 @@ const SignUpPage: React.FC = () => {
         Sing Up
         </Button>
       </form>
-      <img className="reading-man" src={man} alt="picture of a reading man" />
-
+      <img
+        className="reading-man"
+        src={man}
+        alt="picture of a reading man"
+      />
       <div className="log-in">
         <p className="log-in__title">If you already have an account, then log in</p>
         <Link to="/login">

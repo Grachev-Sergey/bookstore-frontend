@@ -1,4 +1,9 @@
-import { useState, useRef, useEffect, type PropsWithChildren } from 'react';
+import {
+  useState,
+  useRef,
+  useEffect,
+  type PropsWithChildren,
+} from 'react';
 
 import { DropDownButtonContainer } from './DropDownButton.styles';
 
@@ -40,7 +45,11 @@ const DropDownButton: React.FC<PropsType> = (props) => {
               : props.filterType
           }
         </p>
-        <img className="forward" src={modalVisibility ? forwardDown : forwardRight} alt="modal window activity indicator" />
+        <img
+          className="forward"
+          src={modalVisibility ? forwardDown : forwardRight}
+          alt="modal window activity indicator"
+        />
       </div>
       {modalVisibility && props.children}
     </DropDownButtonContainer>

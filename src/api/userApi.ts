@@ -1,5 +1,10 @@
 import customAxios from '.';
-import type { ChangeInfoType, ChangePassType, UploadPhotoType, UserDataType } from '../utils/types/userTypes';
+import type {
+  ChangeInfoType,
+  ChangePassType,
+  UploadPhotoType,
+  UserDataType,
+} from '../utils/types/userTypes';
 
 const checkUserApi = () => {
   return customAxios.get<UserDataType>('/user');

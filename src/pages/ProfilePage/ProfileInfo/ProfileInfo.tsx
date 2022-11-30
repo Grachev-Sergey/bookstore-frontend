@@ -48,14 +48,22 @@ const ProfileInfo: React.FC<PropsType> = (props) => {
       {props.selectFieldToChange !== 'info'
         ? (<div className="info-container">
             <div className="text__container">
-              <img className="info__icon" src={grayProfileIcon} alt="Profile icon" />
+              <img
+                className="info__icon"
+                src={grayProfileIcon}
+                alt="Profile icon"
+              />
               <div className="text__block">
                 <p>{userInfo?.fullName}</p>
               </div>
               <p className="title">Your name</p>
             </div>
             <div className="text__container">
-              <img className="info__icon" src={mail} alt="Mail icon" />
+              <img
+                className="info__icon"
+                src={mail}
+                alt="Mail icon"
+              />
               <div className="text__block">
                 <p>{userInfo?.email}</p>
               </div>

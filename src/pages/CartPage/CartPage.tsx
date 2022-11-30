@@ -9,7 +9,7 @@ import EmptyPage from '../EmptyPage';
 import Button from '../../components/Button';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { removeAllFromCart } from '../../store/userSlice/userSlice';
+import { removeAllFromCart } from '../../store/userSlice';
 import cartApi from '../../api/cartApi';
 
 import type { CartType } from '../../utils/types/cartTypes';
@@ -18,7 +18,7 @@ const CartPage: React.FC = () => {
   const userInfo = useAppSelector((state) => state.user.user);
   const dispatch = useAppDispatch();
   const [cart, setCart] = useState<CartType[]>([]);
-  const [prise, setPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
   const userId = Number(userInfo?.id);
 
   useEffect(() => {
@@ -26,8 +26,8 @@ const CartPage: React.FC = () => {
       try {
         const cartList = await cartApi.getBooksFromCart(userId);
         setCart(cartList.data.cart);
-        const totalPrice = cartList.data.cart.reduce((acc, item) => acc + item.price, 0);
-        setPrice(Number(totalPrice.toFixed(2)));
+        const price = cartList.data.cart.reduce((acc, item) => acc + item.price, 0);
+        setTotalPrice(Number(price.toFixed(2)));
       } catch (err) {
         const error = err as Error;
         return toast.error(error.message);
@@ -42,13 +42,13 @@ const CartPage: React.FC = () => {
   };
 
   const increaseBookPrice = (bookPrice: number) => {
-    const result = prise + bookPrice;
-    setPrice(Number(result.toFixed(2)));
+    const result = totalPrice + bookPrice;
+    setTotalPrice(Number(result.toFixed(2)));
   };
 
   const subtractBookPrice = (bookPrice: number) => {
-    const result = prise - bookPrice;
-    setPrice(Number(result.toFixed(2)));
+    const result = totalPrice - bookPrice;
+    setTotalPrice(Number(result.toFixed(2)));
   };
 
   const emptyTrash = async () => {
@@ -83,7 +83,7 @@ const CartPage: React.FC = () => {
             </div>
             <div className="total-price">
               <p className="total-price__title">Total:</p>
-              <p className="total-price__price">{`${prise}`}</p>
+              <p className="total-price__price">{`${totalPrice}`}</p>
             </div>
             <div className="buttons-block">
               <Link to="/">

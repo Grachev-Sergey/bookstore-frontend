@@ -14,7 +14,13 @@ const Sort: React.FC<PropsType> = ({ sortClickHandler }) => {
         <img className="polygon" src={polygon} />
       {
         sortBy.map((item) => (
-          <div className="sort-item" key={item} onClick={() => sortClickHandler(item)}>{item}</div>
+          <div
+            className="sort-item"
+            key={item}
+            onClick={() => sortClickHandler(item)}
+          >
+          {item}
+          </div>
         ))
       }
     </SortContainer>

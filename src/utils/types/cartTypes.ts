@@ -22,6 +22,7 @@ export type CartType = {
   price: number;
   userId: number;
   book: BookType;
+  numberOfCopies: number;
 };
 
 export type CartArrayType = {

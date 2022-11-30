@@ -24,9 +24,19 @@ const deleteAllBooksFromCart = (userId: number) => {
   return customAxios.delete('/cart/all', { params: { userId } });
 };
 
+const addCopyToCart = (id: number) => {
+  return customAxios.patch(`/cart/addcopy/${id}`);
+};
+
+const deleteCopyFromCart = (id: number) => {
+  return customAxios.patch(`/cart/removecopy/${id}`);
+};
+
 export default {
   addToCart,
   getBooksFromCart,
   deleteBookFromCart,
   deleteAllBooksFromCart,
+  addCopyToCart,
+  deleteCopyFromCart,
 };

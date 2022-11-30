@@ -3,12 +3,12 @@ import { toast } from 'react-toastify';
 
 import { FavoritesPageContainer } from './FavoritesPage.styles';
 
-import EmptyPage from '../EmptyPage/EmptyPage';
+import EmptyPage from '../EmptyPage';
+import BookItem from '../../components/BookItem';
 
 import { useAppSelector } from '../../store/hooks';
 import favoritesApi from '../../api/favoritesApi';
 import type { FavoriteBooksType } from '../../utils/types/favoriteType';
-import BookItem from '../../components/BookItem/BookItem';
 
 const FavoritesPage: React.FC = () => {
   const userId = useAppSelector((state) => state.user.user?.id);
