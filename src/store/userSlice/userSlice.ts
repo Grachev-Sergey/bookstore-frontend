@@ -10,6 +10,7 @@ import type {
 } from '../../utils/types/userTypes';
 import type { UserFavoriteType, DeletedFavoriteType } from '../../utils/types/favoriteType';
 import type { UserCartType, DeletedCartItemType } from '../../utils/types/cartTypes';
+import type { UserRatingType } from '../../utils/types/ratingType';
 
 const initialState: UserObjectType = {
   user: {
@@ -59,6 +60,22 @@ const userSlice = createSlice({
         );
       }
     },
+
+    changeRating: (state, action: PayloadAction<UserRatingType>) => {
+      if (state.user?.rating) {
+        const isRated:boolean[] = [];
+        state.user.rating.forEach((item) => {
+          if (item.id === action.payload.id) {
+            // eslint-disable-next-line no-param-reassign
+            item.rating = action.payload.rating;
+            isRated.push(true);
+          }
+        });
+        if (!isRated.includes(true)) {
+          state.user.rating.push(action.payload);
+        }
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(userThunks.signUpUser.fulfilled, fillingState);
@@ -75,6 +92,7 @@ export const {
   removeFromFavorites,
   addToCart,
   removeFromCart,
+  changeRating,
 } = userSlice.actions;
 
 export default userSlice.reducer;

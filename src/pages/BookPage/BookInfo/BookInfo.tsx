@@ -9,7 +9,8 @@ import RatingElem from '../../../components/Rating';
 
 import ratingApi from '../../../api/ratingApi';
 import { useAppDispatch } from '../../../store/hooks';
-import userThunks from '../../../store/userSlice/userThunks';
+// import userThunks from '../../../store/userSlice/userThunks';
+import { changeRating } from '../../../store/userSlice';
 import type { UserType } from '../../../utils/types/userTypes';
 import type { BookType } from '../../../utils/types/bookTypes';
 
@@ -28,7 +29,7 @@ const BookInfo:React.FC<PropsType> = ({ userInfo, book, id, setNewRating }) => {
   const ratingId = userInfo?.rating?.map((item) => item.bookId);
   const [isRated, setIsRated] = useState(ratingId?.includes(Number(id)));
 
-  const changeRating = async (rate: number) => {
+  const changeRatingHandler = async (rate: number) => {
     try {
       if (!userInfo?.email) {
         return navigate('/signup');
@@ -38,8 +39,10 @@ const BookInfo:React.FC<PropsType> = ({ userInfo, book, id, setNewRating }) => {
         userId: Number(userInfo?.id),
         rating: rate,
       });
-      setNewRating(newRating.data.rating);
-      await dispatch(userThunks.checkUser());
+      if (newRating.data.rating) {
+        setNewRating(newRating.data.rating);
+      }
+      dispatch(changeRating(newRating.data));
       setIsRated(true);
     } catch (err) {
       const error = err as Error;
@@ -64,7 +67,7 @@ const BookInfo:React.FC<PropsType> = ({ userInfo, book, id, setNewRating }) => {
           <RatingElem
             initialValue={book?.rating || 0}
             readOnly={false}
-            onClick={(rate) => changeRating(rate)}
+            onClick={(rate) => changeRatingHandler(rate)}
           />
           {!isRated &&
             (<div className="rate-this-book">

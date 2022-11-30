@@ -10,7 +10,3 @@ export type ChangeRatingType = {
   userId?: number;
   rating?: number;
 };
-
-export type ResponseRatingType = {
-  rating: number;
-};
