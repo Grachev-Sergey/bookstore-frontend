@@ -18,7 +18,7 @@ type PropsType = {
   changeField: (fieldName: string) => void;
 };
 
-export const ProfileInfo: React.FC<PropsType> = (props) => {
+const ProfileInfo: React.FC<PropsType> = (props) => {
   const userInfo = useAppSelector((state) => state.user.user);
   const userId = Number(userInfo?.id);
   const dispatch = useAppDispatch();
@@ -35,7 +35,6 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
     onSubmit: async (values) => {
       try {
         await dispatch(userThunks.changeUserInfo(values)).unwrap();
-        await dispatch(userThunks.checkUser());
         props.changeField('');
       } catch (err) {
         const error = err as Error;
@@ -100,3 +99,5 @@ export const ProfileInfo: React.FC<PropsType> = (props) => {
     </ProfileInfoContainer>
   );
 };
+
+export default ProfileInfo;

@@ -17,7 +17,7 @@ type PropsType = {
   changeField: (fieldName: string) => void;
 };
 
-export const ProfilePassword: React.FC<PropsType> = (props) => {
+const ProfilePassword: React.FC<PropsType> = (props) => {
   const userInfo = useAppSelector((state) => state.user.user);
   const userId = Number(userInfo?.id);
   const dispatch = useAppDispatch();
@@ -34,7 +34,6 @@ export const ProfilePassword: React.FC<PropsType> = (props) => {
     onSubmit: async (values) => {
       try {
         await dispatch(userThunks.changeUserPass(values)).unwrap();
-        await dispatch(userThunks.checkUser());
         props.changeField('');
       } catch (err) {
         const error = err as Error;
@@ -105,3 +104,5 @@ export const ProfilePassword: React.FC<PropsType> = (props) => {
     </ProfilePasswordContainer>
   );
 };
+
+export default ProfilePassword;

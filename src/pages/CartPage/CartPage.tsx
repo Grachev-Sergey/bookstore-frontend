@@ -9,7 +9,7 @@ import EmptyPage from '../EmptyPage';
 import Button from '../../components/Button';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import userThunks from '../../store/userSlice/userThunks';
+import { removeAllFromCart } from '../../store/userSlice/userSlice';
 import cartApi from '../../api/cartApi';
 
 import type { CartType } from '../../utils/types/cartTypes';
@@ -54,7 +54,7 @@ const CartPage: React.FC = () => {
   const emptyTrash = async () => {
     try {
       await cartApi.deleteAllBooksFromCart(userId);
-      await dispatch(userThunks.checkUser());
+      dispatch(removeAllFromCart());
       setCart([]);
     } catch (err) {
       const error = err as Error;

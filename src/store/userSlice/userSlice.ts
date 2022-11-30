@@ -61,6 +61,12 @@ const userSlice = createSlice({
       }
     },
 
+    removeAllFromCart: (state) => {
+      if (state.user?.cart) {
+        state.user.cart = [];
+      }
+    },
+
     changeRating: (state, action: PayloadAction<UserRatingType>) => {
       if (state.user?.rating) {
         const isRated:boolean[] = [];
@@ -76,6 +82,7 @@ const userSlice = createSlice({
         }
       }
     },
+
   },
   extraReducers: (builder) => {
     builder.addCase(userThunks.signUpUser.fulfilled, fillingState);
@@ -92,6 +99,7 @@ export const {
   removeFromFavorites,
   addToCart,
   removeFromCart,
+  removeAllFromCart,
   changeRating,
 } = userSlice.actions;
 

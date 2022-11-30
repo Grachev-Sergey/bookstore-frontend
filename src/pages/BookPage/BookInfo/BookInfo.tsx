@@ -9,7 +9,6 @@ import RatingElem from '../../../components/Rating';
 
 import ratingApi from '../../../api/ratingApi';
 import { useAppDispatch } from '../../../store/hooks';
-// import userThunks from '../../../store/userSlice/userThunks';
 import { changeRating } from '../../../store/userSlice';
 import type { UserType } from '../../../utils/types/userTypes';
 import type { BookType } from '../../../utils/types/bookTypes';
