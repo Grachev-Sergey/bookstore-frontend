@@ -4,12 +4,12 @@ import { toast } from 'react-toastify';
 
 import { LogInPageContainer } from './LogInPage.styles';
 
+import Input from '../../components/Input';
+import Button from '../../components/Button';
+
 import { useAppDispatch } from '../../store/hooks';
 import userThunks from '../../store/userSlice/userThunks';
 import schemas from '../../utils/schemas';
-
-import Input from '../../components/Input';
-import Button from '../../components/Button';
 
 import mail from '../../assets/icons/mail.png';
 import hide from '../../assets/icons/hide.png';

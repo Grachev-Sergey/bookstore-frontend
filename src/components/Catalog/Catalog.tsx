@@ -3,13 +3,13 @@ import { useSearchParams } from 'react-router-dom';
 
 import { CatalogContainer } from './Catalog.styles';
 
-import { useAppSelector, useAppDispatch } from '../../store/hooks';
-
-import bookThunks from '../../store/bookSlice/bookThunks';
 import BookItem from '../BookItem';
 import FilterBlock from '../FilterBlock';
 import Pagination from '../Pagination';
 import Loading from '../Loading';
+
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import bookThunks from '../../store/bookSlice/bookThunks';
 
 const Catalog: React.FC = () => {
   const books = useAppSelector((state) => state.books);

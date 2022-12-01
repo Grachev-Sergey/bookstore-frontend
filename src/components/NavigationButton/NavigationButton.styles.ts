@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import cartIcon from '../../assets/icons/cartIcon.png';
 import favoritesIcon from '../../assets/icons/favoritesIcon.png';
 import profileIcon from '../../assets/icons/profileIcon.png';
@@ -34,6 +35,7 @@ export const NavigationButtonContainer = styled.div`
     background-image: url(${favoritesIcon});
     background-position: 11px 13px;
   }
+
   .profile {
     background-image: url(${profileIcon});
     background-position: center center;
@@ -47,18 +49,20 @@ export const NavigationButtonContainer = styled.div`
       height: 32px;
       background-size: 18px;
     }
+
     .cart {
       margin-right: 18px;
       background-position: center center;
     }
+
     .favorites {
       margin-right: 18px;
       background-position: 8px 8px;
     }
+
     .profile {
       background-image: url(${profileIcon});
       background-position: center center;
     }
   }
-
 `;

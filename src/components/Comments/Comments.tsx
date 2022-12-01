@@ -3,11 +3,10 @@ import { toast } from 'react-toastify';
 
 import { CommentsContainer } from './Comments.styles';
 
-import commentsApi from '../../api/commentsApi';
-
 import Button from '../Button';
-import CommentItem from './CommentItem/CommentItem';
+import CommentItem from './CommentItem';
 
+import commentsApi from '../../api/commentsApi';
 import type { CommentType } from '../../utils/types/commentsType';
 import type { UserType } from '../../utils/types/userTypes';
 

@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import { HeaderContainer } from './Header.styles';
 
-import { useAppSelector } from '../../store/hooks';
-
 import Button from '../Button';
 import NavigationButton from '../NavigationButton';
 import Input from '../Input';
+
+import { useAppSelector } from '../../store/hooks';
 
 import logo from '../../assets/images/logo.png';
 import search from '../../assets/icons/search.png';

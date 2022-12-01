@@ -5,10 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { AppContainer } from './AppContainer.styles';
 
-import PrivateRoute from './utils/PrivateRoute';
-import { useAppDispatch } from './store/hooks';
-import userThunks from './store/userSlice/userThunks';
-
 import MainPage from './pages/MainPage';
 import BookPage from './pages/BookPage';
 import ProfilePage from './pages/ProfilePage';
@@ -20,6 +16,10 @@ import LogInPage from './pages/LogInPage';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Loading from './components/Loading';
+
+import PrivateRoute from './utils/PrivateRoute';
+import { useAppDispatch } from './store/hooks';
+import userThunks from './store/userSlice/userThunks';
 
 const App: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -51,6 +51,7 @@ const App: React.FC = () => {
       </div>
     );
   }
+
   return (
     <AppContainer>
       <ToastContainer

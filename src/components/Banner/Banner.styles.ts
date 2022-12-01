@@ -22,6 +22,7 @@ export const BannerContainer = styled.section`
     line-height: ${({ theme }) => theme.lineHight.title};
     color: ${({ theme }) => theme.colors.dark};
   }
+
   p {
     max-width: 217px;
     margin: 10px 0 0 108px;
@@ -31,6 +32,7 @@ export const BannerContainer = styled.section`
     line-height: ${({ theme }) => theme.lineHight.regularBig};
     color: ${({ theme }) => theme.colors.darkBlue};
   }
+
   .banner__button {
     padding: 10px 55px;
     margin: 50px 0 0 108px;
@@ -39,6 +41,7 @@ export const BannerContainer = styled.section`
     max-width: 231px;
     cursor: default;
   }
+
   .img {
     margin-left: 146px;
     background-image: url(${woman});
@@ -102,6 +105,7 @@ export const BannerContainer = styled.section`
       font-size: ${({ theme }) => theme.fontSize.author};
       line-height: ${({ theme }) => theme.lineHight.regular};
     }
+
     p {
       max-width: 217px;
     }

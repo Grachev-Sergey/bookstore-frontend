@@ -11,7 +11,6 @@ export const DropDownButtonContainer = styled.div`
   line-height: ${({ theme }) => theme.lineHight.regular};
   letter-spacing: 0.75px;
   cursor: pointer;
-
   :not(:first-child) {
     margin-left: 20px;
   }

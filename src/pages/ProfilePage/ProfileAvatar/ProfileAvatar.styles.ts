@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import userProfile from '../../../assets/icons/userProfile.png';
 import camera from '../../../assets/icons/camera.png';
 

@@ -66,6 +66,7 @@ export const PriceFilterContainer = styled.div`
 
   @media only screen and (${({ theme }) => theme.media.medium}) {
     min-width: 580px;
+
     .polygon {
       top: -18px;
     }

@@ -29,6 +29,7 @@ export const AuthorizeBannerContainer = styled.section`
     line-height: ${({ theme }) => theme.lineHight.title};
     color: ${({ theme }) => theme.colors.dark};
   }
+
   p {
     max-width: 415px;
     margin: 10px 0 0 0;

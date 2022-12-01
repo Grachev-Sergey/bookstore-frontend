@@ -4,15 +4,14 @@ import { toast } from 'react-toastify';
 
 import { FilerBlockContainer } from './FilterBlock.styles';
 
-import genesApi from '../../api/genesApi';
-
-import type { GenreType } from '../../utils/types/filterTypes';
-
 import DropDownButton from './DropDownButton';
 import GenreFilter from './GenreFilter';
 import PriceFilter from './PriceFilter';
 import Sort from './Sort';
 import Loading from '../Loading';
+
+import genesApi from '../../api/genesApi';
+import type { GenreType } from '../../utils/types/filterTypes';
 
 const FilterBlock: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();

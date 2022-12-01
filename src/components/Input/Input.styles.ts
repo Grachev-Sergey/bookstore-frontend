@@ -14,7 +14,6 @@ export const InputContainer = styled.div`
   }
   
   input {
-    /* max-width: 413px; */
     text-align: start;
     background: ${({ theme }) => theme.colors.light};
     border-radius: ${({ theme }) => theme.borderRadius};
@@ -23,7 +22,6 @@ export const InputContainer = styled.div`
     padding: 18px 0 18px 64px;
     border: none;
     outline: none;
-
     ::placeholder {
       font-weight: ${({ theme }) => theme.fontWeight.regular};
       font-size: ${({ theme }) => theme.fontSize.small};
@@ -32,7 +30,6 @@ export const InputContainer = styled.div`
       letter-spacing: 0.75px;
       color: ${({ theme }) => theme.colors.darkGray};
     }
-
   }
 
   .input__title {
@@ -60,6 +57,7 @@ export const InputContainer = styled.div`
         font-size: ${({ theme }) => theme.fontSize.imputTitle};
       }
     }
+
     .input__title {
       margin-top: 4px;
       font-size: ${({ theme }) => theme.fontSize.commentDescription};

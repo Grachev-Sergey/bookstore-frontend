@@ -12,10 +12,6 @@ export type UserType = {
   cart?: UserCartType[];
 };
 
-export type UserIdType = {
-  userId: number;
-};
-
 export type UserObjectType = {
   user: UserType | null;
 };

@@ -138,6 +138,7 @@ export const BookInfoContainer = styled.div`
       width: 33px;
     }
   }
+
   @media only screen and (${({ theme }) => theme.media.mobile}) {
     max-width: 145px;
     margin-left: 145px;

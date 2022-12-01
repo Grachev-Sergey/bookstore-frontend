@@ -4,20 +4,18 @@ import { toast } from 'react-toastify';
 
 import { BookPageContainer } from './BookPage.styles';
 
-import bookApi from '../../api/bookApi';
-import { useAppSelector } from '../../store/hooks';
-
 import AuthorizeBanner from '../../components/AuthorizeBanner';
 import Loading from '../../components/Loading';
 import Comments from '../../components/Comments';
 import Recommendations from '../../components/Recommendations';
 import BookCover from './BookCover';
 import BookInfo from './BookInfo';
+import BookDescription from './BookDescription';
 
+import bookApi from '../../api/bookApi';
+import { useAppSelector } from '../../store/hooks';
 import type { BookType } from '../../utils/types/bookTypes';
-
 import type { CommentType } from '../../utils/types/commentsType';
-import BookDescription from './BookDescription/BookDescription';
 
 const BookPage: React.FC = () => {
   const { id } = useParams();
@@ -57,7 +55,12 @@ const BookPage: React.FC = () => {
       <div className="book-block">
         <BookCover userInfo={userInfo} book={book} id={id} />
         <div className="book-info-wrapper">
-          <BookInfo userInfo={userInfo} book={book} id={id} setNewRating={changeRating} />
+          <BookInfo
+            userInfo={userInfo}
+            book={book}
+            id={id}
+            setNewRating={changeRating}
+          />
           <BookDescription userInfo={userInfo} book={book} id={id} />
         </div>
       </div>

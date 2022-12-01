@@ -39,7 +39,8 @@ const ProfileAvatar: React.FC = () => {
           <div className="add-photo">
             <input
               className="add-photo__input"
-              type="file" accept="image/png, image/jpeg"
+              type="file"
+              accept="image/png, image/jpeg"
               id="photo"
               name="photo"
               onChange={uploadPhoto}

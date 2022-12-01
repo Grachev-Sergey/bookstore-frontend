@@ -150,7 +150,6 @@ export const BookContainer = styled.div`
     .addToCartButton{
       font-size: ${({ theme }) => theme.fontSize.small};
     }
-
   }
 
   @media only screen and (${({ theme }) => theme.media.medium}) {

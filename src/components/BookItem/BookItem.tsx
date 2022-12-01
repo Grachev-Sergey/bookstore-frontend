@@ -1,10 +1,14 @@
+/* eslint-disable no-nested-ternary */
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import classNames from 'classnames';
 
 import { BookContainer } from './BookItem.styles';
 
-import cover from '../../utils/config';
+import Button from '../Button';
+import RatingElem from '../Rating';
+
 import favoritesApi from '../../api/favoritesApi';
 import cartApi from '../../api/cartApi';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
@@ -13,17 +17,9 @@ import {
   removeFromFavorites,
   addToCart,
 } from '../../store/userSlice';
-import {
-  setClassNameForAddToCartButton,
-  getButtonName,
-  disableButton,
-} from '../../utils/addToCartButtonInfo';
-
-import Button from '../Button';
-import RatingElem from '../Rating';
-
 import type { BookType } from '../../utils/types/bookTypes';
 import type { FavoriteType } from '../../utils/types/favoriteType';
+import cover from '../../utils/config';
 
 import removeFavorites from '../../assets/icons/removeFavorites.png';
 import addFavorites from '../../assets/icons/addFavorites.png';
@@ -81,6 +77,35 @@ const BookItem: React.FC<PropsType> = ({ book }) => {
     }
   };
 
+  const booksInCartId = userInfo?.cart?.map((item) => item.bookId);
+  const isInCart = booksInCartId?.includes(Number(book.id));
+
+  const bntClass = classNames({
+    'add-to-cart__button': true,
+    'add-to-cart__button--gray': !book?.hardCover,
+    'add-to-cart__button--added': isInCart,
+  });
+
+  const getBtnContent = () => {
+    if (!book.hardCover) {
+      return 'Not available';
+    }
+    if (isInCart) {
+      return 'Added to cart';
+    }
+    return `$ ${book?.hardCoverPrice} USD`;
+  };
+
+  const isDisabled = () => {
+    if (!book?.hardCover) {
+      return true;
+    }
+    if (isInCart) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <BookContainer>
       <div className="book__cover">
@@ -104,11 +129,11 @@ const BookItem: React.FC<PropsType> = ({ book }) => {
         <span className="rating__text">{(book.rating || 0).toFixed(1)}</span>
       </div>
       <Button
-        className={setClassNameForAddToCartButton(book, userInfo, 'hardCover')}
-        isDisabled={disableButton(book, userInfo, 'hardCover')}
+        className={bntClass}
+        isDisabled={isDisabled()}
         onClick={() => addToCartHandler(cover.hardCover, Number(book?.hardCoverPrice))}
       >
-        {getButtonName(book, userInfo, 'hardCover')}
+        {getBtnContent()}
       </Button>
     </BookContainer>
   );

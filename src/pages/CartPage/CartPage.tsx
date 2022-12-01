@@ -26,7 +26,8 @@ const CartPage: React.FC = () => {
       try {
         const cartList = await cartApi.getBooksFromCart(userId);
         setCart(cartList.data.cart);
-        const price = cartList.data.cart.reduce((acc, item) => acc + item.price, 0);
+        // eslint-disable-next-line max-len
+        const price = cartList.data.cart.reduce((acc, item) => acc + (item.price * item.numberOfCopies), 0);
         setTotalPrice(Number(price.toFixed(2)));
       } catch (err) {
         const error = err as Error;
@@ -39,6 +40,8 @@ const CartPage: React.FC = () => {
   const removeItemFromCart = (id: number) => {
     const newCart = cart.filter((item) => item.id !== id);
     setCart(newCart);
+    const price = newCart.reduce((acc, item) => acc + (item.price * item.numberOfCopies), 0);
+    setTotalPrice(Number(price.toFixed(2)));
   };
 
   const increaseBookPrice = (bookPrice: number) => {
@@ -72,7 +75,7 @@ const CartPage: React.FC = () => {
               {
                 cart.map((item) => (
                   <CartItem
-                    key={item.bookId}
+                    key={item.bookId + item.bookCover}
                     cartItem={item}
                     updateCart={removeItemFromCart}
                     increaseBookPrice={increaseBookPrice}
@@ -87,9 +90,15 @@ const CartPage: React.FC = () => {
             </div>
             <div className="buttons-block">
               <Link to="/">
-                <Button className="buttons-block__continue-shopping button">Continue shopping</Button>
+                <Button className="buttons-block__continue-shopping button">
+                  Continue shopping
+                </Button>
               </Link>
-              <Button className="buttons-block__chekout button" onClick={emptyTrash}>Chekout</Button>
+              <Button
+                className="buttons-block__chekout button"
+                onClick={emptyTrash}
+              >Chekout
+              </Button>
             </div>
            </CartPageContainer>
         )

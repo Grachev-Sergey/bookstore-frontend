@@ -4,10 +4,9 @@ import { toast } from 'react-toastify';
 
 import { RecommendationsContainer } from './Recommendations.styles';
 
+import BookItem from '../BookItem';
+
 import recommendationsApi from '../../api/recommendationsApi';
-
-import BookItem from '../BookItem/BookItem';
-
 import type { BookType } from '../../utils/types/bookTypes';
 
 const Recommendations: React.FC = () => {

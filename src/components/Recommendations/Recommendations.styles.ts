@@ -9,6 +9,7 @@ export const RecommendationsContainer = styled.section`
   svg {
     width: 52px;
   }
+
   @media only screen and (${({ theme }) => theme.media.tablet}) {
     svg {
       height: 29px;

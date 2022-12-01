@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { EmptyPageContainer } from './EmptyPage.styles';
 
-import Button from '../../components/Button/Button';
+import Button from '../../components/Button';
 
 import booksImg from '../../assets/images/books-in-cart.png';
 
@@ -11,7 +11,7 @@ type PropsType = {
 
 const EmptyPage: React.FC<PropsType> = ({ type }) => {
   return (
-    <EmptyPageContainer type={type}>
+    <EmptyPageContainer>
       <img className="stack-of-books" src={booksImg} alt="stack of books" />
       <div className="empty-page">
         <h2 className="empty-page__title">Your {type} is empty</h2>

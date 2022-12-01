@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import bookApi from '../../api/bookApi';
-
 import type { FilterQueryType } from '../../utils/types/filterTypes';
 
 const getAllFiltredBooks = createAsyncThunk(

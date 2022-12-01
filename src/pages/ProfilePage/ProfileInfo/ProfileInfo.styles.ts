@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ProfileInfoContainer = styled.div`
   width: 100%;
+
   .info__icon {
     width: 24px;
     position: absolute;
@@ -78,6 +79,7 @@ export const ProfileInfoContainer = styled.div`
     .title {
       font-size: 12px; 
     }
+
     .info-container {
       margin-bottom: 30px;
     }

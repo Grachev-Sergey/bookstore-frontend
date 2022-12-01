@@ -1,5 +1,7 @@
+/* eslint-disable no-extra-boolean-cast */
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import classNames from 'classnames';
 
 import { BookDescriptionContainer } from './BookDescription.styles';
 
@@ -11,12 +13,6 @@ import type { UserType } from '../../../utils/types/userTypes';
 import type { BookType } from '../../../utils/types/bookTypes';
 
 import Button from '../../../components/Button';
-
-import {
-  setClassNameForAddToCartButton,
-  getButtonName,
-  disableButton,
-} from '../../../utils/addToCartButtonInfo';
 
 type PropsType = {
   userInfo: UserType | null;
@@ -46,6 +42,64 @@ const BookDescription: React.FC<PropsType> = ({ userInfo, book, id }) => {
     }
   };
 
+  const hardCoverBookInCart = userInfo?.cart?.find((item) => {
+    return item.bookId === Number(book?.id) && item.bookCover === 'hardCover';
+  });
+
+  const paperBackBookInCart = userInfo?.cart?.find((item) => {
+    return item.bookId === Number(book?.id) && item.bookCover === 'paperBack';
+  });
+
+  const paperBackBtnClass = classNames({
+    'add-to-cart__button': true,
+    'add-to-cart__button--gray': !book?.paperback,
+    'add-to-cart__button--added': paperBackBookInCart,
+  });
+
+  const hardCovarBtnClass = classNames({
+    'add-to-cart__button': true,
+    'add-to-cart__button--gray': !book?.hardCover,
+    'add-to-cart__button--added': hardCoverBookInCart,
+  });
+
+  const getBtnContent = (type:string) => {
+    if (type === 'paperback') {
+      if (!book?.paperback) {
+        return 'Not available';
+      }
+      if (Boolean(paperBackBookInCart)) {
+        return 'Added to cart';
+      }
+      return `$ ${book?.paperbackPrice} USD`;
+    }
+    if (!book?.hardCover) {
+      return 'Not available';
+    }
+    if (Boolean(hardCoverBookInCart)) {
+      return 'Added to cart';
+    }
+    return `$ ${book?.hardCoverPrice} USD`;
+  };
+
+  const isDisabled = (type: string) => {
+    if (type === 'paperback') {
+      if (!book?.paperback) {
+        return true;
+      }
+      if (Boolean(paperBackBookInCart)) {
+        return true;
+      }
+      return false;
+    }
+    if (!book?.hardCover) {
+      return true;
+    }
+    if (Boolean(hardCoverBookInCart)) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <BookDescriptionContainer>
       <div className="description-and-add-to-cart">
@@ -57,21 +111,21 @@ const BookDescription: React.FC<PropsType> = ({ userInfo, book, id }) => {
           <div className="cover-selection">
             <p className="cover-selection__title">Paperback</p>
             <Button
-              className={setClassNameForAddToCartButton(book, userInfo, 'paperBack')}
-              isDisabled={disableButton(book, userInfo, 'paperBack')}
+              className={paperBackBtnClass}
+              isDisabled={isDisabled('paperback')}
               onClick={() => addToCartHandler(cover.paperBack, Number(book?.paperbackPrice))}
             >
-              {getButtonName(book, userInfo, 'paperBack')}
+              {getBtnContent('paperback')}
             </Button>
           </div>
           <div className="cover-selection cover-selection--hardcover">
             <p className="cover-selection__title">Hardcover</p>
             <Button
-              className={setClassNameForAddToCartButton(book, userInfo, 'hardCover')}
-              isDisabled={disableButton(book, userInfo, 'hardCover')}
+              className={hardCovarBtnClass}
+              isDisabled={isDisabled('hardCover')}
               onClick={() => addToCartHandler(cover.hardCover, Number(book?.hardCoverPrice))}
             >
-              {getButtonName(book, userInfo, 'hardCover')}
+              {getBtnContent('hardCover')}
             </Button>
           </div>
         </div>

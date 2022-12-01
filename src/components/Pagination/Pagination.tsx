@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import classNames from 'classnames';
 
 import { PaginationContainer } from './Pagination.styles';
 
@@ -35,6 +36,24 @@ const Pagination: React.FC = () => {
     setPage(page + 1);
   };
 
+  const leftIndicatorClass = classNames({
+    // eslint-disable-next-line quote-props
+    'indicator': true,
+    'indicator--selected': (page === 1),
+  });
+
+  const centerIndicatorClass = classNames({
+    // eslint-disable-next-line quote-props
+    'indicator': true,
+    'indicator--selected': (page > 1 && page < maxPages),
+  });
+
+  const rightIndicatorClass = classNames({
+    // eslint-disable-next-line quote-props
+    'indicator': true,
+    'indicator--selected': page === maxPages,
+  });
+
   return (
     <PaginationContainer userId={Boolean(userId)}>
       <img
@@ -44,9 +63,9 @@ const Pagination: React.FC = () => {
         onClick={previousPageClickHandler}
       />
       <div className="indicator-block">
-        <div className={page === 1 ? 'indicator indicator--selected' : 'indicator'} />
-        <div className={(page > 1 && page < maxPages) ? 'indicator indicator--selected' : 'indicator'} />
-        <div className={page === maxPages ? 'indicator indicator--selected' : 'indicator'} />
+        <div className={leftIndicatorClass} />
+        <div className={centerIndicatorClass} />
+        <div className={rightIndicatorClass} />
       </div>
       <img
         className="next-page__button page-button"

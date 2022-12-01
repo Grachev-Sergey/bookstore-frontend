@@ -33,8 +33,7 @@ export const CommentsContainer = styled.div`
       outline: none;
     }
     ::placeholder {
-    /* dark_grey */
-    color: #B9BAC4;
+      color: ${({ theme }) => theme.colors.darkGray};
     }
   }
 

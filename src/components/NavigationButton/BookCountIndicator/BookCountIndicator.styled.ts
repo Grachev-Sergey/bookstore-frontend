@@ -15,12 +15,13 @@ export const BookCountIndicatorContainer = styled.div`
   font-size: ${({ theme }) => theme.fontSize.commentDescription};
   line-height: ${({ theme }) => theme.lineHight.commentDescription};
   color: ${({ theme }) => theme.colors.darkBlue};
+
   @media only screen and (${({ theme }) => theme.media.mobile}) {
     height: 16px;
     width: 16px;
     top: -5px;
     right: 12px;
     font-size: ${({ theme }) => theme.fontSize.bookStatusMobile};
-  line-height: ${({ theme }) => theme.lineHight.bookStatus};
+    line-height: ${({ theme }) => theme.lineHight.bookStatus};
   }
 `;

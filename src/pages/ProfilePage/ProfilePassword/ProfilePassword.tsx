@@ -46,7 +46,11 @@ const ProfilePassword: React.FC<PropsType> = (props) => {
     <ProfilePasswordContainer>
       {props.selectFieldToChange !== 'password'
         ? (<div className="text__container">
-              <img className="info__icon" src={hide} alt="Password icon" />
+              <img
+                className="info__icon"
+                src={hide}
+                alt="Password icon"
+              />
               <div className="text__block">
               <p>*******</p>
               </div>

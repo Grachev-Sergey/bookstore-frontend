@@ -41,35 +41,45 @@ const CartItem: React.FC<PropsType> = ({
   };
 
   const increaceNumberOfBooks = async () => {
+    await cartApi.addCopyToCart(cartItem.id);
     setCounter(counter + 1);
     increaseBookPrice(cartItem.price);
-    await cartApi.addCopyToCart(cartItem.id);
   };
 
   const reduceNumberOfBooks = async () => {
     if (counter === 1) {
       return;
     }
+    await cartApi.deleteCopyFromCart(cartItem.id);
     setCounter(counter - 1);
     subtractBookPrice(cartItem.price);
-    await cartApi.deleteCopyFromCart(cartItem.id);
   };
 
   return (
     <CartItemContainer>
       <Link to={`/book/${cartItem.book.id}`}>
-        <img className="book-cover" src={cartItem.book.cover} alt="book cover" />
+        <img
+          className="book-cover"
+          src={cartItem.book.cover}
+          alt="book cover"
+        />
       </Link>
       <div className="cart-item-info">
       <Link to={`/book/${cartItem.book.id}`}>
-        <h2 className="cart-item-info__book-title">{cartItem.book.title}</h2>
+        <h2 className="cart-item-info__book-title">
+          {cartItem.book.title}
+        </h2>
       </Link>
-        <p className="cart-item-info__book-author">{cartItem.book.author}</p>
-        <p className="cart-item-info__book-cover-type">{cartItem.bookCover === 'hardCover' ? 'Hardcover' : 'Paperback'}</p>
+        <p className="cart-item-info__book-author">
+          {cartItem.book.author}
+        </p>
+        <p className="cart-item-info__book-cover-type">
+          {cartItem.bookCover === 'hardCover' ? 'Hardcover' : 'Paperback'}
+        </p>
         <div className="counter-block">
           <button
             className="counter-block__button"
-          onClick={reduceNumberOfBooks}
+            onClick={reduceNumberOfBooks}
           >-
           </button>
           <p className="counter-block__counter">{`${counter}`}</p>

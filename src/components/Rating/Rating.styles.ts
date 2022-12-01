@@ -9,6 +9,7 @@ export const RatingContainer = styled.div`
         stroke-width: 1;
     }
   }
+
   @media only screen and (${({ theme }) => theme.media.tablet}) {
     svg {
       height: 29px;

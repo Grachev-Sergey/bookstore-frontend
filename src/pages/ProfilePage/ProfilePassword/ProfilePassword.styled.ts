@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ProfilePasswordContainer = styled.div`
   width: 100%;
+
   .info__icon {
     width: 24px;
     position: absolute;
