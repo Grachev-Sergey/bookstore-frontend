@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo } from 'react';
 import { Rating } from 'react-simple-star-rating';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -25,8 +25,11 @@ type PropsType = {
 const BookInfo:React.FC<PropsType> = ({ userInfo, book, id, setNewRating }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const ratingId = userInfo?.rating?.map((item) => item.bookId);
-  const [isRated, setIsRated] = useState(ratingId?.includes(Number(id)));
+
+  const isRated = useMemo(() => {
+    if (!id) return false;
+    return userInfo?.rating?.map((item) => item.bookId).includes(+id);
+  }, [userInfo?.rating, id]);
 
   const changeRatingHandler = async (rate: number) => {
     try {
@@ -42,7 +45,6 @@ const BookInfo:React.FC<PropsType> = ({ userInfo, book, id, setNewRating }) => {
         setNewRating(newRating.data.rating);
       }
       dispatch(changeRating(newRating.data));
-      setIsRated(true);
     } catch (err) {
       const error = err as Error;
       return toast.error(error.message);

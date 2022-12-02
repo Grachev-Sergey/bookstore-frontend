@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,8 +23,11 @@ type PropsType = {
 const BookCover: React.FC<PropsType> = ({ userInfo, book, id }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const favoritsId = userInfo?.favorite?.map((item) => item.bookId);
-  const [isInFavorites, setIsInFavorites] = useState(favoritsId?.includes(Number(id)));
+
+  const isInFavorites = useMemo(() => {
+    if (!id) return false;
+    return userInfo?.favorite?.map((item) => item.bookId).includes(+id);
+  }, [userInfo?.favorite, id]);
 
   const toggleFavoritButton = async () => {
     try {
@@ -38,11 +41,9 @@ const BookCover: React.FC<PropsType> = ({ userInfo, book, id }) => {
       if (!isInFavorites) {
         const newFavoriteItem = await favoritesApi.addToFavorites(favoriteInfo);
         dispatch(addToFavorites(newFavoriteItem.data));
-        setIsInFavorites(true);
       } else {
         const removedFavoriteId = await favoritesApi.removeFromFavorites(favoriteInfo);
         dispatch(removeFromFavorites(removedFavoriteId.data));
-        setIsInFavorites(false);
       }
     } catch (err) {
       const error = err as Error;

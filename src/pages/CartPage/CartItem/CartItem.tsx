@@ -13,16 +13,16 @@ import trashCan from '../../../assets/icons/trashCan.png';
 
 type PropsType = {
   cartItem: CartType;
-  updateCart: (id: number) => void;
-  increaseBookPrice: (bookPrice: number) => void;
-  subtractBookPrice: (bookPrice: number) => void;
+  updateTotalPriceAndCart: (id: number) => void;
+  increaseTotalPrice: (bookPrice: number) => void;
+  subtractTotalPrice: (bookPrice: number) => void;
 };
 
 const CartItem: React.FC<PropsType> = ({
   cartItem,
-  updateCart,
-  increaseBookPrice,
-  subtractBookPrice,
+  updateTotalPriceAndCart,
+  increaseTotalPrice,
+  subtractTotalPrice,
 }) => {
   const [counter, setCounter] = useState(cartItem.numberOfCopies);
   const dispatch = useAppDispatch();
@@ -33,7 +33,7 @@ const CartItem: React.FC<PropsType> = ({
         cartId: cartItem.id,
       });
       dispatch(removeFromCart(removedFromCartItem.data));
-      updateCart(cartItem.id);
+      updateTotalPriceAndCart(cartItem.id);
     } catch (err) {
       const error = err as Error;
       return toast.error(error.message);
@@ -43,7 +43,7 @@ const CartItem: React.FC<PropsType> = ({
   const increaceNumberOfBooks = async () => {
     await cartApi.addCopyToCart(cartItem.id);
     setCounter(counter + 1);
-    increaseBookPrice(cartItem.price);
+    increaseTotalPrice(cartItem.price);
   };
 
   const reduceNumberOfBooks = async () => {
@@ -52,7 +52,7 @@ const CartItem: React.FC<PropsType> = ({
     }
     await cartApi.deleteCopyFromCart(cartItem.id);
     setCounter(counter - 1);
-    subtractBookPrice(cartItem.price);
+    subtractTotalPrice(cartItem.price);
   };
 
   return (

@@ -1,5 +1,5 @@
 /* eslint-disable no-nested-ternary */
-import { useState } from 'react';
+import { useMemo } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import classNames from 'classnames';
@@ -31,10 +31,13 @@ type PropsType = {
 const BookItem: React.FC<PropsType> = ({ book }) => {
   const id = book.id;
   const userInfo = useAppSelector((state) => state.user.user);
-  const favoritsId = userInfo?.favorite?.map((item) => item.bookId);
   const dispatch = useAppDispatch();
-  const [isInFavorites, setIsInFavorites] = useState(favoritsId?.includes(Number(id)));
   const navigate = useNavigate();
+
+  const isInFavorites = useMemo(() => {
+    if (!id) return false;
+    return userInfo?.favorite?.map((item) => item.bookId).includes(+id);
+  }, [userInfo?.favorite, id]);
 
   const toggleFavoritButton = async () => {
     try {
@@ -48,11 +51,10 @@ const BookItem: React.FC<PropsType> = ({ book }) => {
       if (!isInFavorites) {
         const newFavoriteItem = await favoritesApi.addToFavorites(favoriteInfo);
         dispatch(addToFavorites(newFavoriteItem.data));
-        return setIsInFavorites(true);
+      } else {
+        const removedFavoriteId = await favoritesApi.removeFromFavorites(favoriteInfo);
+        dispatch(removeFromFavorites(removedFavoriteId.data));
       }
-      const removedFavoriteId = await favoritesApi.removeFromFavorites(favoriteInfo);
-      dispatch(removeFromFavorites(removedFavoriteId.data));
-      setIsInFavorites(false);
     } catch (err) {
       const error = err as Error;
       return toast.error(error.message);

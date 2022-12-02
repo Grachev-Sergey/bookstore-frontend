@@ -37,19 +37,19 @@ const CartPage: React.FC = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-  const removeItemFromCart = (id: number) => {
+  const updateTotalPriceAndCart = (id: number) => {
     const newCart = cart.filter((item) => item.id !== id);
-    setCart(newCart);
     const price = newCart.reduce((acc, item) => acc + (item.price * item.numberOfCopies), 0);
+    setCart(newCart);
     setTotalPrice(Number(price.toFixed(2)));
   };
 
-  const increaseBookPrice = (bookPrice: number) => {
+  const increaseTotalPrice = (bookPrice: number) => {
     const result = totalPrice + bookPrice;
     setTotalPrice(Number(result.toFixed(2)));
   };
 
-  const subtractBookPrice = (bookPrice: number) => {
+  const subtractTotalPrice = (bookPrice: number) => {
     const result = totalPrice - bookPrice;
     setTotalPrice(Number(result.toFixed(2)));
   };
@@ -77,9 +77,9 @@ const CartPage: React.FC = () => {
                   <CartItem
                     key={item.bookId + item.bookCover}
                     cartItem={item}
-                    updateCart={removeItemFromCart}
-                    increaseBookPrice={increaseBookPrice}
-                    subtractBookPrice={subtractBookPrice}
+                    updateTotalPriceAndCart={updateTotalPriceAndCart}
+                    increaseTotalPrice={increaseTotalPrice}
+                    subtractTotalPrice={subtractTotalPrice}
                   />
                 ))
               }
