@@ -1,5 +1,5 @@
-// import dayjs from 'dayjs';
-import moment from 'moment';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 import { CommentItemContainer } from './CommentItem.styles';
 
@@ -14,7 +14,7 @@ type PropsType = {
 };
 
 const CommentItem: React.FC<PropsType> = ({ user, date, text }) => {
-  // dayjs.extend();
+  dayjs.extend(relativeTime);
 
   return (
     <CommentItemContainer>
@@ -22,8 +22,7 @@ const CommentItem: React.FC<PropsType> = ({ user, date, text }) => {
         <img className="user-info__photo" src={user.avatar ? `${user.avatar}` : `${userProfile}`} />
         <div className="user-info__text">
           <p className="user-info__name">{user.fullName || 'Anonim'}</p>
-      {/* <p className="user-info__comment-date">{`Left a comment ${dayjs(date).fromNow()}`}</p> */}
-          <p className="user-info__comment-date">{`Left a comment ${moment(date).fromNow()}`}</p>
+          <p className="user-info__comment-date">{`Left a comment ${dayjs(date).fromNow()}`}</p>
         </div>
       </div>
       <p className="comment-text">{text}</p>
