@@ -7,7 +7,7 @@ const getBook = (id: number) => {
 };
 
 const getFiltredBooks = (query: FilterQueryType) => {
-  return customAxios.get<BooksType>('/book/filtredBooks', { params: query });
+  return customAxios.get<BooksType>('/book/filtred-books', { params: query });
 };
 
 export default {

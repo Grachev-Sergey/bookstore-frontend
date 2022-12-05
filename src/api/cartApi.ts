@@ -25,11 +25,11 @@ const deleteAllBooksFromCart = (userId: number) => {
 };
 
 const addCopyToCart = (id: number) => {
-  return customAxios.patch(`/cart/addcopy/${id}`);
+  return customAxios.patch(`/cart/add-copy/${id}`);
 };
 
 const deleteCopyFromCart = (id: number) => {
-  return customAxios.patch(`/cart/removecopy/${id}`);
+  return customAxios.patch(`/cart/remove-copy/${id}`);
 };
 
 export default {

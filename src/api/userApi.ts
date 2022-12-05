@@ -11,15 +11,15 @@ const checkUserApi = () => {
 };
 
 const changeUserInfoApi = (changedInfo: ChangeInfoType) => {
-  return customAxios.patch<UserDataType>('/user/changeinfo', changedInfo);
+  return customAxios.patch<UserDataType>('/user/change-info', changedInfo);
 };
 
 const changeUserPassApi = (changedPass: ChangePassType) => {
-  return customAxios.patch<UserDataType>('/user/changepass', changedPass);
+  return customAxios.patch<UserDataType>('/user/change-pass', changedPass);
 };
 
 const uploadPhotoApi = (avatar: UploadPhotoType) => {
-  return customAxios.patch<UserDataType>('/user/uploadphoto', avatar);
+  return customAxios.patch<UserDataType>('/user/upload-photo', avatar);
 };
 
 export default {
