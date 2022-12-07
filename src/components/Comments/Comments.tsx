@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import io from 'socket.io-client';
 
 import { CommentsContainer } from './Comments.styles';
 
 import Button from '../Button';
 import CommentItem from './CommentItem';
 
-import commentsApi from '../../api/commentsApi';
 import type { CommentType } from '../../utils/types/commentsType';
 import type { UserType } from '../../utils/types/userTypes';
+import { baseUrl } from '../../utils/config';
 
 type PropsType = {
   userInfo: UserType | null;
@@ -19,23 +20,40 @@ type PropsType = {
 const Comments: React.FC<PropsType> = ({ comments, userInfo, bookId }) => {
   const [bookComments, setBookComments] = useState<CommentType[] | null>(comments);
   const [commentText, setCommentText] = useState('');
+  const socket = io(baseUrl);
+
+  useEffect(() => {
+    setBookComments(comments);
+  }, [comments]);
+
+  useEffect(() => {
+    socket.on('addComment', (data) => {
+      setBookComments((prev) => {
+        if (!prev) return [];
+        return [...prev, data];
+      });
+    });
+    return () => {
+      socket.removeAllListeners();
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleChangeText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCommentText(e.target.value);
   };
 
   const addComment = async () => {
+    if (!commentText.trim()) {
+      return;
+    }
     try {
-      const newComment = await commentsApi.addComment({
+      socket.emit('addComment', {
         userId: Number(userInfo?.id),
         bookId: Number(bookId),
         commentText,
       });
       setCommentText('');
-      setBookComments((prev) => {
-        if (!prev) return [];
-        return [...prev, newComment.data];
-      });
     } catch (err) {
       const error = err as Error;
       return toast.error(error.message);
