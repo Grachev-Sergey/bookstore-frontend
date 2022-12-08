@@ -8,8 +8,8 @@ import type { UserType } from '../../../utils/types/userTypes';
 import userProfile from '../../../assets/icons/userProfile.png';
 
 type PropsType = {
-  user: UserType;
-  date: Date;
+  user: UserType | null;
+  date: string;
   text: string;
 };
 
@@ -19,9 +19,9 @@ const CommentItem: React.FC<PropsType> = ({ user, date, text }) => {
   return (
     <CommentItemContainer>
       <div className="user-info">
-        <img className="user-info__photo" src={user.avatar ? `${user.avatar}` : `${userProfile}`} />
+        <img className="user-info__photo" src={user?.avatar ? `${user.avatar}` : `${userProfile}`} />
         <div className="user-info__text">
-          <p className="user-info__name">{user.fullName || 'Anonim'}</p>
+          <p className="user-info__name">{user?.fullName || 'Anonim'}</p>
           <p className="user-info__comment-date">{`Left a comment ${dayjs(date).fromNow()}`}</p>
         </div>
       </div>

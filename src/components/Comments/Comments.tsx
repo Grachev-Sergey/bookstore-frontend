@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import io from 'socket.io-client';
 
 import { CommentsContainer } from './Comments.styles';
@@ -14,13 +13,13 @@ import { baseUrl } from '../../utils/config';
 type PropsType = {
   userInfo: UserType | null;
   bookId?: string;
-  comments: CommentType[] | null;
+  comments?: CommentType[];
 };
+const socket = io(baseUrl);
 
-const Comments: React.FC<PropsType> = ({ comments, userInfo, bookId }) => {
-  const [bookComments, setBookComments] = useState<CommentType[] | null>(comments);
+const Comments: React.FC<PropsType> = ({ comments = [], userInfo, bookId }) => {
+  const [bookComments, setBookComments] = useState<CommentType[]>(comments ?? []);
   const [commentText, setCommentText] = useState('');
-  const socket = io(baseUrl);
 
   useEffect(() => {
     setBookComments(comments);
@@ -43,21 +42,28 @@ const Comments: React.FC<PropsType> = ({ comments, userInfo, bookId }) => {
     setCommentText(e.target.value);
   };
 
-  const addComment = async () => {
+  const addComment = () => {
     if (!commentText.trim()) {
       return;
     }
-    try {
-      socket.emit('addComment', {
-        userId: Number(userInfo?.id),
-        bookId: Number(bookId),
-        commentText,
-      });
-      setCommentText('');
-    } catch (err) {
-      const error = err as Error;
-      return toast.error(error.message);
-    }
+    socket.emit('addComment', {
+      userId: Number(userInfo?.id),
+      bookId: Number(bookId),
+      commentText,
+    });
+    const newCommet = {
+      bookId,
+      user: userInfo,
+      userId: userInfo?.id,
+      createdAt: new Date().toISOString(),
+      comment: commentText,
+      id: comments[comments.length - 1].id + 12,
+    };
+    setBookComments((prev) => {
+      if (!prev) return [];
+      return [...prev, newCommet];
+    });
+    setCommentText('');
   };
 
   return (

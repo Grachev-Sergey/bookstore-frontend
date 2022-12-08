@@ -15,21 +15,18 @@ import BookDescription from './BookDescription';
 import bookApi from '../../api/bookApi';
 import { useAppSelector } from '../../store/hooks';
 import type { BookType } from '../../utils/types/bookTypes';
-import type { CommentType } from '../../utils/types/commentsType';
 
 const BookPage: React.FC = () => {
   const { id } = useParams();
   const userInfo = useAppSelector((state) => state.user.user);
   const [isLoaded, setIsLoaded] = useState(false);
   const [book, setBook] = useState<BookType | null>(null);
-  const [comments, setComments] = useState<CommentType[] | null>(null);
 
   useEffect(() => {
     (async () => {
       try {
         const getOneBook = await bookApi.getBook(Number(id));
         setBook(getOneBook.data.book);
-        setComments(getOneBook.data.book.comments);
       } catch (err) {
         const error = err as Error;
         return toast.error(error.message);
@@ -66,7 +63,7 @@ const BookPage: React.FC = () => {
       </div>
       <div className="comments">
         <h2 className="comments__title">Comments</h2>
-        <Comments comments={comments} userInfo={userInfo} bookId={id} />
+        <Comments comments={book?.comments} userInfo={userInfo} bookId={id} />
       </div>
       {!userInfo?.email && <AuthorizeBanner />}
       <div className="recommendations">

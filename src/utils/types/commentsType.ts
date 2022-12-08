@@ -7,9 +7,10 @@ export type CommentInfoType = {
 };
 
 export type CommentType = {
-  userId: number;
-  createdAt: Date;
+  userId: string | undefined;
+  createdAt: string;
   comment: string;
   id: number;
-  user: UserType;
+  user: UserType | null;
+  bookId: string | undefined;
 };
