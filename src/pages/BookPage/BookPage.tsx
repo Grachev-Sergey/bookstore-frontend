@@ -34,7 +34,8 @@ const BookPage: React.FC = () => {
         setIsLoaded(true);
       }
     })();
-  }, [id]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const changeRating = (newRating: number) => {
     setBook((prev) => {

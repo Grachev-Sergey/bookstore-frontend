@@ -22,10 +22,6 @@ const Comments: React.FC<PropsType> = ({ comments = [], userInfo, bookId }) => {
   const [commentText, setCommentText] = useState('');
 
   useEffect(() => {
-    setBookComments(comments);
-  }, [comments]);
-
-  useEffect(() => {
     socket.on('addComment', (data) => {
       setBookComments((prev) => {
         if (!prev) return [];
@@ -46,22 +42,12 @@ const Comments: React.FC<PropsType> = ({ comments = [], userInfo, bookId }) => {
     if (!commentText.trim()) {
       return;
     }
+    // eslint-disable-next-line no-console
+    console.log(commentText);
     socket.emit('addComment', {
       userId: Number(userInfo?.id),
       bookId: Number(bookId),
       commentText,
-    });
-    const newCommet = {
-      bookId,
-      user: userInfo,
-      userId: userInfo?.id,
-      createdAt: new Date().toISOString(),
-      comment: commentText,
-      id: comments[comments.length - 1].id + 12,
-    };
-    setBookComments((prev) => {
-      if (!prev) return [];
-      return [...prev, newCommet];
     });
     setCommentText('');
   };

@@ -29,7 +29,7 @@ const logInUser = createAsyncThunk(
   async (values: UserLoginType, { rejectWithValue }) => {
     try {
       const data = await authApi.logIn(values);
-      localStorage.setItem('token', data.data.token);
+      localStorage.setItem('token', data.data.tokens.accessToken);
       return data.data.user;
     } catch (err) {
       if (err instanceof AxiosError) {
@@ -45,7 +45,7 @@ const signUpUser = createAsyncThunk(
   async (values: UserLoginType, { rejectWithValue }) => {
     try {
       const data = await authApi.signUp(values);
-      localStorage.setItem('token', data.data.token);
+      localStorage.setItem('token', data.data.tokens.accessToken);
       return data.data.user;
     } catch (err) {
       if (err instanceof AxiosError) {

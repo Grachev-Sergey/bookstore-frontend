@@ -23,7 +23,7 @@ export type UserLoginType = {
 };
 
 export type UserDataType = {
-  token: string;
+  tokens: TokenType;
   user: UserType;
 };
 
@@ -43,4 +43,9 @@ export type ChangePassType = {
 export type UploadPhotoType = {
   avatar: string | ArrayBuffer | null;
   userId?: number;
+};
+
+type TokenType = {
+  accessToken: string;
+  refreshToken: string;
 };
