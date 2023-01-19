@@ -19,7 +19,7 @@ import {
 } from '../../store/userSlice';
 import type { BookType } from '../../utils/types/bookTypes';
 import type { FavoriteType } from '../../utils/types/favoriteType';
-import cover from '../../utils/config';
+import { cover } from '../../utils/config';
 
 import removeFavorites from '../../assets/icons/removeFavorites.png';
 import addFavorites from '../../assets/icons/addFavorites.png';

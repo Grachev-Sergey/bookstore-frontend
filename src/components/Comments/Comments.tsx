@@ -8,14 +8,14 @@ import CommentItem from './CommentItem';
 
 import type { CommentType } from '../../utils/types/commentsType';
 import type { UserType } from '../../utils/types/userTypes';
-import { baseUrl } from '../../utils/config';
+import config from '../../utils/config';
 
 type PropsType = {
   userInfo: UserType | null;
   bookId?: string;
   comments?: CommentType[];
 };
-const socket = io(baseUrl);
+const socket = io(config.baseUrl);
 
 const Comments: React.FC<PropsType> = ({ comments = [], userInfo, bookId }) => {
   const [bookComments, setBookComments] = useState<CommentType[]>(comments ?? []);

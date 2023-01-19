@@ -7,7 +7,7 @@ import { BookDescriptionContainer } from './BookDescription.styles';
 
 import { useAppDispatch } from '../../../store/hooks';
 import { addToCart } from '../../../store/userSlice/userSlice';
-import cover from '../../../utils/config';
+import { cover } from '../../../utils/config';
 import cartApi from '../../../api/cartApi';
 import type { UserType } from '../../../utils/types/userTypes';
 import type { BookType } from '../../../utils/types/bookTypes';
